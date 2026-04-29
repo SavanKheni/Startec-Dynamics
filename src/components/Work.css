@@ -1,0 +1,365 @@
+.work-img {
+    mix-blend-mode: screen;
+    margin: 0 auto;
+    display: block;
+}
+
+.work-section {
+    margin-top: 50px;
+}
+
+.icon-box {
+    height: 50px;
+    width: 50px;
+    border-radius: 14px;
+
+    /* 1. Use a transparent border to define thickness */
+    border: 1.5px solid transparent;
+
+    /* 2. Layer your backgrounds:
+       - First: Your solid color (clipped to padding)
+       - Second: Your gradient (clipped to the border) */
+    background:
+        linear-gradient(#01112F, #01112F) padding-box,
+        linear-gradient(154.06deg, #3D64FF 0.49%, #3EFCFF 99.41%) border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 20px 30px 0px #000B2AA1;
+    position: absolute;
+    animation: float 5s ease-in-out infinite;
+}
+
+.netEarthBlock {
+    position: relative;
+}
+
+.icon-box svg {
+    width: 30px;
+    height: auto;
+}
+
+.icon-box-1 {
+    top: 129px;
+    left: 38%;
+    animation-delay: 0s;
+}
+
+.icon-box-2 {
+    top: 380px;
+    left: 41%;
+    height: 55px !important;
+    width: 55px !important;
+    animation-delay: 0.6s;
+}
+
+.icon-box-3 {
+    top: 246px;
+    left: 50%;
+    height: 55px !important;
+    width: 55px !important;
+    animation-delay: 1.2s;
+}
+
+.icon-box-4 {
+    top: 142px;
+    left: 56%;
+    animation-delay: 1.8s;
+}
+
+.icon-box-5 {
+    top: 333px;
+    left: 59%;
+    animation-delay: 2.4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.orditline {
+    height: 750px;
+    width: 750px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -33px;
+    /* Create the border space */
+    border: 1px solid transparent;
+    border-radius: 100%;
+
+    /* Apply the gradient to the border area only */
+    background: linear-gradient(180deg, #52F7FE 0%, #000611 100%) border-box;
+
+    /* The Mask: This tells the browser to only paint the border area */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    /* animation: spin 5s linear infinite; */
+
+}
+
+.logo-button {
+    margin: -70px auto auto auto;
+    display: block;
+    width: fit-content;
+}
+
+.logo-button .gradient-btn-inner {
+    height: 67px;
+}
+
+.tabs-main {
+    display: flex;
+    justify-content: space-between;
+    max-width: 730px;
+    margin: auto;
+    padding-top: 100px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tabs-main::before {
+    position: absolute;
+    content: "";
+    height: 92px;
+    width: 1px;
+    background-color: #5F7896;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.tab {
+    width: 33.33%;
+    text-align: center;
+    padding-top: 24px;
+    position: relative;
+    margin-top: -10px;
+
+}
+
+.top-line {
+    background-color: #5F7896;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.top-line-1 {
+    width: 50%;
+    right: 0;
+}
+
+.top-line-3 {
+    width: 50%;
+    left: 0;
+}
+
+.tabs-main h6 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+}
+
+.dot-line {
+    width: 8px;
+    height: 8px;
+    background: #84A2C5;
+    border-radius: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.dot-line::before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 1px;
+    background-color: #5F7896;
+    top: -24px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.tab svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.active-line {
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(1, 8, 24, 0.98) 0%, #FFFFFF 50.96%, rgba(0, 7, 21, 0.98) 100%);
+
+
+}
+
+.GlowLTRMain {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin-top: 100px;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+    max-width: 1298px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.GlowLTR {
+    position: absolute;
+    top: -100px;
+    width: 100%;
+}
+
+.GlowLTR svg {
+    width: 100%;
+
+}
+
+.tab-content-main {
+    margin-bottom: 50px;
+}
+
+.tab-content {
+    display: flex;
+}
+
+.top-to-bottom {
+    position: relative;
+}
+
+.top-to-bottom::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    height: 100%;
+    width: 1px;
+    background: #6672A9;
+}
+
+.tab-content {
+    max-width: 1674px;
+    margin: 0px auto;
+}
+
+.tab-right-box {
+    width: 50%;
+    padding: 50px 0px;
+}
+
+.tab-left-box {
+    width: 50%;
+    padding: 50px 0px;
+    position: relative;
+}
+
+.tab-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 10px
+}
+
+.tab-title h2 {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+    letter-spacing: 0%;
+}
+
+.tab-left-box p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+    margin-bottom: 15px;
+}
+
+.tab-left-box .gradient-btn-wrapper {
+    margin-top: 30px;
+}
+
+.left-box-bg-glow {
+    position: absolute;
+    top: -40%;
+    left: -30%;
+    z-index: -1;
+}
+
+.tab-image-group {
+    position: relative;
+}
+
+.tab-preview-img {
+    position: absolute;
+}
+
+.tab-img-0 {
+    top: 150px;
+    left: 100px;
+    z-index: 4;
+}
+
+.tab-img-1 {
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.tab-img-2 {
+    top: 100px;
+    left: 270px;
+    z-index: 1;
+}
+
+.tab-shine {
+    position: absolute;
+    z-index: 4;
+    top: 180px;
+    left: -100px;
+    mix-blend-mode: screen;
+}
+
+.tab-img-0-shadow {
+    /* background: red; */
+    z-index: 3;
+    position: absolute;
+    top: 100px;
+    left: 40px;
+}

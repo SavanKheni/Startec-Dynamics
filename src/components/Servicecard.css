@@ -1,0 +1,173 @@
+/* ── Page wrapper ── */
+.sc-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 1674px;
+    margin: auto;
+}
+
+/* Starfield canvas sits behind everything */
+.sc-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sc-grid {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ── Card ── */
+.sc-card {
+    position: relative;
+    width: 390px;
+    height: 571px;
+    background: #01112F75;
+    border-radius: 40px;
+    padding: 2.2rem 1.6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 0;
+}
+
+.sc-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 2px;
+    background: linear-gradient(154.06deg, #2440B4 0.49%, #137276 99.41%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.sc-card:hover {
+    box-shadow: 0 24px 52px rgba(109, 40, 217, 0.2);
+}
+
+/* ── Icon wrapper ── */
+.sc-icon-wrap {
+    position: relative;
+    width: 74px;
+    height: 74px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 70px;
+}
+
+/* ── Title ── */
+.sc-title {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin: 50px 0px 20px 0px;
+}
+
+/* ── Body ── */
+.sc-body {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #E3E3E3;
+}
+
+/* ── CTA wrapper — hosts the shimmer span ── */
+.sc-cta-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* ── CTA link ── */
+.sc-link {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 12px;
+    text-decoration: none;
+    outline: none;
+}
+
+/* static underline */
+.sc-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7c3aed, #db2777);
+    border-radius: 100px;
+}
+
+.sc-link:hover {
+    opacity: 0.8;
+}
+
+/* ── Shimmer sweep — controlled by Framer Motion scaleX ── */
+.sc-link-shimmer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a5b4fc, #f9a8d4, #a5b4fc);
+    border-radius: 100px;
+    pointer-events: none;
+    /* Framer Motion sets transform: scaleX() */
+}
+
+/* ── Bottom gradient bar ── */
+.sc-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #7c3aed, #db2777, transparent);
+    opacity: 0.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .sc-grid {
+        gap: 1rem;
+    }
+
+    .sc-card {
+        width: 90%;
+        max-width: 320px;
+    }
+}

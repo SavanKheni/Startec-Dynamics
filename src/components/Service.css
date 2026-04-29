@@ -1,0 +1,38 @@
+.service-heading {
+    text-align: center;
+    max-width: 738px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.service-main {
+    padding: 100px 0px;
+}
+
+.service-heading h1 {
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 50px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.service-heading p b {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #fff;
+
+}
+
+.service-heading p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #D8DFEE;
+}

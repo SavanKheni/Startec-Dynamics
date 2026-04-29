@@ -1,0 +1,61 @@
+.partners-section {
+    max-width: 1674px;
+    margin: auto;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+
+
+}
+
+.partners-header {
+    max-width: 516px;
+
+}
+
+.partners-header h1 {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+    letter-spacing: 0%;
+
+}
+
+.partners-header p {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+    margin-top: 30px;
+}
+
+.partners-logo {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.partner-logo-box-1,
+.partner-logo-box-2 {
+    position: relative;
+}
+
+.partner-logo-box-1 svg {
+    position: absolute;
+    top: -403%;
+    left: -99%;
+    z-index: -1;
+}
+
+.partner-logo-box-2 svg {
+    position: absolute;
+    top: -403%;
+    left: -35%;
+    z-index: -1;
+}
