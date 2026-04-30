@@ -155,3 +155,23 @@ button {
     opacity: 0.8;
   }
 }
+
+/* .star-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.shooting-star {
+  width: 3px;
+  height: 120px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 1),
+      rgba(0, 150, 255, 0));
+  border-radius: 50px;
+  filter: blur(1px);
+  box-shadow: 0 0 20px #4facfe, 0 0 40px #00f2fe;
+} */

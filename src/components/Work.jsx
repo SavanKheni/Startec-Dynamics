@@ -274,31 +274,87 @@ const floatConfigs = [
 // ─── Icon Component ───────────────────────────────────────────────────────────
 const IconBox = ({ icon }) => (
   <motion.div
-    className={`icon-box ${icon.className}`}
     variants={iconVariants}
+    className={`box-shadow ${icon.className}`}
     whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.2 } }}
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={icon.viewBox}
-      fill="none"
-      width="100%"
-      height="100%"
-    >
-      {icon.paths?.map((p, i) => (
-        <path key={i} d={p.d} fill={p.fill} />
-      ))}
-      {icon.strokePaths?.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          stroke="#3DA8FF"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ))}
-    </svg>
+    <div className=" box-shadow-inner">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="235"
+        height="201"
+        viewBox="0 0 235 201"
+        fill="none"
+      >
+        <g opacity="0.5" filter="url(#filter0_f_5293_1668)">
+          <ellipse
+            cx="117.5"
+            cy="100.21"
+            rx="40.2098"
+            ry="57.5"
+            transform="rotate(-90 117.5 100.21)"
+            fill="url(#paint0_radial_5293_1668)"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_5293_1668"
+            x="0"
+            y="0"
+            width="235"
+            height="200.42"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="30"
+              result="effect1_foregroundBlur_5293_1668"
+            />
+          </filter>
+          <radialGradient
+            id="paint0_radial_5293_1668"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(117.5 100.21) rotate(-180) scale(82.4641 117.924)"
+          >
+            <stop stop-color="#FF129D" />
+            <stop offset="1" stop-color="#000B2D" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+    <motion.div className={`icon-box `}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={icon.viewBox}
+        fill="none"
+        width="100%"
+        height="100%"
+      >
+        {icon.paths?.map((p, i) => (
+          <path key={i} d={p.d} fill={p.fill} />
+        ))}
+        {icon.strokePaths?.map((d, i) => (
+          <path
+            key={i}
+            d={d}
+            stroke="#3DA8FF"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        ))}
+      </svg>
+    </motion.div>
   </motion.div>
 );
 

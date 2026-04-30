@@ -1,0 +1,19 @@
+.star-container {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star-image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* filter: drop-shadow(0 0 10px rgba(255, 150, 50, 0.8)) drop-shadow(0 0 30px rgba(255, 120, 0, 0.6)); */
+}
+
+.star-image img {
+    mix-blend-mode: screen;
+}

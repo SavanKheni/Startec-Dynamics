@@ -116,7 +116,7 @@ const Service = () => {
                 transition: { duration: 0.28, ease: "easeOut" },
               }}
               whileTap={{ scale: 0.97 }}
-              style={{ borderRadius: "18px" }}
+              style={{ borderRadius: "40px" }}
             >
               <ServiceCard
                 {...card}

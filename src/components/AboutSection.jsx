@@ -80,6 +80,7 @@ const AboutSection = () => {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.85 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
+          style={{ display: "inline-block" }}
         >
           <GradientButton onClick={() => console.log("clicked")}>
             Who We Are

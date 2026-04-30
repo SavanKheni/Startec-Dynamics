@@ -109,12 +109,13 @@
 
 .moon-wrapper {
     position: absolute;
-    top: -75%;
+    top: -67%;
     left: 0;
     right: 0;
-    width: 50%;
+    width: fit-content;
+    /* width: 50%; */
     margin: auto;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     overflow: hidden;
     animation: spin 300s linear infinite;
 }
@@ -126,8 +127,10 @@
     left: unset;
     right: unset;
     margin: unset;
-    width: 100%;
+    width: 1041px;
+    height: auto;
     animation: none;
+
 }
 
 /* .moon-wrapper::after {
@@ -141,60 +144,64 @@
 
 .earth-wrapper {
     position: absolute;
-    bottom: -37%;
+    bottom: -63%;
     left: 0;
     right: 0;
-    width: 50%;
-    /* margin: auto;
-    border-radius: 50%;
+    width: fit-content;
+    margin: auto;
     overflow: hidden;
-    animation: spin 300s linear infinite; */
 }
 
 .footer .earth-wrapper {
     position: absolute;
-    top: -45%;
+    top: -66%;
     left: 0;
     right: 0;
-    width: 50%;
-    /* margin: auto;
+    width: fit-content;
+    margin: auto;
     border-radius: 50%;
-    overflow: hidden;
-    animation: spin 300s linear infinite; */
+    overflow: unset;
+    /* animation: spin 300s linear infinite; */
+    animation: unset;
+}
+
+.footer .earth-wrapper .earth-img {
+    width: 1166px;
+    height: auto;
 }
 
 .footer .moon-wrapper {
     position: absolute;
-    top: 60%;
+    top: 57%;
 
     left: 0;
+    width: fit-content;
     right: 0;
-    width: 50%;
     margin: auto;
     border-radius: 50%;
     overflow: hidden;
     animation: spin 300s linear infinite;
 }
 
-/* .earth-wrapper .earth-img {
+.footer .moon-wrapper .moon-img {
+    width: 1041px;
+    height: auto;
+}
+
+.earth-wrapper .earth-img {
     position: relative;
     top: unset;
     bottom: unset;
     left: unset;
     right: unset;
     margin: unset;
-    width: 100%;
-    animation: none;
+    width: 1323px;
+    height: auto;
+
+    animation: spin 300s linear infinite;
 }
 
-.earth-wrapper::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.78) 75%);
-    pointer-events: none;
-} */
+
 
 @keyframes spin {
     from {
@@ -222,7 +229,7 @@
     font-size: 52px;
     font-weight: 400;
     font-family: "Saira", sans-serif;
-    line-height: 66px;
+    line-height: 55px;
 }
 
 .hero-content p {
@@ -276,6 +283,10 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.right-nav .gradient-btn-inner {
+    font-size: 18px;
 }
 
 .footer {

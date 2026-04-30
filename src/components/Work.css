@@ -8,11 +8,22 @@
     margin-top: 50px;
 }
 
+.box-shadow {
+    position: absolute;
+    animation: float 5s ease-in-out infinite;
+}
+
+.box-shadow-inner {
+    position: absolute;
+    z-index: -1;
+    top: -75px;
+    left: -84px;
+}
+
 .icon-box {
     height: 50px;
     width: 50px;
     border-radius: 14px;
-
     /* 1. Use a transparent border to define thickness */
     border: 1.5px solid transparent;
 
@@ -28,8 +39,7 @@
     align-items: center;
     flex-direction: column;
     box-shadow: 0px 20px 30px 0px #000B2AA1;
-    position: absolute;
-    animation: float 5s ease-in-out infinite;
+
 }
 
 .netEarthBlock {
@@ -118,6 +128,10 @@
     margin: -70px auto auto auto;
     display: block;
     width: fit-content;
+}
+
+.logo-button .gradient-btn-wrapper {
+    border-radius: 12px;
 }
 
 .logo-button .gradient-btn-inner {

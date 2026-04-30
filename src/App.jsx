@@ -11,6 +11,7 @@ import Work from "./components/Work";
 import Service from "./components/Service";
 import GetInTouch from "./components/GetInTouch";
 import Partners from "./components/Partners";
+import ShootingStar from "./components/ShootingStart";
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
   return (
     <div className="app">
       <Navbar />
+      <ShootingStar />
       <main>
         <Hero />
         <AboutSection />

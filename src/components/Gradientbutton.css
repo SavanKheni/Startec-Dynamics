@@ -6,12 +6,12 @@
     border-radius: 12px;
     padding: 2px;
     background: conic-gradient(from var(--angle, 234.27deg),
-            #FF2CF7,
+            #FF2CF750,
             #FB047BCB,
             #FF7EBCCF,
             #FFFFFF00,
             #49F3FFA6,
-            #130EFF);
+            #130EFF50);
     animation: rotate-border 10s linear infinite;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;

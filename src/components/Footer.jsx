@@ -1,6 +1,7 @@
 import React from "react";
 import "./components.css";
 import moon from "../assets/moon.png";
+import earth from "../assets/earth.png";
 import GradientButton from "./Gradientbutton";
 import GlobeComponent from "./GlobeComponent";
 import { motion } from "framer-motion";
@@ -28,7 +29,7 @@ const Footer = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         >
-          <GlobeComponent />
+          <img alt="" src={earth} className="earth-img" />
         </motion.div>
 
         {/* Earth / Globe with entrance animation */}
