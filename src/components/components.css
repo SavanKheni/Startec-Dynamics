@@ -152,6 +152,10 @@
     overflow: hidden;
 }
 
+.earth-wrapper svg {
+    position: absolute;
+}
+
 .footer .earth-wrapper {
     position: absolute;
     top: -66%;
@@ -197,7 +201,6 @@
     margin: unset;
     width: 1323px;
     height: auto;
-
     animation: spin 300s linear infinite;
 }
 

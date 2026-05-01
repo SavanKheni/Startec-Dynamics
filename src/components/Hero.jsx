@@ -40,6 +40,56 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1357"
+            height="1357"
+            viewBox="0 0 1357 1357"
+            fill="none"
+          >
+            <g filter="url(#filter0_f_5407_326)">
+              <circle
+                cx="678.5"
+                cy="678.5"
+                r="598.5"
+                fill="url(#paint0_linear_5407_326)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5407_326"
+                x="0"
+                y="0"
+                width="1357"
+                height="1357"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="40"
+                  result="effect1_foregroundBlur_5407_326"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_5407_326"
+                x1="678.5"
+                y1="588.504"
+                x2="678.5"
+                y2="245.731"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#2752FF" stop-opacity="0" />
+                <stop offset="1" stop-color="#2B82F3" stop-opacity="0.52" />
+              </linearGradient>
+            </defs>
+          </svg>
           <img alt="" src={earth} className="earth-img" />
           {/* <GlobeComponent /> */}
         </motion.div>
