@@ -29,6 +29,58 @@ const Footer = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1216"
+            height="1216"
+            viewBox="0 0 1216 1216"
+            fill="none"
+          >
+            <g filter="url(#filter0_f_5409_339)">
+              <ellipse
+                cx="607.928"
+                cy="607.929"
+                rx="527.928"
+                ry="527.929"
+                transform="rotate(-180 607.928 607.929)"
+                fill="url(#paint0_linear_5409_339)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5409_339"
+                x="0"
+                y="0"
+                width="1215.86"
+                height="1215.86"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="40"
+                  result="effect1_foregroundBlur_5409_339"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_5409_339"
+                x1="607.928"
+                y1="528.545"
+                x2="607.928"
+                y2="226.189"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#2752FF" stop-opacity="0" />
+                <stop offset="1" stop-color="#2B82F3" stop-opacity="0.52" />
+              </linearGradient>
+            </defs>
+          </svg>
           <img alt="" src={earth} className="earth-img" />
         </motion.div>
 
