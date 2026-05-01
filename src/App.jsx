@@ -1,23 +1,16 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Capabilities from "./components/Capabilities";
-import ProductShowcase from "./components/ProductShowcase";
-import Services from "./components/Services";
 import Footer from "./components/Footer";
-import AboutSection from "./components/AboutSection";
-import VisionSection from "./components/VisionSection";
-import Work from "./components/Work";
-import Service from "./components/Service";
-import GetInTouch from "./components/GetInTouch";
-import Partners from "./components/Partners";
 import ShootingStar from "./components/ShootingStart";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import { BgStar } from "./components/BgStar";
 
 function App() {
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-    };
+    const observerOptions = { threshold: 0.1 };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -33,35 +26,33 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Navbar />
-      <ShootingStar />
-      <main>
-        <Hero />
-        <AboutSection />
-        <VisionSection />
-        <Work />
-        <Service />
-        <GetInTouch />
-        <Partners />
-        {/* <Capabilities />
-        <ProductShowcase />   
-        <Services /> */}
-      </main>
-      <Footer />
+    <Router>
+      <div className="app">
+        <Navbar />
+        <ShootingStar />
+        <BgStar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </main>
 
-      <style jsx global>{`
-        .reveal {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .reveal.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
-    </div>
+        <Footer />
+
+        <style jsx global>{`
+          .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        `}</style>
+      </div>
+    </Router>
   );
 }
 

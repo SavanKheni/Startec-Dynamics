@@ -9,17 +9,6 @@ import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <section className="hero">
-      {/* Background layer */}
-      <div className="bg"></div>
-
-      {/* Star field */}
-      <div className="star-field">
-        <div className="layer"></div>
-        <div className="layer"></div>
-        <div className="layer"></div>
-      </div>
-
-      {/* Planets + blast wrapper */}
       <div
         style={{ overflow: "hidden", height: "100vh", position: "relative" }}
       >
