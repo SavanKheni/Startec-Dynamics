@@ -40,8 +40,8 @@ const Navbar = () => {
               <nav>
                 <a href="/">Home</a>
                 <a href="/projects">Projects</a>
-                <a href="/services">Services</a>
-                <a href="/about">About Us</a>
+                <a href="/serviceas">Services</a>
+                <a href="/about-us">About Us</a>
                 <a href="/contact">Contact</a>
                 <a href="/partners">Partners</a>
               </nav>

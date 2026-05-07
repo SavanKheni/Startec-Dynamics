@@ -7,6 +7,8 @@ import ShootingStar from "./components/ShootingStart";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import { BgStar } from "./components/BgStar";
+import Serviceas from "./pages/Serviceas";
+import AboutUS from "./pages/AboutUS";
 
 function App() {
   useEffect(() => {
@@ -35,6 +37,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/serviceas" element={<Serviceas />} />
+            <Route path="/about-us" element={<AboutUS />} />
           </Routes>
         </main>
 

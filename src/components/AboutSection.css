@@ -139,3 +139,26 @@
 .input-cta-wrap input::placeholder {
     color: #fff;
 }
+
+.AboutPageSection .about-section-right p {
+    margin-bottom: 20px !important;
+    max-width: unset !important;
+}
+
+.AboutPageSection h5 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 50px;
+    letter-spacing: 0%;
+
+}
+
+.AboutPageSection h2 {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 40px !important;
+    line-height: 50px !important;
+    letter-spacing: 0%;
+
+
+}
