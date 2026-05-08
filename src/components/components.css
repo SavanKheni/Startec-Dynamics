@@ -256,6 +256,13 @@
 
 }
 
+.navbar .logo-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 .logo-img {
     height: 40px;
     width: auto;

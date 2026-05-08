@@ -149,12 +149,6 @@ const Team = () => {
       desc: "With 20+ years of experience in the motorcycle industry, Ivan established Startec Dynamics Inc., exploring worldwide market opportunities, organizing R&D teams, and launching R&D products successfully.",
     },
     {
-      img: team2,
-      name: "Lola Champ",
-      role: "Investor Relations",
-      desc: "Lola leads investor relations and brand strategy. She has led key roles at Alegrity Canada and Maplegro, supporting startups and strategic initiatives.",
-    },
-    {
       img: team3,
       name: "Rishabh Goel",
       role: "R&D Manager",

@@ -162,3 +162,26 @@
 
 
 }
+
+.text-wrapper {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* 👈 limit to 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.text-wrapper.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.read-more-btn {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #00bfff;
+    cursor: pointer;
+    font-weight: 600;
+}

@@ -22,7 +22,7 @@ const AboutHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.6 }}
           >
-            About Startec Dynamics
+            About us
           </motion.h1>
 
           <motion.p
