@@ -58,7 +58,7 @@ const viewport = { once: true, amount: 0.2 };
 
 const ContactForm = () => {
   return (
-    <>
+    <div className="contact-form-main">
       <div className="contact-form">
         {/* ── Left column: form ────────────────────────────────────────────── */}
         <motion.div
@@ -391,7 +391,7 @@ const ContactForm = () => {
           className="GlowLTR"
         />
       </motion.div>
-    </>
+    </div>
   );
 };
 

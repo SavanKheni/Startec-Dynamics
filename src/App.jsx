@@ -10,6 +10,7 @@ import { BgStar } from "./components/BgStar";
 import Serviceas from "./pages/Serviceas";
 import AboutUS from "./pages/AboutUS";
 import ContactUs from "./pages/ContactUs";
+import Partners from "./pages/Partners";
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/serviceas" element={<Serviceas />} />
             <Route path="/about-us" element={<AboutUS />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/partners" element={<Partners />} />
           </Routes>
         </main>
 

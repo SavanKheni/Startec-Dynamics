@@ -1,0 +1,61 @@
+.partner-box-grid {
+    margin: 50px auto;
+    max-width: 1674px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.partner-box {
+    position: relative;
+    background: #01112F75;
+    border-radius: 40px;
+    padding: 70px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.partner-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 2px;
+    background: linear-gradient(154.06deg, #2440B4 0.49%, #137276 99.41%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.partner-box {
+    position: relative;
+}
+
+.partner-box .partner-logo-box-1 {
+    width: 100%;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+}
+
+.partner-box p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    color: #E3E3E3;
+    margin-bottom: 20px;
+}
+
+.partner-box .partner-logo-box-1 svg {
+    top: -189px !important;
+    left: -140px !important;
+}
+
+.partner-box-grid-main .GlowLTRMain {
+    max-width: 1674px !important;
+}
