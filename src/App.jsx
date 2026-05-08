@@ -9,6 +9,7 @@ import Projects from "./pages/Projects";
 import { BgStar } from "./components/BgStar";
 import Serviceas from "./pages/Serviceas";
 import AboutUS from "./pages/AboutUS";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/serviceas" element={<Serviceas />} />
             <Route path="/about-us" element={<AboutUS />} />
+            <Route path="/contact-us" element={<ContactUs />} />
           </Routes>
         </main>
 
