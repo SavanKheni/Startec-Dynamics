@@ -1,0 +1,106 @@
+.project-details-main {
+    padding: 150px 0px 0px;
+}
+
+.project-screen-main {
+    max-width: 1678px;
+    margin: auto;
+    padding: 50px 0px;
+    display: flex;
+    gap: 50px;
+}
+
+.img-details h6 {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.project-screen-description p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+    margin-top: 30px;
+}
+
+.project-future-card-grid {
+    max-width: 1678px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+}
+
+.project-future-card-box {
+    padding: 50px 20px;
+    position: relative;
+
+}
+
+.project-future-card-box .top-to-bottom {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.project-future-card-box h3 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 46px;
+    letter-spacing: 0%;
+    margin-bottom: 5px;
+}
+
+.project-future-card-box p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+}
+
+.project-future-icon-box {
+    position: relative;
+}
+
+.project-future-icon-shadow {
+    position: absolute;
+    top: -60px;
+    left: -85px;
+    z-index: -1;
+}
+
+.bottom-desc {
+    display: flex;
+    align-items: center;
+    max-width: 1678px;
+    margin: auto;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -13.68%, rgba(122, 134, 196, 0.66) 47.97%, rgba(0, 0, 0, 0.66) 112.05%);
+
+
+}
+
+.bottom-desc p {
+    max-width: 1013px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+}
+
+.project-future-card-box:last-child .top-to-bottom {
+    display: none;
+}

@@ -1,11 +1,50 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import GradientButton from "./Gradientbutton";
+import { useLocation, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const showBackArrow = location.pathname === "/project-details";
   return (
     <nav className="navbar">
-      <div></div>
+      <div>
+        {showBackArrow && (
+          <div className="back-arrow" onClick={() => navigate("/projects")}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="46"
+              height="46"
+              viewBox="0 0 46 46"
+              fill="none"
+            >
+              <path
+                d="M23 42.1663C33.5855 42.1663 42.1667 33.5851 42.1667 22.9997C42.1667 12.4142 33.5855 3.83301 23 3.83301C12.4146 3.83301 3.83334 12.4142 3.83334 22.9997C3.83334 33.5851 12.4146 42.1663 23 42.1663Z"
+                stroke="#AAB4E4"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M29.7083 23H18.2083"
+                stroke="#AAB4E4"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M22.0417 17.25L16.2917 23L22.0417 28.75"
+                stroke="#AAB4E4"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+
       <img alt="" src={logo} className="logo-img" />
       <div className="right-nav">
         <div style={{ position: "relative" }}>

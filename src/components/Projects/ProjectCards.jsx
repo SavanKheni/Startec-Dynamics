@@ -5,6 +5,7 @@ import project2 from "../../assets/project-card-2.png";
 import project3 from "../../assets/project-card-3.png";
 import GradientButton from "../Gradientbutton";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
@@ -55,6 +56,7 @@ const infoVariants = {
 };
 
 const ProjectCards = () => {
+  const navigate = useNavigate();
   return (
     <div className="project-card-main">
       {projects.map((item, index) => (
@@ -87,7 +89,9 @@ const ProjectCards = () => {
             <h1>{item.title}</h1>
             <h6>{item.desc}</h6>
 
-            <GradientButton>Explore The Project</GradientButton>
+            <GradientButton onClick={() => navigate("/project-details")}>
+              Explore The Project
+            </GradientButton>
           </motion.div>
         </motion.div>
       ))}
