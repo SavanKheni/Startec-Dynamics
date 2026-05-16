@@ -196,3 +196,51 @@
     background: linear-gradient(90deg, #00052660 0%, #05103360 100%);
 
 }
+
+.TeamPageSection h2 {
+    font-weight: 400;
+    font-size: 28px !important;
+    line-height: 38px !important;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+
+}
+
+.TeamPageSection .about-section-left {
+    width: 50%;
+}
+
+.TeamPageSection .about-section-right {
+    width: 50%;
+}
+
+.TeamPageSection .about-section-right p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 44px;
+    letter-spacing: 0%;
+    color: #D8DFEE;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.team-flex-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.team-exp {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.TeamPageSection .about-section-right {
+    padding: 50px 100px !important;
+}
+
+.TeamPageSection .about-section-left {
+    padding: 50px 75px !important;
+}

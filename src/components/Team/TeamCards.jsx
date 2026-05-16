@@ -1,5 +1,5 @@
 import React from "react";
-import "./AboutPage.css";
+import "../AboutUs/AboutPage.css";
 import { motion } from "framer-motion";
 
 import team1 from "../../assets/team-1.png";
@@ -140,7 +140,7 @@ const TeamCard = ({ img, name, role, desc }) => {
 };
 
 // ── Main Component ──────────────────────────────────────────────────
-const Team = () => {
+const TeamCards = () => {
   const teamData = [
     {
       img: team1,
@@ -172,27 +172,6 @@ const Team = () => {
     <div className="team-section-main">
       <div className="team-section">
         {/* ── Section Heading ── */}
-        <div className="team-head">
-          <motion.h1
-            variants={headingVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            Our Research & Development Team
-          </motion.h1>
-
-          <motion.p
-            variants={subTextVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            Our Research & Development team drives innovation at the core of
-            everything we build. Focused on advanced technologies, continuous
-            experimentation, and user-centric solutions.
-          </motion.p>
-        </div>
 
         {/* ── Cards Grid — stagger children ── */}
         <motion.div
@@ -229,4 +208,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default TeamCards;

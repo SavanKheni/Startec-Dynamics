@@ -80,10 +80,8 @@
 .team-section {
     max-width: 1682px;
     margin: 0 auto;
-    padding: 100px 0px 0px 0px;
-    border: 1px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(195, 204, 248, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+    /* padding: 100px 0px 0px 0px; */
+
 
     border-left: 0;
     border-right: 0;

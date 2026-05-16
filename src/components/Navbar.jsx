@@ -81,6 +81,7 @@ const Navbar = () => {
                 <a href="/projects">Projects</a>
                 <a href="/serviceas">Services</a>
                 <a href="/about-us">About Us</a>
+                <a href="/team">Team</a>
                 <a href="/contact-us">Contact</a>
                 <a href="/partners">Partners</a>
               </nav>
