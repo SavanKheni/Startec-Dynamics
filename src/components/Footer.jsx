@@ -22,6 +22,7 @@ const Footer = () => {
           zIndex: -1,
         }}
       >
+        <div className="hero-bottom-shadow-top" />
         {/* Moon with entrance animation */}
         <motion.div
           className="earth-wrapper"

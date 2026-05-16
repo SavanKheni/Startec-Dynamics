@@ -24,21 +24,15 @@
     height: 50px;
     width: 50px;
     border-radius: 14px;
-    /* 1. Use a transparent border to define thickness */
-    border: 1.5px solid transparent;
+    background: linear-gradient(154.06deg, #3D64FF 0.49%, #3EFCFF 99.41%);
 
-    /* 2. Layer your backgrounds:
-       - First: Your solid color (clipped to padding)
-       - Second: Your gradient (clipped to the border) */
-    background:
-        linear-gradient(#01112F, #01112F) padding-box,
-        linear-gradient(154.06deg, #3D64FF 0.49%, #3EFCFF 99.41%) border-box;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     box-shadow: 0px 20px 30px 0px #000B2AA1;
+
 
 }
 
@@ -49,6 +43,11 @@
 .icon-box svg {
     width: 30px;
     height: auto;
+    fill: #0A1234;
+}
+
+.icon-box svg path {
+    fill: #0A1234;
 }
 
 .icon-box-1 {
@@ -262,6 +261,8 @@
 
 .tab-content-main {
     margin-bottom: 50px;
+    background: linear-gradient(90deg, #00052660 0%, #19013B60 100%);
+
 }
 
 .tab-content {

@@ -446,38 +446,39 @@ const Work = () => {
           <img alt="" src={logo} className="logo-img" />
         </GradientButton>
       </div>
-
-      {/* ─── Tabs ───────────────────────────────────────────────────────── */}
-      <div className="tabs-main">
-        {TABS.map((tab) => (
-          <motion.div
-            key={tab.id}
-            className={`tab ${tab.colorClass} ${activeTab === tab.id ? "active" : ""}`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            <div className={`top-line top-line-${tab.id + 1}`} />
-            <div className="dot-line" />
-            <motion.h6
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.2 }}
+      <div className="tabs-main-box" style={{ position: "relative" }}>
+        {/* ─── Tabs ───────────────────────────────────────────────────────── */}
+        <div className="tabs-main">
+          {TABS.map((tab) => (
+            <motion.div
+              key={tab.id}
+              className={`tab ${tab.colorClass} ${activeTab === tab.id ? "active" : ""}`}
+              onClick={() => setActiveTab(tab.id)}
             >
-              {tab.label}
-            </motion.h6>
-            <TabGlow
-              color={tab.colorClass === "tab--pink" ? "#FF26D7" : "#7626FF"}
-            />
-            {activeTab === tab.id && (
-              <motion.div
-                className="active-line"
-                layoutId="active-line"
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+              <div className={`top-line top-line-${tab.id + 1}`} />
+              <div className="dot-line" />
+              <motion.h6
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.2 }}
+              >
+                {tab.label}
+              </motion.h6>
+              <TabGlow
+                color={tab.colorClass === "tab--pink" ? "#FF26D7" : "#7626FF"}
               />
-            )}
-          </motion.div>
-        ))}
+              {activeTab === tab.id && (
+                <motion.div
+                  className="active-line"
+                  layoutId="active-line"
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                />
+              )}
+            </motion.div>
+          ))}
+        </div>
+        <div className="hero-bottom-shadow-bottom" />
       </div>
-
       {/* ─── Tab Content ────────────────────────────────────────────────── */}
       <div className="tab-content-main">
         <div className="GlowLTRMain">

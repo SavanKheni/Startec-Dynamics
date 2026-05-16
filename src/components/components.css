@@ -14,7 +14,9 @@
 .hero {
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
+
 
 .bg:before {
     content: "";
@@ -109,7 +111,7 @@
 
 .moon-wrapper {
     position: absolute;
-    top: -67%;
+    top: -475px;
     left: 0;
     right: 0;
     width: fit-content;
@@ -127,7 +129,7 @@
     left: unset;
     right: unset;
     margin: unset;
-    width: 1041px;
+    width: 753px;
     height: auto;
     animation: none;
 
@@ -144,16 +146,21 @@
 
 .earth-wrapper {
     position: absolute;
-    bottom: -63%;
+    bottom: -380px;
     left: 0;
     right: 0;
     width: fit-content;
     margin: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .earth-wrapper svg {
     position: absolute;
+    left: -110px;
+    right: 0;
+    top: -85px;
+    /* width: 1055px; */
+    /* z-index: 3; */
 }
 
 .footer .earth-wrapper {
@@ -199,7 +206,7 @@
     left: unset;
     right: unset;
     margin: unset;
-    width: 1323px;
+    width: 1135px;
     height: auto;
     animation: spin 300s linear infinite;
 }
@@ -226,6 +233,20 @@
     margin: auto;
     background: radial-gradient(50% 50% at 50% 50%, #040409 0%, rgba(4, 3, 8, 0.01) 100%);
     padding: 30px 0px;
+    z-index: 2;
+}
+
+.hero-content-bg {
+    position: absolute;
+    left: -204px;
+    right: 0;
+    margin: auto;
+    top: -408px;
+    z-index: -1;
+    /* background: red; */
+    display: block;
+    width: fit-content;
+    height: auto;
 }
 
 .hero-content h1 {
@@ -482,4 +503,16 @@
 
 .menu-panel .menu-cta:hover {
     background: rgba(192, 38, 211, 0.13);
+}
+
+.galexy-shadow {
+    position: absolute;
+    left: 0;
+    right: -120px;
+    margin: auto;
+    top: -200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -3;
 }

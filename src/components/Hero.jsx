@@ -12,6 +12,56 @@ const Hero = () => {
       <div
         style={{ overflow: "hidden", height: "100vh", position: "relative" }}
       >
+        <div className="galexy-shadow">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1622"
+            height="1314"
+            viewBox="0 0 1622 1314"
+            fill="none"
+          >
+            <g filter="url(#filter0_f_5616_2119)">
+              <path
+                d="M1052.2 345.697C1217.68 554.868 1519.77 704.297 1286.06 889.19C1052.35 1074.08 518.447 1144.41 352.969 935.236C187.49 726.065 221.409 375.356 455.12 190.463C688.831 5.57087 886.722 136.526 1052.2 345.697Z"
+                fill="url(#paint0_radial_5616_2119)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5616_2119"
+                x="0"
+                y="-147.949"
+                width="1621.51"
+                height="1461.09"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="125"
+                  result="effect1_foregroundBlur_5616_2119"
+                />
+              </filter>
+              <radialGradient
+                id="paint0_radial_5616_2119"
+                cx="0"
+                cy="0"
+                r="1"
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(731.965 649.494) rotate(51.6519) scale(531.763 474.515)"
+              >
+                <stop stop-color="#1038DA" />
+                <stop offset="1" stop-color="#001B3B" stop-opacity="0.1" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
         {/* Moon with entrance animation */}
         <motion.div
           className="moon-wrapper"
@@ -31,26 +81,26 @@ const Hero = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="1357"
-            height="1357"
-            viewBox="0 0 1357 1357"
+            width="1344"
+            height="1344"
+            viewBox="0 0 1344 1344"
             fill="none"
           >
-            <g filter="url(#filter0_f_5407_326)">
+            <g filter="url(#filter0_f_5616_2122)">
               <circle
-                cx="678.5"
-                cy="678.5"
-                r="598.5"
-                fill="url(#paint0_linear_5407_326)"
+                cx="672"
+                cy="672"
+                r="522"
+                fill="url(#paint0_radial_5616_2122)"
               />
             </g>
             <defs>
               <filter
-                id="filter0_f_5407_326"
+                id="filter0_f_5616_2122"
                 x="0"
                 y="0"
-                width="1357"
-                height="1357"
+                width="1344"
+                height="1344"
                 filterUnits="userSpaceOnUse"
                 color-interpolation-filters="sRGB"
               >
@@ -62,21 +112,21 @@ const Hero = () => {
                   result="shape"
                 />
                 <feGaussianBlur
-                  stdDeviation="40"
-                  result="effect1_foregroundBlur_5407_326"
+                  stdDeviation="75"
+                  result="effect1_foregroundBlur_5616_2122"
                 />
               </filter>
-              <linearGradient
-                id="paint0_linear_5407_326"
-                x1="678.5"
-                y1="588.504"
-                x2="678.5"
-                y2="245.731"
+              <radialGradient
+                id="paint0_radial_5616_2122"
+                cx="0"
+                cy="0"
+                r="1"
                 gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(682.303 588.598) rotate(-90) scale(566.645)"
               >
-                <stop stop-color="#2752FF" stop-opacity="0" />
-                <stop offset="1" stop-color="#2B82F3" stop-opacity="0.52" />
-              </linearGradient>
+                <stop stop-color="#2752FF" />
+                <stop offset="1" stop-color="#3DA8FF" stop-opacity="0.44" />
+              </radialGradient>
             </defs>
           </svg>
           <img alt="" src={earth} className="earth-img" />
@@ -117,8 +167,63 @@ const Hero = () => {
               Explore Startec
             </GradientButton>
           </motion.div>
+          <div className="hero-content-bg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1179"
+              height="1196"
+              viewBox="0 0 1179 1196"
+              fill="none"
+            >
+              <g filter="url(#filter0_f_5616_2127)">
+                <ellipse
+                  cx="589.5"
+                  cy="598"
+                  rx="369.5"
+                  ry="378"
+                  fill="url(#paint0_radial_5616_2127)"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_f_5616_2127"
+                  x="0"
+                  y="0"
+                  width="1179"
+                  height="1196"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="BackgroundImageFix"
+                    result="shape"
+                  />
+                  <feGaussianBlur
+                    stdDeviation="110"
+                    result="effect1_foregroundBlur_5616_2127"
+                  />
+                </filter>
+                <radialGradient
+                  id="paint0_radial_5616_2127"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(589.5 598) rotate(90) scale(495.542 484.399)"
+                >
+                  <stop stop-color="#05001B" />
+                  <stop offset="1" stop-color="#020E1C" stop-opacity="0.76" />
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
       </div>
+      <div className="hero-bottom-shadow-bottom"></div>
+      <div className="hero-bottom-shadow-top"></div>
     </section>
   );
 };

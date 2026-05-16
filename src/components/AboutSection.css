@@ -9,6 +9,12 @@
     max-width: 1674px;
 }
 
+
+.about-section-main {
+    background: linear-gradient(90deg, #00052660 0%, #19013B60 100%);
+
+}
+
 .about-section-left {
     width: 40%;
     padding: 30px;
@@ -184,4 +190,9 @@
     color: #00bfff;
     cursor: pointer;
     font-weight: 600;
+}
+
+.about-section-container {
+    background: linear-gradient(90deg, #00052660 0%, #05103360 100%);
+
 }

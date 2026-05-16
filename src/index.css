@@ -175,3 +175,44 @@ button {
   filter: blur(1px);
   box-shadow: 0 0 20px #4facfe, 0 0 40px #00f2fe;
 } */
+
+
+.hero-bottom-shadow-bottom {
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 250px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(8, 15, 40, 0) 4.11%, #000319 83.99%);
+  background-blend-mode: multiply;
+}
+
+.tabs-main-box .hero-bottom-shadow-bottom {
+  bottom: -100px;
+  z-index: -1;
+
+}
+
+.hero-bottom-shadow-top {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 250px;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(8, 15, 40, 0) 4.11%, #000319 83.99%);
+  background-blend-mode: multiply;
+}
+
+.footer .hero-bottom-shadow-top {
+  z-index: 1;
+}
+
+.hero .hero-bottom-shadow-top {
+  z-index: 0;
+}
