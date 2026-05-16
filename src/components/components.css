@@ -12,7 +12,7 @@
 }
 
 .hero {
-    height: 100vh;
+    /* height: 100vh; */
     overflow: hidden;
     position: relative;
 }
@@ -165,7 +165,7 @@
 
 .footer .earth-wrapper {
     position: absolute;
-    top: -66%;
+    top: -700px;
     left: 0;
     right: 0;
     width: fit-content;
@@ -181,9 +181,16 @@
     height: auto;
 }
 
+.footer .earth-wrapper svg {
+
+    left: -14px;
+    right: 0;
+    top: 30px;
+}
+
 .footer .moon-wrapper {
     position: absolute;
-    top: 57%;
+    top: 640px;
 
     left: 0;
     width: fit-content;
@@ -195,7 +202,7 @@
 }
 
 .footer .moon-wrapper .moon-img {
-    width: 1041px;
+    width: 753px;
     height: auto;
 }
 
@@ -329,6 +336,7 @@
     margin: auto;
     text-align: center;
     margin-top: 50px;
+    position: relative;
 }
 
 .footer-top-text p {
@@ -341,6 +349,21 @@
     margin: 30px 0px;
 }
 
+.footer-bottom-text {
+    position: relative;
+}
+
+.footer-top-text-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* background: red; */
+    width: fit-content;
+    margin: auto;
+    z-index: 1;
+}
+
 .footer-bottom-text p {
     font-weight: 400;
     font-size: 16px;
@@ -349,6 +372,12 @@
     text-align: center;
     max-width: 239px;
     margin: auto;
+}
+
+.footer-bottom-shadow {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
 }
 
 .copy-right-text p {

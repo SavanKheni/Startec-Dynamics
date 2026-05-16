@@ -14,7 +14,7 @@ const Footer = () => {
       <div
         style={{
           overflow: "hidden",
-          height: "100vh",
+          height: "100%",
           position: "absolute",
           top: 0,
           left: 0,
@@ -22,7 +22,62 @@ const Footer = () => {
           zIndex: -1,
         }}
       >
-        <div className="hero-bottom-shadow-top" />
+        <div className="hero-bottom-shadow-top other-hero-top-shadow" />
+        <div className="hero-bottom-shadow-bottom other-hero-top-shadow" />
+        <div className="footer-top-text-shadow">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1090"
+            height="564"
+            viewBox="0 0 1090 564"
+            fill="none"
+          >
+            <g filter="url(#filter0_f_5731_701)">
+              <ellipse
+                cx="325"
+                cy="237"
+                rx="325"
+                ry="237"
+                transform="matrix(1 0 0 -1 220 344)"
+                fill="url(#paint0_radial_5731_701)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5731_701"
+                x="0"
+                y="-350"
+                width="1090"
+                height="914"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="110"
+                  result="effect1_foregroundBlur_5731_701"
+                />
+              </filter>
+              <radialGradient
+                id="paint0_radial_5731_701"
+                cx="0"
+                cy="0"
+                r="1"
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(325 237) rotate(90) scale(310.697 426.062)"
+              >
+                <stop stop-color="#05001B" />
+                <stop offset="1" stop-color="#020E1C" stop-opacity="0.76" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
         {/* Moon with entrance animation */}
         <motion.div
           className="earth-wrapper"
@@ -127,6 +182,60 @@ const Footer = () => {
           <div className="copy-right-text">
             <p>© 2026, Startec Dynamics. All rights reserved. Privacy policy</p>
           </div>
+        </div>
+        <div className="footer-bottom-shadow">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1920"
+            height="402"
+            viewBox="0 0 1920 402"
+            fill="none"
+          >
+            <g filter="url(#filter0_f_5731_705)">
+              <ellipse
+                cx="900"
+                cy="174"
+                rx="900"
+                ry="174"
+                transform="matrix(1 0 0 -1 55 448)"
+                fill="url(#paint0_linear_5731_705)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5731_705"
+                x="-45"
+                y="0"
+                width="2000"
+                height="548"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="50"
+                  result="effect1_foregroundBlur_5731_705"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_5731_705"
+                x1="900"
+                y1="546.451"
+                x2="900"
+                y2="72.2157"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#060D1F" stop-opacity="0" />
+                <stop offset="1" stop-color="#030819" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <section className="hero">
       <div
-        style={{ overflow: "hidden", height: "100vh", position: "relative" }}
+        style={{ overflow: "hidden", height: "1285px", position: "relative" }}
       >
         <div className="galexy-shadow">
           <svg

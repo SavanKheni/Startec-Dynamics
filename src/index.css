@@ -209,10 +209,18 @@ button {
   background-blend-mode: multiply;
 }
 
+.other-hero-top-shadow {
+  z-index: 1 !important;
+}
+
 .footer .hero-bottom-shadow-top {
   z-index: 1;
 }
 
 .hero .hero-bottom-shadow-top {
   z-index: 0;
+}
+
+.footer {
+  height: 1008px !important;
 }

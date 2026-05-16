@@ -7,6 +7,8 @@ import "../Projects/Project.css";
 const PartnersHero = () => {
   return (
     <section className="hero others-hero">
+      <div className="hero-bottom-shadow-top other-hero-top-shadow" />
+
       <motion.div
         className="moon-wrapper"
         initial={{ opacity: 0, x: -80 }}
