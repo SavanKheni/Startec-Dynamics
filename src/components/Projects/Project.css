@@ -40,11 +40,28 @@
 
 .project-card-main {
     max-width: 1674px;
-    display: flex;
-    margin: 70px auto 100px auto;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin: auto;
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 30px;
+}
+
+.card-featured {
+    grid-column: 1 / -1;
+}
+
+/* Card 2 & 3 – each takes one column at the bottom */
+.card-half {
+    grid-column: span 1;
+}
+
+.project-card-main-section {
+    background: linear-gradient(90deg, #00041C60 0%, #010A2660 100%);
+
 }
 
 .project-card {
@@ -52,7 +69,7 @@
     height: 943px;
     border-radius: 60px;
     background: #02061199;
-
+    margin: auto;
 }
 
 .project-info {
@@ -140,4 +157,71 @@
     position: absolute;
     top: -180px;
     z-index: -1;
+}
+
+.open-chip-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.open-chip-container svg {
+    position: absolute;
+    top: -70px;
+    left: -90px;
+    z-index: -1;
+}
+
+.about-flex-box {
+    display: flex;
+    gap: 30px;
+}
+
+.about-flex-box .pulse-box {
+    margin-top: 10px;
+}
+
+.about-flex-box h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 44px;
+    letter-spacing: 0%;
+
+}
+
+.about-flex-box p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0%;
+
+}
+
+.about-flex-details {
+    max-width: 726px;
+}
+
+.about-flex-box-main {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.about-featured-right {
+    padding: 80px;
+}
+
+.project-card-main-section .GlowLTRMain {
+    margin-top: 0px !important;
+    max-width: unset !important;
+}
+
+.section-title {
+    text-align: center;
+    padding-top: 70px;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 66px;
+    letter-spacing: -2%;
+    text-align: center;
+
 }

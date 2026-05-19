@@ -23,7 +23,7 @@ const ProjectHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.6 }}
           >
-            Project Collections
+            Project
           </motion.h1>
 
           <motion.p
