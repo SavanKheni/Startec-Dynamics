@@ -260,7 +260,7 @@
 }
 
 .tab-content-main {
-    margin-bottom: 50px;
+    /* padding-bottom: 50px; */
     background: linear-gradient(90deg, #00052660 0%, #19013B60 100%);
 
 }

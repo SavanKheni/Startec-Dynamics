@@ -4,9 +4,20 @@ import GradientButton from "./Gradientbutton";
 import { useLocation, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLight, setIsLight] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const showBackArrow = location.pathname === "/project-details";
+  const toggleTheme = () => {
+    const newTheme = !isLight;
+    setIsLight(newTheme);
+
+    if (newTheme) {
+      document.body.classList.add("light-web");
+    } else {
+      document.body.classList.remove("light-web");
+    }
+  };
   return (
     <nav className="navbar">
       <div>
@@ -86,6 +97,35 @@ const Navbar = () => {
                 <a href="/partners">Partners</a>
               </nav>
             </div>
+          )}
+        </div>
+        <div className="icon-button dark-light-toggle" onClick={toggleTheme}>
+          {isLight ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="27"
+              viewBox="0 0 26 27"
+              fill="none"
+            >
+              <path
+                d="M1.53169 13.6623C1.95169 19.6707 7.05002 24.559 13.1517 24.8273C17.4567 25.014 21.3067 23.0073 23.6167 19.8456C24.5734 18.5506 24.06 17.6873 22.4617 17.979C21.68 18.119 20.875 18.1773 20.035 18.1423C14.33 17.909 9.66335 13.1373 9.64002 7.50232C9.62835 5.98565 9.94335 4.55065 10.515 3.24398C11.145 1.79732 10.3867 1.10898 8.92835 1.72732C4.30835 3.67565 1.14669 8.33065 1.53169 13.6623Z"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="27"
+              viewBox="0 0 26 27"
+              fill="#fff"
+            >
+              <path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5,5-2.24,5-5-2.24-5-5-5Zm0,7c-1.1,0-2-.9-2-2s.9-2,2-2,2,.9,2,2-.9,2-2,2Zm4.95-6.95c-.59-.59-.59-1.54,0-2.12l1.41-1.41c.59-.59,1.54-.59,2.12,0,.59,.59,.59,1.54,0,2.12l-1.41,1.41c-.29,.29-.68,.44-1.06,.44s-.77-.15-1.06-.44ZM7.05,16.95c.59,.59,.59,1.54,0,2.12l-1.41,1.41c-.29,.29-.68,.44-1.06,.44s-.77-.15-1.06-.44c-.59-.59-.59-1.54,0-2.12l1.41-1.41c.59-.59,1.54-.59,2.12,0ZM3.51,5.64c-.59-.59-.59-1.54,0-2.12,.59-.59,1.54-.59,2.12,0l1.41,1.41c.59,.59,.59,1.54,0,2.12-.29,.29-.68,.44-1.06,.44s-.77-.15-1.06-.44l-1.41-1.41Zm16.97,12.73c.59,.59,.59,1.54,0,2.12-.29,.29-.68,.44-1.06,.44s-.77-.15-1.06-.44l-1.41-1.41c-.59-.59-.59-1.54,0-2.12,.59-.59,1.54-.59,2.12,0l1.41,1.41Zm3.51-6.36c0,.83-.67,1.5-1.5,1.5h-2c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h2c.83,0,1.5,.67,1.5,1.5ZM3.5,13.5H1.5c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5H3.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5ZM10.5,3.5V1.5c0-.83,.67-1.5,1.5-1.5s1.5,.67,1.5,1.5V3.5c0,.83-.67,1.5-1.5,1.5s-1.5-.67-1.5-1.5Zm3,17v2c0,.83-.67,1.5-1.5,1.5s-1.5-.67-1.5-1.5v-2c0-.83,.67-1.5,1.5-1.5s1.5,.67,1.5,1.5Z" />
+            </svg>
           )}
         </div>
         <GradientButton onClick={() => console.log("clicked")}>

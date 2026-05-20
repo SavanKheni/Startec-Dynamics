@@ -9,12 +9,18 @@ import Work from "../components/Work";
 function Home() {
   return (
     <>
-      <Hero />
-      <AboutSection />
-      <VisionSection />
-      <Work />
-      <Service />
-      <GetInTouch />
+      <div className="light-hero-bg">
+        <Hero />
+        <AboutSection />
+      </div>
+      <div className="light-home-bg-2">
+        <VisionSection />
+        <Work />
+      </div>
+      <div className="light-home-bg-3">
+        <Service />
+        <GetInTouch />
+      </div>
       <Partners />
     </>
   );

@@ -1,0 +1,45 @@
+.light-web .light-hero-bg {
+    background-image: url(../src/assets/light-hero-bg.png);
+
+}
+
+.light-web .light-home-bg-2 {
+    background-image: url(../src/assets/light-home-bg-2.png);
+
+}
+
+.light-web .light-home-bg-3 {
+    background-image: url(../src/assets/light-home-bg-3.png);
+
+}
+
+.light-web .partners-section-main {
+    background-image: url(/src/assets/light-partners-section.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.light-web .footer {
+    background-image: url(/src/assets/light-footer-bg.png);
+    z-index: -1;
+    background-size: cover;
+    background-position: bottom;
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.light-web .star-container {
+    z-index: 0;
+}
+
+.light-web .star-field {
+    z-index: 0;
+}
+
+* {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
