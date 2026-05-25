@@ -3,37 +3,55 @@ import "./AboutPage.css";
 import ExpertiseImage from "../../assets/expertise.png";
 import { motion } from "framer-motion";
 
-// Animation variants
+const EASE = [0.16, 1, 0.3, 1];
+
 const fadeInLeft = {
-  hidden: { opacity: 0, x: -60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, x: -60, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE },
+  },
 };
 
 const fadeInRight = {
-  hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, x: 60, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE },
+  },
 };
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 36, filter: "blur(3px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: EASE },
+  },
 };
 
 const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25,
+      staggerChildren: 0.18,
+      delayChildren: 0.1,
     },
   },
 };
 
 const iconPop = {
-  hidden: { opacity: 0, scale: 0.5 },
+  hidden: { opacity: 0, scale: 0.5, filter: "blur(3px)" },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: "backOut" },
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: EASE },
   },
 };
 
@@ -41,12 +59,16 @@ const Expertise = () => {
   return (
     <div className="expertise-section-container">
       <div className="Expertise-main">
-        {/* Image slides in from left */}
+        {/* Image — slides in from left */}
         <motion.div
           variants={fadeInLeft}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
+          whileHover={{
+            scale: 1.02,
+            transition: { duration: 0.35, ease: "easeOut" },
+          }}
         >
           <img
             src={ExpertiseImage}
@@ -55,18 +77,21 @@ const Expertise = () => {
           />
         </motion.div>
 
-        {/* Content slides in from right */}
+        {/* Content — slides in from right */}
         <motion.div
           className="expertise-content"
           variants={fadeInRight}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
-          <h3>Global Expertise, Local Testing</h3>
-          <p>
+          {/* Heading staggered inside the right panel */}
+          <motion.h3 variants={fadeInUp}>
+            Global Expertise, Local Testing
+          </motion.h3>
+
+          <motion.p variants={fadeInUp}>
             <b>
-              {" "}
               By merging cutting-edge research from Canada with real-world
               testing in Cambodia,
             </b>{" "}
@@ -74,7 +99,7 @@ const Expertise = () => {
             developing regions. This integration ensures that Startec Dynamics'
             products effectively address diverse environmental and road
             conditions.
-          </p>
+          </motion.p>
 
           {/* Cards stagger in one by one */}
           <motion.div
@@ -82,12 +107,18 @@ const Expertise = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             {/* Card 1 */}
-            <motion.div className="expertise-plan-item" variants={fadeInUp}>
+            <motion.div
+              className="expertise-plan-item"
+              variants={fadeInUp}
+              whileHover={{
+                y: -4,
+                transition: { duration: 0.25, ease: "easeOut" },
+              }}
+            >
               <div className="expertise-icon">
-                {/* Icon pops in */}
                 <motion.div variants={iconPop}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +235,14 @@ const Expertise = () => {
             </motion.div>
 
             {/* Card 2 */}
-            <motion.div className="expertise-plan-item" variants={fadeInUp}>
+            <motion.div
+              className="expertise-plan-item"
+              variants={fadeInUp}
+              whileHover={{
+                y: -4,
+                transition: { duration: 0.25, ease: "easeOut" },
+              }}
+            >
               <div className="expertise-icon">
                 <motion.div variants={iconPop}>
                   <svg
@@ -243,19 +281,19 @@ const Expertise = () => {
                     viewBox="0 0 169 126"
                     fill="none"
                   >
-                    <g opacity="0.3" filter="url(#filter0_f_5252_709)">
+                    <g opacity="0.3" filter="url(#filter0_f_5252_709b)">
                       <ellipse
                         cx="84.5"
                         cy="63"
                         rx="57"
                         ry="78.5"
                         transform="rotate(-90 84.5 63)"
-                        fill="url(#paint0_radial_5252_709)"
+                        fill="url(#paint0_radial_5252_709b)"
                       />
                     </g>
                     <defs>
                       <filter
-                        id="filter0_f_5252_709"
+                        id="filter0_f_5252_709b"
                         x="0"
                         y="0"
                         width="169"
@@ -272,11 +310,11 @@ const Expertise = () => {
                         />
                         <feGaussianBlur
                           stdDeviation="3"
-                          result="effect1_foregroundBlur_5252_709"
+                          result="effect1_foregroundBlur_5252_709b"
                         />
                       </filter>
                       <radialGradient
-                        id="paint0_radial_5252_709"
+                        id="paint0_radial_5252_709b"
                         cx="0"
                         cy="0"
                         r="1"
