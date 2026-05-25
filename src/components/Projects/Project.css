@@ -185,7 +185,7 @@
     font-size: 24px;
     line-height: 44px;
     letter-spacing: 0%;
-
+    cursor: pointer;
 }
 
 .about-flex-box p {
@@ -198,6 +198,7 @@
 
 .about-flex-details {
     max-width: 726px;
+
 }
 
 .about-flex-box-main {

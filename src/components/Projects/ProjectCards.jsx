@@ -14,40 +14,43 @@ const projects = [
     title: "SI Intelligent",
     desc: "Smart System  |   Intelligent vehicles   |  Advanced Sensing",
     image: project1,
-    gridClass: "card-featured", // full width, top
+    gridClass: "card-featured",
   },
   {
     id: 2,
     title: "Fleet Management",
     desc: "Vehicle Tracking | Driver Management | Dashboard App",
     image: project3,
-    gridClass: "card-half", // bottom left
+    gridClass: "card-half",
   },
   {
     id: 3,
     title: "SI Connect",
     desc: "Smart Tracker | Mobile App | Smarter Riders",
     image: project2,
-    gridClass: "card-half", // bottom right
+    gridClass: "card-half",
   },
 ];
 
+// ✅ Added scale + blur, expo easing, exit state
 const cardVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 65, scale: 0.93, filter: "blur(6px)" },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { delay: i * 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
   }),
   hover: {
-    y: -8,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    y: -10,
+    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
 const imgVariants = {
   rest: { scale: 1, transition: { duration: 0.45, ease: "easeOut" } },
-  hover: { scale: 1.06, transition: { duration: 0.45, ease: "easeOut" } },
+  hover: { scale: 1.07, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
 const shineVariants = {
@@ -59,43 +62,60 @@ const shineVariants = {
   },
 };
 
+// ✅ Added blur, expo easing
 const infoVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 22, filter: "blur(4px)" },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15 + 0.3, duration: 0.5, ease: "easeOut" },
+    filter: "blur(0px)",
+    transition: {
+      delay: i * 0.15 + 0.3,
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+    },
   }),
 };
 
+// ✅ Added blur, expo easing
 const infoChildVariants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 14, filter: "blur(3px)" },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15 + 0.45, duration: 0.45, ease: "easeOut" },
+    filter: "blur(0px)",
+    transition: {
+      delay: i * 0.15 + 0.45,
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
   }),
 };
+
+// ✅ viewport config — once: false everywhere
+const vp = { once: false, amount: 0.2 };
+const vpLight = { once: false, amount: 0.1 };
+
+const fadeIn = (delay = 0) => ({
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+});
 
 const ProjectCards = () => {
   const navigate = useNavigate();
-  const viewportConfig = { once: true, amount: 0.2 };
-  // ─── Main ServiceBox Grid ──────────────────────────────────────────────────────
 
-  const fadeIn = (delay = 0) => ({
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { delay, duration: 0.7, ease: "easeOut" },
-    },
-  });
   return (
     <div className="project-card-main-section">
+      {/* ── Top GlowLTR ── */}
       <motion.div
         className="GlowLTRMain"
         initial="hidden"
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={vpLight}
         variants={fadeIn(0)}
       >
         <GlowLTR
@@ -107,18 +127,36 @@ const ProjectCards = () => {
           className="GlowLTR"
         />
       </motion.div>
-      <h1 className="section-title">Our Projects</h1>
-      <div className="project-card-main">
+
+      {/* ── Section title ── */}
+      <motion.h1
+        className="section-title"
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={vp}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      >
+        Our Projects
+      </motion.h1>
+
+      {/* ── Cards grid ── */}
+      <motion.div
+        className="project-card-main"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.05 }} // ✅ fires as soon as grid peeks in
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.15 } },
+        }}
+      >
         {projects.map((item, index) => (
           <motion.div
             className={`project-card ${item.gridClass}`}
             key={item.id}
             custom={index}
-            initial="hidden"
-            whileInView="visible"
+            variants={cardVariants} // ✅ inherits hidden/visible from parent
             whileHover="hover"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={cardVariants}
           >
             <div className="project-img-wrapper">
               <motion.img
@@ -135,19 +173,20 @@ const ProjectCards = () => {
               />
             </div>
 
+            {/* ── Card info ── */}
             <motion.div
               className="project-info"
               custom={index}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={vp} // ✅ once: false
               variants={infoVariants}
             >
               <motion.h1
                 custom={index}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={vp} // ✅ once: false
                 variants={infoChildVariants}
               >
                 {item.title}
@@ -157,20 +196,26 @@ const ProjectCards = () => {
                 custom={index}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={vp} // ✅ once: false
                 variants={infoChildVariants}
                 transition={{ delay: index * 0.15 + 0.55 }}
               >
                 {item.desc}
               </motion.h6>
 
+              {/* ── Button — spring pop ── */}
               <motion.div
                 custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={infoChildVariants}
-                transition={{ delay: index * 0.15 + 0.65 }}
+                initial={{ opacity: 0, y: 16, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={vp} // ✅ once: false
+                transition={{
+                  delay: index * 0.15 + 0.65,
+                  duration: 0.65,
+                  ease: [0.34, 1.56, 0.64, 1], // spring overshoot for button
+                }}
+                whileHover={{ scale: 1.06, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
               >
                 <GradientButton onClick={() => navigate("/project-details")}>
                   Explore The Project
@@ -179,12 +224,14 @@ const ProjectCards = () => {
             </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
+
+      {/* ── Bottom GlowLTR ── */}
       <motion.div
         className="GlowLTRMain"
         initial="hidden"
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={vpLight}
         variants={fadeIn(0)}
       >
         <GlowLTR

@@ -59,24 +59,18 @@ const EmbeddedIcon = () => (
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 48,
-  },
+  hidden: { opacity: 0, y: 55, scale: 0.93, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1], // expo out — snappy spring feel
-    },
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -127,16 +121,19 @@ const servicesData = [
 ];
 
 // ─── Reusable ServiceCard ──────────────────────────────────────────────────────
-
 const ServiceCard = ({ icon, title, paragraphs }) => {
   return (
     <motion.div
       className="service-box-main"
       variants={cardVariants}
-      whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+      whileHover={{
+        y: -8,
+        boxShadow: "0 28px 56px rgba(39, 82, 255, 0.18)",
+        transition: { duration: 0.25, ease: "easeOut" },
+      }}
+      whileTap={{ scale: 0.98 }}
     >
       <div className="service-box-head">
-        {/* Icon wrapper with hover rotation + scale */}
         <motion.div
           className="service-icon-main"
           variants={iconWrapVariants}
@@ -200,15 +197,35 @@ const ServiceCard = ({ icon, title, paragraphs }) => {
           </div>
         </motion.div>
 
-        <h2 className="service-card-title">{title}</h2>
+        {/* ✅ Title — blur reveal */}
+        <motion.h2
+          className="service-card-title"
+          initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+        >
+          {title}
+        </motion.h2>
       </div>
 
+      {/* ✅ Paragraphs — staggered fade up */}
       <div className="service-card-body">
         {paragraphs.map((para, index) => (
-          <p key={index}>
+          <motion.p
+            key={index}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{
+              duration: 0.65,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.2 + index * 0.1, // ✅ staggered per paragraph
+            }}
+          >
             {para.bold && <b>{para.bold}</b>}
             {para.text}
-          </p>
+          </motion.p>
         ))}
       </div>
     </motion.div>
@@ -222,7 +239,7 @@ const ProjectBox = () => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: false, amount: 0.1 }} // ✅ replays every scroll
     >
       {servicesData.map((service) => (
         <ServiceCard
