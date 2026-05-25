@@ -1,73 +1,90 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../AboutSection.css";
-import GradientButton from "../Gradientbutton";
 import GlowAnimation from "../GlowAnimation";
 import PulseBox from "../PulseBox";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+
+const EASE = [0.16, 1, 0.3, 1];
+
+const stagger = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: EASE },
+  },
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -60, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE },
+  },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 60, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE },
+  },
+};
 
 const ContactFeatured = () => {
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const inView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   return (
     <motion.section
       className="about-section"
       ref={sectionRef}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.6 }}
+      variants={stagger}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
     >
       {/* LEFT SIDE */}
-      <motion.div
-        className="about-section-left"
-        initial={{ opacity: 0, x: -60 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-      >
-        <PulseBox size={15} />
-        <div>
-          <motion.h6
-            initial={{ opacity: 0, y: -10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-          >
-            Startec dynamics
-          </motion.h6>
+      <motion.div className="about-section-left" variants={fadeLeft}>
+        <motion.div variants={fadeUp}>
+          <PulseBox size={15} />
+        </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.55 }}
-          >
-            Let’s Start a Conversation
-          </motion.h2>
-        </div>
+        <motion.div variants={stagger}>
+          <motion.h6 variants={fadeUp}>Startec dynamics</motion.h6>
+          <motion.h2 variants={fadeUp}>Let's Start a Conversation</motion.h2>
+        </motion.div>
       </motion.div>
 
       {/* GLOW DIVIDER */}
-
-      <GlowAnimation
-        direction="top-to-bottom"
-        className="top-to-bottom Featured-devider"
-        length={200}
-        size={20}
-        duration={2000}
-      />
+      <motion.div variants={fadeUp}>
+        <GlowAnimation
+          direction="top-to-bottom"
+          className="top-to-bottom Featured-devider"
+          length={200}
+          size={20}
+          duration={2000}
+        />
+      </motion.div>
 
       {/* RIGHT SIDE */}
       <motion.div
         className="about-section-right featured-right"
-        initial={{ opacity: 0, x: 60 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        variants={fadeRight}
       >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.65 }}
-        >
-          Have an idea or requirement in mind? Reach out to us and let’s build
+        <motion.p variants={fadeUp}>
+          Have an idea or requirement in mind? Reach out to us and let's build
           something great together. We respond quickly and ensure you get the
           right solution.
         </motion.p>
