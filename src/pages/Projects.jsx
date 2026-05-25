@@ -8,10 +8,14 @@ import ProjectBox from "../components/Projects/ProjectBox";
 const Projects = () => {
   return (
     <div>
-      <ProjectHero />
-      <Featured />
-      <ProjectBox />
-      <ProjectCards />
+      <div className="projects-hero-bg">
+        <ProjectHero />
+        <Featured />
+      </div>
+      <div className="projects-other-bg">
+        <ProjectBox />
+        <ProjectCards />
+      </div>
       {/* <NewsLatter /> */}
     </div>
   );

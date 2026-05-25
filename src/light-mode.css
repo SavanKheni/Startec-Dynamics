@@ -21,6 +21,25 @@
 
 }
 
+.light-web .projects-hero-bg {
+    background-image: url(/src/assets/project-light-hero.png);
+    background-position: center;
+}
+
+.light-web .projects-other-bg {
+    background-image: url(/src/assets/project-light-other-2.png);
+    /* background-position: center; */
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    position: relative;
+}
+
+.light-web .featured-section-bg {
+    z-index: 1;
+    position: relative;
+}
+
 .light-web .footer {
     background-image: url(/src/assets/light-footer-bg.png);
     z-index: -1;
