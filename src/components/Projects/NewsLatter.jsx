@@ -5,53 +5,59 @@ import GradientButton from "../Gradientbutton";
 import logo from "../../assets/logo.png";
 import { motion } from "framer-motion";
 
-// Reusable variants
+// ✅ Updated variants — expo easing + blur throughout
 const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 45, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    filter: "blur(0px)",
+    transition: { delay, duration: 0.85, ease: [0.16, 1, 0.3, 1] },
   },
 });
 
 const fadeIn = (delay = 0) => ({
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
-    transition: { delay, duration: 0.7, ease: "easeOut" },
+    y: 0,
+    transition: { delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] },
   },
 });
 
 const scaleIn = (delay = 0) => ({
-  hidden: { opacity: 0, scale: 0.85 },
+  hidden: { opacity: 0, scale: 0.82, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    filter: "blur(0px)",
+    transition: { delay, duration: 0.9, ease: [0.16, 1, 0.3, 1] },
   },
 });
 
 const slideIn = (delay = 0) => ({
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { delay, duration: 0.5, ease: "easeOut" },
+    scale: 1,
+    transition: { delay, duration: 0.75, ease: [0.34, 1.56, 0.64, 1] }, // ✅ spring pop for input+btn
   },
 });
 
-const viewportConfig = { once: true, amount: 0.2 };
+// ✅ once: false everywhere
+const vp = { once: false, amount: 0.2 };
+const vpLight = { once: false, amount: 0.1 };
 
 const NewsLatter = () => {
   return (
     <div className="news-latter-main">
-      {/* Top Glow Line */}
+      {/* ── Top Glow Line ── */}
       <motion.div
         className="GlowLTRMain"
         initial="hidden"
         whileInView="visible"
-        viewport={viewportConfig}
+        viewport={vpLight}
         variants={fadeIn(0)}
       >
         <GlowLTR
@@ -65,13 +71,13 @@ const NewsLatter = () => {
       </motion.div>
 
       <div className="news-latter-content-box">
-        {/* Background SVG Glow */}
+        {/* ── Background SVG Glow ── */}
         <motion.div
           className="news-latter-content-svg"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
-          variants={fadeIn(0.1)}
+          viewport={vp}
+          variants={fadeIn(0.05)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,9 +104,9 @@ const NewsLatter = () => {
                 width="715"
                 height="552"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend
                   mode="normal"
                   in="SourceGraphic"
@@ -120,41 +126,41 @@ const NewsLatter = () => {
                 gradientUnits="userSpaceOnUse"
                 gradientTransform="translate(357.5 276) rotate(-180) scale(179 278.921)"
               >
-                <stop stop-color="#2752FF" />
-                <stop offset="1" stop-color="#00050F" />
+                <stop stopColor="#2752FF" />
+                <stop offset="1" stopColor="#00050F" />
               </radialGradient>
             </defs>
           </svg>
         </motion.div>
 
-        {/* Logo */}
+        {/* ── Logo — scale + blur in ── */}
         <motion.img
           alt=""
           src={logo}
           className="logo-img"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
+          viewport={vp}
           variants={scaleIn(0.1)}
         />
 
-        {/* Heading */}
+        {/* ── Main heading — blur + rise ── */}
         <motion.h1
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
+          viewport={vp}
           variants={fadeUp(0.2)}
         >
           Where creative ideas transform into immersive experiences
         </motion.h1>
 
-        {/* Middle Glow Line */}
+        {/* ── Middle Glow Line ── */}
         <motion.div
           className="GlowLTRMain news-latter-content-box-GlowLTRMain"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
-          variants={fadeIn(0.3)}
+          viewport={vp}
+          variants={fadeIn(0.32)}
         >
           <GlowLTR
             length={200}
@@ -166,33 +172,33 @@ const NewsLatter = () => {
           />
         </motion.div>
 
-        {/* Sub-heading */}
+        {/* ── Sub-heading ── */}
         <motion.h3
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
-          variants={fadeUp(0.35)}
+          viewport={vp}
+          variants={fadeUp(0.38)}
         >
           Where vision meets execution
         </motion.h3>
 
-        {/* CTA Heading */}
+        {/* ── CTA heading ── */}
         <motion.h2
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
-          variants={fadeUp(0.45)}
+          viewport={vp}
+          variants={fadeUp(0.48)}
         >
           Let's Start Work Together
         </motion.h2>
 
-        {/* Input + Button */}
+        {/* ── Input + Button — spring pop ── */}
         <motion.div
           className="input-cta-wrap news-latter-content-input-cta-wrap"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfig}
-          variants={slideIn(0.55)}
+          viewport={vp}
+          variants={slideIn(0.58)}
         >
           <input type="text" placeholder="Your Email" className="input-form" />
           <GradientButton onClick={() => console.log("clicked")}>
@@ -201,13 +207,13 @@ const NewsLatter = () => {
         </motion.div>
       </div>
 
-      {/* Bottom Glow Line */}
+      {/* ── Bottom Glow Line ── */}
       <motion.div
         className="GlowLTRMain"
         initial="hidden"
         whileInView="visible"
-        viewport={viewportConfig}
-        variants={fadeIn(0.6)}
+        viewport={vpLight}
+        variants={fadeIn(0)}
       >
         <GlowLTR
           length={200}
