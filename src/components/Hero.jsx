@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./components.css";
 import moon from "../assets/moon.png";
 import earth from "../assets/earth.png";
 import GradientButton from "./Gradientbutton";
-import GlobeComponent from "./GlobeComponent";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 const Hero = () => {
+  // Key trick: increment on every mount so Framer Motion replays all animations
+  const [animKey, setAnimKey] = useState(0);
+
+  useEffect(() => {
+    setAnimKey((k) => k + 1);
+  }, []);
+
   return (
     <section className="hero">
       <div
         style={{ overflow: "hidden", height: "1285px", position: "relative" }}
       >
+        {/* Galaxy shadow — unchanged */}
         <div className="galexy-shadow">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,83 +69,108 @@ const Hero = () => {
             </defs>
           </svg>
         </div>
-        {/* Moon with entrance animation */}
+
+        {/* ✅ Moon — improved: slide + fade + continuous subtle float */}
         <motion.div
+          key={`moon-${animKey}`}
           className="moon-wrapper"
-          initial={{ opacity: 0, x: -80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+          initial={{ opacity: 0, x: -120, rotate: -15 }}
+          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          <img alt="" src={moon} className="moon-img" />
-        </motion.div>
-
-        {/* Earth / Globe with entrance animation */}
-        <motion.div
-          className="earth-wrapper"
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1344"
-            height="1344"
-            viewBox="0 0 1344 1344"
-            fill="none"
+          {/* Continuous floating after entrance */}
+          <motion.div
+            animate={{ y: [0, -18, 0], rotate: [0, 3, 0] }}
+            transition={{
+              duration: 7,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
           >
-            <g filter="url(#filter0_f_5616_2122)">
-              <circle
-                cx="672"
-                cy="672"
-                r="522"
-                fill="url(#paint0_radial_5616_2122)"
-              />
-            </g>
-            <defs>
-              <filter
-                id="filter0_f_5616_2122"
-                x="0"
-                y="0"
-                width="1344"
-                height="1344"
-                filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
-              >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="BackgroundImageFix"
-                  result="shape"
-                />
-                <feGaussianBlur
-                  stdDeviation="75"
-                  result="effect1_foregroundBlur_5616_2122"
-                />
-              </filter>
-              <radialGradient
-                id="paint0_radial_5616_2122"
-                cx="0"
-                cy="0"
-                r="1"
-                gradientUnits="userSpaceOnUse"
-                gradientTransform="translate(682.303 588.598) rotate(-90) scale(566.645)"
-              >
-                <stop stop-color="#2752FF" />
-                <stop offset="1" stop-color="#3DA8FF" stop-opacity="0.44" />
-              </radialGradient>
-            </defs>
-          </svg>
-          <img alt="" src={earth} className="earth-img" />
-          {/* <GlobeComponent /> */}
+            <img alt="" src={moon} className="moon-img" />
+          </motion.div>
         </motion.div>
 
-        {/* Hero text content */}
+        {/* ✅ Earth — improved: slide + scale + continuous slow rotation glow pulse */}
+        <motion.div
+          key={`earth-${animKey}`}
+          className="earth-wrapper"
+          initial={{ opacity: 0, x: 120, scale: 0.85 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+        >
+          {/* Continuous slow drift */}
+          <motion.div
+            animate={{ y: [0, 12, 0], x: [0, 6, 0] }}
+            transition={{
+              duration: 11,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1344"
+              height="1344"
+              viewBox="0 0 1344 1344"
+              fill="none"
+            >
+              <g filter="url(#filter0_f_5616_2122)">
+                <circle
+                  cx="672"
+                  cy="672"
+                  r="522"
+                  fill="url(#paint0_radial_5616_2122)"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_f_5616_2122"
+                  x="0"
+                  y="0"
+                  width="1344"
+                  height="1344"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="BackgroundImageFix"
+                    result="shape"
+                  />
+                  <feGaussianBlur
+                    stdDeviation="75"
+                    result="effect1_foregroundBlur_5616_2122"
+                  />
+                </filter>
+                <radialGradient
+                  id="paint0_radial_5616_2122"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(682.303 588.598) rotate(-90) scale(566.645)"
+                >
+                  <stop stop-color="#2752FF" />
+                  <stop offset="1" stop-color="#3DA8FF" stop-opacity="0.44" />
+                </radialGradient>
+              </defs>
+            </svg>
+            <img alt="" src={earth} className="earth-img" />
+          </motion.div>
+        </motion.div>
+
+        {/* ✅ Hero content — improved: staggered children with spring */}
         <div className="hero-content">
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.6 }}
+            key={`h1-${animKey}`}
+            initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.65 }}
           >
             Step Inside the
             <br />
@@ -146,9 +178,10 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.85 }}
+            key={`p-${animKey}`}
+            initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
           >
             A visionary space where innovation meets{" "}
             <strong>intelligence empowering ideas</strong>, shaping tomorrow,
@@ -157,17 +190,24 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
+            key={`btn-${animKey}`}
+            initial={{ opacity: 0, y: 25, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.34, 1.56, 0.64, 1],
+              delay: 1.15,
+            }}
+            whileHover={{ scale: 1.07, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.95 }}
           >
             <GradientButton onClick={() => console.log("clicked")}>
               Explore Startec
             </GradientButton>
           </motion.div>
+
           <div className="hero-content-bg">
+            {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1179"

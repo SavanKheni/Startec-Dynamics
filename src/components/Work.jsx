@@ -131,54 +131,42 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.9,
-    },
+    transition: { staggerChildren: 0.12, delayChildren: 0.3 },
   },
 };
 
 // ─── Globe image variant (renamed from imgVariants) ───────────────────────────
 const globeImgVariants = {
-  hidden: { opacity: 0, scale: 0.85, y: 40 },
+  hidden: { opacity: 0, scale: 0.82, y: 50, filter: "blur(12px)" },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-
-const iconVariants = {
-  hidden: { opacity: 0, scale: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: "backOut" },
+    filter: "blur(0px)",
+    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
 // ─── Tab Content Animation Variants ──────────────────────────────────────────
 const tabContentVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 35 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: "easeOut",
-      staggerChildren: 0.1,
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.08,
       delayChildren: 0.05,
     },
   },
   exit: {
     opacity: 0,
-    y: -20,
-    transition: { duration: 0.3, ease: "easeIn" },
+    y: -25,
+    filter: "blur(4px)",
+    transition: { duration: 0.25, ease: "easeIn" },
   },
 };
-
 const tabLeftChildVariants = {
   hidden: { opacity: 0, x: -30 },
   visible: {
@@ -210,14 +198,14 @@ const tabRightChildVariants = {
 };
 
 const tabTitleVariants = {
-  hidden: { opacity: 0, y: -15 },
+  hidden: { opacity: 0, y: -20, filter: "blur(5px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 };
-
 const tabDescVariants = {
   hidden: { opacity: 0, y: 15 },
   visible: {
@@ -228,11 +216,12 @@ const tabDescVariants = {
 };
 
 const tabBtnVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0.88, y: 10 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: "backOut" },
+    y: 0,
+    transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }, // spring pop
   },
 };
 
@@ -250,7 +239,15 @@ const tabImgEnterVariants = {
     },
   }),
 };
-
+const orbitVariants = {
+  hidden: { opacity: 0, scale: 0.6, rotate: -45 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 },
+  },
+};
 // ─── NEW: Shine fade-in variant (after all images appear) ─────────────────────
 const tabShineVariants = {
   hidden: { opacity: 0 },
@@ -263,7 +260,16 @@ const tabShineVariants = {
     },
   },
 };
-
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.4, y: 30, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }, // spring pop
+  },
+};
 // ─── NEW: Float configs per image index ───────────────────────────────────────
 const floatConfigs = [
   { y: [-10, 0], rotate: [0.5, -0.5], duration: 5.8, delay: 1.4 }, // img-0
@@ -413,7 +419,7 @@ const TabGlow = ({ color }) => (
 // ─── Main Component ───────────────────────────────────────────────────────────
 const Work = () => {
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const inView = useInView(sectionRef, { once: false, amount: 0.15 });
   const [activeTab, setActiveTab] = useState(1);
 
   return (
@@ -427,13 +433,42 @@ const Work = () => {
         variants={containerVariants}
       >
         <div className="netEarthBlock">
-          <div className="orditline"></div>
+          <motion.div
+            className="orditline"
+            variants={orbitVariants}
+            // Continuous slow spin after entrance
+            animate={
+              inView
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                    rotate: [0, 360],
+                  }
+                : { opacity: 0, scale: 0.6 }
+            }
+            transition={
+              inView
+                ? {
+                    opacity: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                    scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                    rotate: {
+                      duration: 18,
+                      ease: "linear",
+                      repeat: Infinity,
+                      delay: 1.2, // starts spinning after entrance finishes
+                    },
+                  }
+                : { duration: 0.4 }
+            }
+          />
+
           <motion.img
             src={netearth}
             alt="NetEarth"
             className="work-img"
             variants={globeImgVariants}
           />
+
           {ICONS.map((icon, index) => (
             <IconBox key={icon.id} icon={icon} index={index} />
           ))}

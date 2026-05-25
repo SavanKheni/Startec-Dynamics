@@ -12,20 +12,22 @@ import {
 // ─── Animation variants ───────────────────────────────────────────────────────
 
 const headingVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
 const paraVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28, filter: "blur(5px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.2 },
   },
 };
 
@@ -37,15 +39,15 @@ const gridVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 55, scale: 0.95 },
+  hidden: { opacity: 0, y: 60, scale: 0.92, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
   },
 };
-
 // ─── Service Component ────────────────────────────────────────────────────────
 const Service = () => {
   const CARDS = [
@@ -82,7 +84,7 @@ const Service = () => {
         className="service-heading"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: false, amount: 0.4 }}
       >
         <motion.h1 variants={headingVariants}>Our Services</motion.h1>
         <motion.p variants={paraVariants}>
@@ -103,7 +105,7 @@ const Service = () => {
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           {CARDS.map((card, i) => (
             /* Each card: fade + slide + scale in, hover lift */

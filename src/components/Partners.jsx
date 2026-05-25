@@ -8,31 +8,55 @@ const Partners = () => {
   return (
     <div className="partners-section-main">
       <div className="partners-section">
+        {/* ── Header ── */}
         <motion.div
           className="partners-header"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: 50, filter: "blur(8px)" }} // ✅ exit state
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: false, amount: 0.4 }} // ✅ replays
         >
-          <h1>Our Global Partners</h1>
-          <p>
+          <motion.h1
+            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            viewport={{ once: false, amount: 0.4 }}
+          >
+            Our Global Partners
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.85,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.25,
+            }}
+            viewport={{ once: false, amount: 0.4 }}
+          >
             Our trusted partners help us deliver innovation, quality, and
             reliable solutions across every project. Together, we build stronger
             connections, smarter systems, and lasting success
-          </p>
+          </motion.p>
         </motion.div>
 
+        {/* ── Logos ── */}
         <div className="partners-logo">
+          {/* Logo 1 — slides from left */}
           <motion.div
             className="partner-logo-box-1"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, x: -70, scale: 0.92, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, x: -70, scale: 0.92 }} // ✅ exit state
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }} // ✅ replays
+            whileHover={{
+              scale: 1.06,
+              transition: { duration: 0.25, ease: "easeOut" },
+            }}
           >
-            <img src={partnerLogo1} alt="" className="" />
+            <img src={partnerLogo1} alt="" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="518"
@@ -58,9 +82,9 @@ const Partners = () => {
                   width="518"
                   height="424"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
@@ -80,22 +104,27 @@ const Partners = () => {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(259 212) rotate(180) scale(82 129)"
                 >
-                  <stop stop-color="#0033FF" />
-                  <stop offset="1" stop-color="#00050F" />
+                  <stop stopColor="#0033FF" />
+                  <stop offset="1" stopColor="#00050F" />
                 </radialGradient>
               </defs>
             </svg>
           </motion.div>
 
+          {/* Logo 2 — slides from right */}
           <motion.div
             className="partner-logo-box-2"
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, x: 70, scale: 0.92, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, x: 70, scale: 0.92 }} // ✅ exit state
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
+            viewport={{ once: false, amount: 0.3 }} // ✅ replays
+            whileHover={{
+              scale: 1.06,
+              transition: { duration: 0.25, ease: "easeOut" },
+            }}
           >
-            <img src={partnerLogo2} alt="" className="" />
+            <img src={partnerLogo2} alt="" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="518"
@@ -121,9 +150,9 @@ const Partners = () => {
                   width="518"
                   height="424"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
@@ -143,8 +172,8 @@ const Partners = () => {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(259 212) rotate(180) scale(82 129)"
                 >
-                  <stop stop-color="#0033FF" />
-                  <stop offset="1" stop-color="#00050F" />
+                  <stop stopColor="#0033FF" />
+                  <stop offset="1" stopColor="#00050F" />
                 </radialGradient>
               </defs>
             </svg>
