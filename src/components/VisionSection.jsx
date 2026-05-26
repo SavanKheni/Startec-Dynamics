@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import "./VisionSection.css";
 import UltraGlobe from "./UltraGlobe";
 import { motion, useInView } from "framer-motion";
+import StarTrail from "./StarTrail";
 
 const VisionSection = () => {
   // ✅ Single ref on the outermost element only
@@ -75,6 +76,7 @@ const VisionSection = () => {
         >
           <UltraGlobe />
         </motion.div> */}
+        <StarTrail />
       </div>
     </motion.div>
   );

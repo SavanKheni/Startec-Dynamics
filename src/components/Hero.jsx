@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./components.css";
 import moon from "../assets/moon.png";
+import flare from "../assets/flare.png";
 import earth from "../assets/earth.png";
+import starTrail from "../assets/star-trail.png";
 import GradientButton from "./Gradientbutton";
 import { motion, useAnimation } from "framer-motion";
+import StarTrail from "./StarTrail";
 
 const Hero = () => {
   // Key trick: increment on every mount so Framer Motion replays all animations
@@ -74,13 +77,14 @@ const Hero = () => {
         {/* ✅ Moon — improved: slide + fade + continuous subtle float */}
         <motion.div
           key={`moon-${animKey}`}
-          className="moon-wrapper"
           initial={{ opacity: 0, x: -120, rotate: -15 }}
           animate={{ opacity: 1, x: 0, rotate: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          style={{ position: "relative" }}
         >
-          {/* Continuous floating after entrance */}
-          {/* <motion.div
+          <motion.div className="moon-wrapper">
+            {/* Continuous floating after entrance */}
+            {/* <motion.div
             animate={{ y: [0, -18, 0], rotate: [0, 3, 0] }}
             transition={{
               duration: 7,
@@ -89,10 +93,14 @@ const Hero = () => {
               repeatType: "loop",
             }}
           > */}
-          <img alt="" src={moon} className="moon-img" />
-          {/* </motion.div> */}
-        </motion.div>
+            <img alt="" src={moon} className="moon-img" />
 
+            {/* </motion.div> */}
+          </motion.div>
+          <img alt="" src={flare} className="flare-img" />
+        </motion.div>
+        <StarTrail />
+        {/* <img src={starTrail} alt="" className="star-trail" /> */}
         {/* ✅ Earth — improved: slide + scale + continuous slow rotation glow pulse */}
         <motion.div
           key={`earth-${animKey}`}

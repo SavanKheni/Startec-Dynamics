@@ -8,6 +8,7 @@ import {
   IconSmartSystem,
   ServiceCard,
 } from "./Servicecard";
+import StarTrail from "./StarTrail";
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
@@ -80,6 +81,7 @@ const Service = () => {
   return (
     <div className="service-main">
       {/* ── Heading block — fades up on scroll ── */}
+      <StarTrail start={-300} end={-230} />
       <motion.div
         className="service-heading"
         initial="hidden"

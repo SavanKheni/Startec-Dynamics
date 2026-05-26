@@ -6,7 +6,8 @@
 }
 
 .service-main {
-    padding: 100px 0px;
+    padding: 250px 0px 100px;
+    position: relative;
 }
 
 .service-heading h1 {

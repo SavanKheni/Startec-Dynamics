@@ -121,4 +121,12 @@
         line-height: 47px !important;
 
     }
+
+    .flare-img {
+        top: 80px !important;
+    }
+
+    .star-trail {
+        top: 90px;
+    }
 }

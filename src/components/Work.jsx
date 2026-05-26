@@ -10,7 +10,7 @@ import fleet from "../assets/fleet.png";
 import f1 from "../assets/f-1.png";
 import f2 from "../assets/f-2.png";
 import f3 from "../assets/f-3.png";
-import tabShine from "../assets/tab-shine.png";
+import tabShine from "../assets/flare.png";
 
 // ─── Icon Data ────────────────────────────────────────────────────────────────
 const ICONS = [

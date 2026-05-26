@@ -587,3 +587,21 @@
     align-items: center;
     z-index: -3;
 }
+
+.flare-img {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+}
+
+.star-trail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+    top: 150px;
+}

@@ -5,6 +5,7 @@ import earth from "../assets/earth.png";
 import GradientButton from "./Gradientbutton";
 import logo from "../assets/logo.png";
 import { motion, useInView } from "framer-motion";
+import StarTrail from "./StarTrail";
 
 const Footer = () => {
   const footerRef = useRef(null);
@@ -27,7 +28,7 @@ const Footer = () => {
       >
         <div className="hero-bottom-shadow-top other-hero-top-shadow" />
         <div className="hero-bottom-shadow-bottom other-hero-top-shadow" />
-
+        <StarTrail />
         <div className="footer-top-text-shadow">
           <svg
             xmlns="http://www.w3.org/2000/svg"
