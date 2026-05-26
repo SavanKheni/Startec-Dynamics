@@ -14,6 +14,7 @@ import Partners from "./pages/Partners";
 import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import { usePageScaler } from "./hooks/Usepagescaler";
+import Lenis from "@studio-freight/lenis";
 
 function App() {
   const { scalerRef, wrapperHeight } = usePageScaler({
@@ -36,7 +37,26 @@ function App() {
 
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+    });
 
+    let rafId;
+
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.stop(); // stop scrolling
+    };
+  }, []);
   return (
     <Router>
       <div>
