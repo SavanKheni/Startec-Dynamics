@@ -4,6 +4,7 @@ import GradientButton from "./Gradientbutton";
 import GlowAnimation from "./GlowAnimation";
 import PulseBox from "./PulseBox";
 import { motion, useInView } from "framer-motion";
+import AnimatedText from "./AnimatedText";
 
 const GetInTouch = () => {
   const sectionRef = useRef(null);
@@ -64,8 +65,10 @@ const GetInTouch = () => {
               }}
               style={{ marginBottom: "50px" }}
             >
-              Every great build begins
-              <br /> with understanding
+              <AnimatedText as="span" text="Every great build begins" />
+
+              <br />
+              <AnimatedText as="span" text="with understanding" />
             </motion.h2>
 
             <motion.div
@@ -170,7 +173,7 @@ const GetInTouch = () => {
             }
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
           >
-            Invest in Startec Dynamics?
+            <AnimatedText as="span" text="Invest in Startec Dynamics?" />
           </motion.h1>
 
           {/* First paragraph */}

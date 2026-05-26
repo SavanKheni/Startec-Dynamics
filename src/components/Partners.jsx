@@ -3,6 +3,7 @@ import "./Partners.css";
 import partnerLogo1 from "../assets/p-1.png";
 import partnerLogo2 from "../assets/p-2.png";
 import { motion } from "framer-motion";
+import AnimatedText from "./AnimatedText";
 
 const Partners = () => {
   return (
@@ -23,7 +24,7 @@ const Partners = () => {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             viewport={{ once: false, amount: 0.4 }}
           >
-            Our Global Partners
+            <AnimatedText as="span" text="Our Global Partners" />
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}

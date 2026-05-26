@@ -3,6 +3,7 @@ import "./VisionSection.css";
 import UltraGlobe from "./UltraGlobe";
 import { motion, useInView } from "framer-motion";
 import StarTrail from "./StarTrail";
+import AnimatedText from "./AnimatedText";
 
 const VisionSection = () => {
   // ✅ Single ref on the outermost element only
@@ -44,9 +45,8 @@ const VisionSection = () => {
           }
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
         >
-          Driven by Vision,
-          <br />
-          Powered by Intelligence.
+          <AnimatedText as="span" text="Driven by Vision," /> <br />
+          <AnimatedText as="span" text="Powered by Intelligence." />
         </motion.h1>
 
         {/* Paragraph — blur + rise, slightly after h1 */}

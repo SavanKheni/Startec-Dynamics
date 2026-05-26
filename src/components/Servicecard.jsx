@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import "./Servicecard.css";
+import AnimatedText from "./AnimatedText";
 
 // ─── Icons (your originals, unchanged) ───────────────────────────────────────
 
@@ -137,7 +138,7 @@ export function ServiceCard({
       >
         {icon}
       </motion.div>
-
+      {/* <AnimatedText as="h3" className="sc-title" text={title} /> */}
       <h3 className="sc-title" dangerouslySetInnerHTML={{ __html: title }} />
 
       <p className="sc-body">{description}</p>

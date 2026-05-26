@@ -4,6 +4,7 @@ import GradientButton from "./Gradientbutton";
 import GlowAnimation from "./GlowAnimation";
 import PulseBox from "./PulseBox";
 import { motion, useInView } from "framer-motion";
+import AnimatedText from "./AnimatedText";
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
@@ -55,8 +56,8 @@ const AboutSection = () => {
                 delay: 0.5,
               }}
             >
-              Innovating for Life.
-              <br /> Empowering the Future.
+              <AnimatedText as="h2" text="Innovating for Life." />
+              <AnimatedText as="h2" text="Empowering the Future" />
             </motion.h2>
           </div>
         </motion.div>

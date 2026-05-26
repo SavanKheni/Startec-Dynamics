@@ -11,6 +11,7 @@ import f1 from "../assets/f-1.png";
 import f2 from "../assets/f-2.png";
 import f3 from "../assets/f-3.png";
 import tabShine from "../assets/flare.png";
+import AnimatedText from "./AnimatedText";
 
 // ─── Icon Data ────────────────────────────────────────────────────────────────
 const ICONS = [
@@ -730,7 +731,8 @@ const Work = () => {
                 >
                   <motion.div className="tab-title" variants={tabTitleVariants}>
                     <img src={tab.icon} alt="" className="tab-title-icon" />
-                    <h2>{tab.title}</h2>
+                    <AnimatedText as="h2" text={tab.title} />
+                    {/* <h2>{tab.title}</h2> */}
                   </motion.div>
 
                   <motion.p className="tab-desc-1" variants={tabDescVariants}>

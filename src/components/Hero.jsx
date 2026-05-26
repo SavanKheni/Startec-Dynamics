@@ -7,6 +7,7 @@ import starTrail from "../assets/star-trail.png";
 import GradientButton from "./Gradientbutton";
 import { motion, useAnimation } from "framer-motion";
 import StarTrail from "./StarTrail";
+import AnimatedText from "./AnimatedText";
 
 const Hero = () => {
   // Key trick: increment on every mount so Framer Motion replays all animations
@@ -181,9 +182,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.65 }}
           >
-            Step Inside the
-            <br />
-            World of Future Minds
+            <AnimatedText as="h1" text="Step Inside the" />
+            <AnimatedText as="h1" text="World of Future Minds" />
           </motion.h1>
 
           <motion.p

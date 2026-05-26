@@ -9,6 +9,7 @@ import {
   ServiceCard,
 } from "./Servicecard";
 import StarTrail from "./StarTrail";
+import AnimatedText from "./AnimatedText";
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
@@ -88,7 +89,9 @@ const Service = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.4 }}
       >
-        <motion.h1 variants={headingVariants}>Our Services</motion.h1>
+        <motion.h1 variants={headingVariants}>
+          <AnimatedText as="span" text="Our Services" />
+        </motion.h1>
         <motion.p variants={paraVariants}>
           <b>
             Startech Dynamics is a forward-thinking automobile and technology
