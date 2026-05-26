@@ -16,7 +16,8 @@ const Hero = () => {
   return (
     <section className="hero">
       <div
-        style={{ overflow: "hidden", height: "1285px", position: "relative" }}
+        className="hero-main-bg-hight"
+        style={{ overflow: "hidden", position: "relative" }}
       >
         {/* Galaxy shadow — unchanged */}
         <div className="galexy-shadow">
@@ -79,7 +80,7 @@ const Hero = () => {
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
           {/* Continuous floating after entrance */}
-          <motion.div
+          {/* <motion.div
             animate={{ y: [0, -18, 0], rotate: [0, 3, 0] }}
             transition={{
               duration: 7,
@@ -87,9 +88,9 @@ const Hero = () => {
               repeat: Infinity,
               repeatType: "loop",
             }}
-          >
-            <img alt="" src={moon} className="moon-img" />
-          </motion.div>
+          > */}
+          <img alt="" src={moon} className="moon-img" />
+          {/* </motion.div> */}
         </motion.div>
 
         {/* ✅ Earth — improved: slide + scale + continuous slow rotation glow pulse */}
@@ -101,7 +102,7 @@ const Hero = () => {
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
         >
           {/* Continuous slow drift */}
-          <motion.div
+          {/* <motion.div
             animate={{ y: [0, 12, 0], x: [0, 6, 0] }}
             transition={{
               duration: 11,
@@ -109,59 +110,59 @@ const Hero = () => {
               repeat: Infinity,
               repeatType: "loop",
             }}
+          > */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1344"
+            height="1344"
+            viewBox="0 0 1344 1344"
+            fill="none"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1344"
-              height="1344"
-              viewBox="0 0 1344 1344"
-              fill="none"
-            >
-              <g filter="url(#filter0_f_5616_2122)">
-                <circle
-                  cx="672"
-                  cy="672"
-                  r="522"
-                  fill="url(#paint0_radial_5616_2122)"
+            <g filter="url(#filter0_f_5616_2122)">
+              <circle
+                cx="672"
+                cy="672"
+                r="522"
+                fill="url(#paint0_radial_5616_2122)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5616_2122"
+                x="0"
+                y="0"
+                width="1344"
+                height="1344"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
                 />
-              </g>
-              <defs>
-                <filter
-                  id="filter0_f_5616_2122"
-                  x="0"
-                  y="0"
-                  width="1344"
-                  height="1344"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    stdDeviation="75"
-                    result="effect1_foregroundBlur_5616_2122"
-                  />
-                </filter>
-                <radialGradient
-                  id="paint0_radial_5616_2122"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientUnits="userSpaceOnUse"
-                  gradientTransform="translate(682.303 588.598) rotate(-90) scale(566.645)"
-                >
-                  <stop stop-color="#2752FF" />
-                  <stop offset="1" stop-color="#3DA8FF" stop-opacity="0.44" />
-                </radialGradient>
-              </defs>
-            </svg>
-            <img alt="" src={earth} className="earth-img" />
-          </motion.div>
+                <feGaussianBlur
+                  stdDeviation="75"
+                  result="effect1_foregroundBlur_5616_2122"
+                />
+              </filter>
+              <radialGradient
+                id="paint0_radial_5616_2122"
+                cx="0"
+                cy="0"
+                r="1"
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(682.303 588.598) rotate(-90) scale(566.645)"
+              >
+                <stop stop-color="#2752FF" />
+                <stop offset="1" stop-color="#3DA8FF" stop-opacity="0.44" />
+              </radialGradient>
+            </defs>
+          </svg>
+          <img alt="" src={earth} className="earth-img" />
+          {/* </motion.div> */}
         </motion.div>
 
         {/* ✅ Hero content — improved: staggered children with spring */}

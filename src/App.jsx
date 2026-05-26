@@ -13,8 +13,14 @@ import ContactUs from "./pages/ContactUs";
 import Partners from "./pages/Partners";
 import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
+import { usePageScaler } from "./hooks/Usepagescaler";
 
 function App() {
+  const { scalerRef, wrapperHeight } = usePageScaler({
+    minWidth: 1024,
+    maxWidth: 1920,
+    designWidth: 1920,
+  });
   useEffect(() => {
     const observerOptions = { threshold: 0.1 };
 
@@ -33,36 +39,46 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
-        <Navbar />
-        <ShootingStar />
+      <div>
+        {/* <ShootingStar /> */}
         <BgStar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/serviceas" element={<Serviceas />} />
-            <Route path="/about-us" element={<AboutUS />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/project-details" element={<ProjectDetails />} />
-            <Route path="/team" element={<Team />} />
-          </Routes>
-        </main>
 
-        <Footer />
+        <div
+          className="app"
+          ref={scalerRef}
+          style={{
+            height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
+          }}
+        >
+          <Navbar />
 
-        <style jsx global>{`
-          .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        `}</style>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/serviceas" element={<Serviceas />} />
+              <Route path="/about-us" element={<AboutUS />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/project-details" element={<ProjectDetails />} />
+              <Route path="/team" element={<Team />} />
+            </Routes>
+          </main>
+
+          <Footer />
+
+          <style jsx global>{`
+            .reveal {
+              opacity: 0;
+              transform: translateY(30px);
+              transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .reveal.active {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          `}</style>
+        </div>
       </div>
     </Router>
   );

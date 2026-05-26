@@ -95,64 +95,64 @@ const Footer = () => {
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
           {/* Continuous slow drift after entrance */}
-          <motion.div
+          {/* <motion.div
             animate={{ y: [0, 14, 0], x: [0, 6, 0] }}
             transition={{ duration: 11, ease: "easeInOut", repeat: Infinity }}
+          > */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1216"
+            height="1216"
+            viewBox="0 0 1216 1216"
+            fill="none"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1216"
-              height="1216"
-              viewBox="0 0 1216 1216"
-              fill="none"
-            >
-              <g filter="url(#filter0_f_5409_339)">
-                <ellipse
-                  cx="607.928"
-                  cy="607.929"
-                  rx="527.928"
-                  ry="527.929"
-                  transform="rotate(-180 607.928 607.929)"
-                  fill="url(#paint0_linear_5409_339)"
+            <g filter="url(#filter0_f_5409_339)">
+              <ellipse
+                cx="607.928"
+                cy="607.929"
+                rx="527.928"
+                ry="527.929"
+                transform="rotate(-180 607.928 607.929)"
+                fill="url(#paint0_linear_5409_339)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_5409_339"
+                x="0"
+                y="0"
+                width="1215.86"
+                height="1215.86"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
                 />
-              </g>
-              <defs>
-                <filter
-                  id="filter0_f_5409_339"
-                  x="0"
-                  y="0"
-                  width="1215.86"
-                  height="1215.86"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
-                >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    stdDeviation="40"
-                    result="effect1_foregroundBlur_5409_339"
-                  />
-                </filter>
-                <linearGradient
-                  id="paint0_linear_5409_339"
-                  x1="607.928"
-                  y1="528.545"
-                  x2="607.928"
-                  y2="226.189"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#2752FF" stopOpacity="0" />
-                  <stop offset="1" stopColor="#2B82F3" stopOpacity="0.52" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <img alt="" src={earth} className="earth-img" />
-          </motion.div>
+                <feGaussianBlur
+                  stdDeviation="40"
+                  result="effect1_foregroundBlur_5409_339"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_5409_339"
+                x1="607.928"
+                y1="528.545"
+                x2="607.928"
+                y2="226.189"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#2752FF" stopOpacity="0" />
+                <stop offset="1" stopColor="#2B82F3" stopOpacity="0.52" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <img alt="" src={earth} className="earth-img" />
+          {/* </motion.div> */}
         </motion.div>
 
         {/* ── Moon — entrance + continuous float ── */}
@@ -167,12 +167,12 @@ const Footer = () => {
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
         >
           {/* Different speed float so moon and earth feel independent */}
-          <motion.div
+          {/* <motion.div
             animate={{ y: [0, -18, 0], rotate: [0, 2, 0] }}
             transition={{ duration: 7.5, ease: "easeInOut", repeat: Infinity }}
-          >
-            <img alt="" src={moon} className="moon-img" />
-          </motion.div>
+          > */}
+          <img alt="" src={moon} className="moon-img" />
+          {/* </motion.div> */}
         </motion.div>
       </div>
 

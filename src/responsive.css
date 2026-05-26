@@ -1,0 +1,124 @@
+@media screen and (max-width: 1366px) {
+    .hero-main-bg-hight {
+        height: 1000px !important;
+    }
+
+    .moon-wrapper .moon-img {
+        width: 536px !important;
+    }
+
+    .moon-wrapper {
+        top: -338px !important;
+    }
+
+    .earth-wrapper {
+        bottom: -270px !important;
+    }
+
+    .earth-wrapper .earth-img {
+
+        width: 807.5px !important;
+    }
+
+    .hero-content {
+        width: 546px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px !important;
+        line-height: 47px !important;
+    }
+
+    .hero-content p {
+        font-size: 12px !important;
+        line-height: 18px !important;
+    }
+
+    .hero-content-bg svg {
+        width: 740px !important;
+        height: auto;
+    }
+
+    .hero-content-bg {
+        left: -98px !important;
+        top: -160px !important;
+    }
+
+    .earth-wrapper svg {
+        left: -270px !important;
+        top: -100px !important;
+    }
+
+    .footer .earth-wrapper .earth-img {
+        width: 829px !important;
+    }
+
+    .footer .earth-wrapper {
+        top: -498px !important;
+    }
+
+    .footer {
+        height: 714px !important;
+    }
+
+    .footer .moon-wrapper .moon-img {
+        width: 535px !important;
+    }
+
+    .footer .moon-wrapper {
+        top: 455px !important;
+    }
+
+    .footer-top-text {
+        max-width: 403px !important;
+        margin: auto;
+        margin-top: 35px !important;
+    }
+
+    .footer-top-text .logo-img {
+        height: 28px !important;
+        width: auto;
+    }
+
+    .footer-top-text p,
+    .footer-bottom-text p {
+        font-size: 12px !important;
+        line-height: 18px !important;
+    }
+
+    .footer .earth-wrapper svg {
+        top: -150px !important;
+        left: 0 !important;
+        width: 829px;
+    }
+
+    .footer-top-text-shadow {
+        top: 60px !important;
+    }
+
+    .footer-top-text-shadow svg {
+        width: 520px !important;
+        height: auto;
+    }
+
+    .footer-bottom-text a {
+        font-size: 14px !important;
+        line-height: 11px !important;
+    }
+
+    .copy-right-text {
+        padding: 35px 0px !important;
+    }
+
+    .footer-bottom-shadow {
+        height: 187px !important;
+    }
+
+    .menu-panel a {
+
+
+        font-size: 28px !important;
+        line-height: 47px !important;
+
+    }
+}

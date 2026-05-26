@@ -48,23 +48,6 @@ const VisionSection = () => {
           Powered by Intelligence.
         </motion.h1>
 
-        {/* Divider line — width expands in */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={
-            inView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }
-          }
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-          style={{
-            height: "1px",
-            background:
-              "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
-            transformOrigin: "center",
-            width: "100%",
-            margin: "0.5rem 0",
-          }}
-        />
-
         {/* Paragraph — blur + rise, slightly after h1 */}
         <motion.p
           initial={{ opacity: 0, y: 35, filter: "blur(5px)" }}
