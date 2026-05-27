@@ -63,7 +63,7 @@ const GetInTouch = () => {
                 ease: [0.16, 1, 0.3, 1],
                 delay: 0.5,
               }}
-              style={{ marginBottom: "50px" }}
+              style={{ marginBottom: "25px" }}
             >
               <AnimatedText as="span" text="Every great build begins" />
 

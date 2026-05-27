@@ -37,6 +37,10 @@
         text-align: center;
     }
 
+    .about-section-left .pulse-box {
+        display: none;
+    }
+
     .about-section {
         flex-direction: column;
         max-width: 100%;

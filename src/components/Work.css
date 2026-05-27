@@ -479,6 +479,26 @@
         max-width: 700px;
     }
 
+    .tab-title {
+        justify-content: center;
+    }
+
+    .tab-desc-1 {
+        text-align: center;
+    }
+
+    .tab-desc-2 {
+        text-align: center;
+    }
+
+    .logo-button .gradient-btn-inner {
+        height: unset;
+    }
+
+    .logo-button .gradient-btn-inner img {
+        height: 20px;
+    }
+
     .orditline {
         width: 600px;
         height: 600px;
@@ -493,6 +513,7 @@
     .tab-right-box {
         width: 100%;
         padding: 40px 0;
+        text-align: center;
     }
 
     .tab-right-box {
@@ -513,7 +534,7 @@
 /* ── 900px ──────────────────────────────────────── */
 @media (max-width: 900px) {
     .work-img {
-        max-width: 580px;
+        max-width: 635px;
     }
 
     .orditline {
@@ -573,12 +594,12 @@
     }
 
     .work-img {
-        max-width: 420px;
+        max-width: 650px;
     }
 
     .orditline {
-        width: 380px;
-        height: 380px;
+        width: 490px;
+        height: 490px;
         top: 0;
     }
 
@@ -588,23 +609,24 @@
     }
 
     .icon-box-2 {
-        top: 210px;
-        left: 34%;
+        top: 260px;
+        left: 30%;
     }
 
     .icon-box-3 {
-        top: 130px;
+        top: 190px;
         left: 43%;
     }
 
     .icon-box-4 {
-        top: 68px;
-        left: 51%;
+        top: 86px;
+        left: 68%;
+
     }
 
     .icon-box-5 {
-        top: 185px;
-        left: 55%;
+        top: 309px;
+        left: 63%;
     }
 
     .box-shadow-inner {
@@ -683,12 +705,12 @@
 /* ── 520px ──────────────────────────────────────── */
 @media (max-width: 520px) {
     .work-img {
-        max-width: 320px;
+        max-width: 545px;
     }
 
     .orditline {
-        width: 290px;
-        height: 290px;
+        width: 350px;
+        height: 350px;
         top: 10px;
     }
 
@@ -698,23 +720,23 @@
     }
 
     .icon-box-2 {
-        top: 165px;
+        top: 216px;
         left: 30%;
     }
 
     .icon-box-3 {
-        top: 100px;
+        top: 140px;
         left: 41%;
     }
 
     .icon-box-4 {
-        top: 46px;
-        left: 50%;
+        top: 66px;
+        left: 66%;
     }
 
     .icon-box-5 {
-        top: 147px;
-        left: 55%;
+        top: 227px;
+        left: 61%;
     }
 
     .icon-box {
@@ -778,12 +800,12 @@
 /* ── 420px ──────────────────────────────────────── */
 @media (max-width: 420px) {
     .work-img {
-        max-width: 260px;
+        max-width: 427px;
     }
 
     .orditline {
-        width: 240px;
-        height: 240px;
+        width: 300px;
+        height: 300px;
     }
 
     .icon-box-1 {
@@ -792,23 +814,23 @@
     }
 
     .icon-box-2 {
-        top: 138px;
+        top: 165px;
         left: 26%;
     }
 
     .icon-box-3 {
-        top: 82px;
-        left: 39%;
+        top: 116px;
+        left: 44%;
     }
 
     .icon-box-4 {
-        top: 32px;
-        left: 49%;
+        top: 56px;
+        left: 65%;
     }
 
     .icon-box-5 {
-        top: 125px;
-        left: 54%;
+        top: 190px;
+        left: 62%;
     }
 
     .icon-box {
@@ -834,37 +856,40 @@
 /* ── 380px — smallest supported ────────────────── */
 @media (max-width: 380px) {
     .work-img {
-        max-width: 220px;
+        max-width: 395px;
     }
 
     .orditline {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
+        top: -10px;
     }
 
     .icon-box-1 {
-        top: 20px;
-        left: 18%;
+        top: 45px;
+        left: 26%;
     }
 
     .icon-box-2 {
-        top: 116px;
-        left: 22%;
+        top: 150px;
+        left: 29%;
+
     }
 
     .icon-box-3 {
-        top: 66px;
-        left: 37%;
+        top: 102px;
+        left: 42%;
+
     }
 
     .icon-box-4 {
-        top: 24px;
-        left: 48%;
+        top: 62px;
+        left: 66%;
     }
 
     .icon-box-5 {
-        top: 107px;
-        left: 54%;
+        top: 180px;
+        left: 58%;
     }
 
     .icon-box {
