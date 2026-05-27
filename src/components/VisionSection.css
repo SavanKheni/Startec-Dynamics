@@ -10,8 +10,8 @@
 }
 
 .vision-section h1 {
-    font-size: 44px;
-    line-height: 50px;
+    font-size: clamp(22px, 4.5vw, 44px);
+    line-height: clamp(30px, 5.5vw, 50px);
     font-weight: 400;
     margin-bottom: 30px;
 }
@@ -19,10 +19,73 @@
 .vision-section p {
     font-weight: 400;
     font-style: Regular;
-    font-size: 15px;
-    line-height: 26px;
+    font-size: clamp(13px, 1.5vw, 15px);
+    line-height: clamp(21px, 2.5vw, 26px);
     letter-spacing: 0%;
     text-align: center;
     color: #D8DFEE;
 
+}
+
+@media (max-width: 900px) {
+    .vision-section {
+        padding: 80px 40px;
+    }
+}
+
+/* ── 700px — tablet portrait ──────────────────── */
+@media (max-width: 700px) {
+    .vision-section {
+        padding: 72px 32px;
+        max-width: 100%;
+    }
+}
+
+/* ── 520px — large phone ──────────────────────── */
+@media (max-width: 520px) {
+    .vision-section {
+        padding: 64px 24px;
+    }
+
+    .vision-section h1 {
+        font-size: clamp(22px, 7.5vw, 32px);
+        line-height: clamp(30px, 10vw, 42px);
+        margin-bottom: 18px;
+    }
+
+    .vision-section p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+}
+
+/* ── 420px — small phone ──────────────────────── */
+@media (max-width: 420px) {
+    .vision-section {
+        padding: 56px 20px;
+    }
+
+    .vision-section h1 {
+        font-size: clamp(20px, 8.5vw, 28px);
+        line-height: clamp(28px, 11vw, 38px);
+        margin-bottom: 16px;
+    }
+}
+
+/* ── 380px — smallest supported ──────────────── */
+@media (max-width: 380px) {
+    .vision-section {
+        padding: 48px 16px;
+    }
+
+    .vision-section h1 {
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 14px;
+    }
+
+    .vision-section p {
+        font-size: 12px;
+        line-height: 20px;
+    }
 }

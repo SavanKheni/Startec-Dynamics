@@ -18,7 +18,7 @@ import Lenis from "@studio-freight/lenis";
 
 function App() {
   const { scalerRef, wrapperHeight } = usePageScaler({
-    minWidth: 1024,
+    minWidth: 1100,
     maxWidth: 1920,
     designWidth: 1920,
   });
@@ -57,6 +57,7 @@ function App() {
       lenis.stop(); // stop scrolling
     };
   }, []);
+  const isSmallScreen = window.innerWidth < 1100;
   return (
     <Router>
       <div>
@@ -65,9 +66,10 @@ function App() {
 
         <div
           className="app"
-          ref={scalerRef}
+          ref={isSmallScreen ? null : scalerRef}
           style={{
             height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
+            transform: isSmallScreen ? "none" : undefined,
           }}
         >
           <Navbar />

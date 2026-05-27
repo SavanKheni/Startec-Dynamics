@@ -229,3 +229,11 @@ button {
   display: inline-block;
   line-height: 1em;
 }
+
+@media screen and (max-width: 1100px) {
+  .app {
+    width: fit-content;
+    overflow: hidden;
+  }
+
+}

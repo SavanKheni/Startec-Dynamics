@@ -25,12 +25,14 @@
     gap: 1.25rem;
     justify-content: center;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 /* ── Card ── */
 .sc-card {
     position: relative;
-    width: 390px;
+    /* width: 390px; */
     height: 571px;
     background: #01112F75;
     border-radius: 40px;
@@ -167,7 +169,219 @@
     }
 
     .sc-card {
-        width: 90%;
-        max-width: 320px;
+        height: auto;
+    }
+}
+
+/* ════════════════════════════════════════════════
+   SERVICE SECTION — RESPONSIVE CSS (1100px → 350px)
+   ════════════════════════════════════════════════ */
+
+/* ── 1100px ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .service-main {
+        padding: 180px 40px 80px;
+    }
+
+    .service-heading {
+        max-width: 620px;
+    }
+
+    .sc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 0 40px;
+    }
+}
+
+/* ── 900px ──────────────────────────────────────── */
+@media (max-width: 900px) {
+    .service-main {
+        padding: 140px 32px 70px;
+    }
+
+    .service-heading {
+        max-width: 540px;
+        padding-bottom: 40px;
+    }
+
+    .service-heading h1 {
+        font-size: clamp(28px, 4.5vw, 44px);
+        line-height: clamp(34px, 5.5vw, 50px);
+    }
+
+    .sc-grid {
+        padding: 0 24px;
+        gap: 20px;
+    }
+}
+
+/* ── 700px ──────────────────────────────────────── */
+@media (max-width: 700px) {
+    .service-main {
+        padding: 110px 24px 60px;
+    }
+
+    .service-heading {
+        max-width: 100%;
+        padding-bottom: 32px;
+    }
+
+    .service-heading h1 {
+        font-size: clamp(24px, 6vw, 36px);
+        line-height: clamp(30px, 7.5vw, 44px);
+        margin-bottom: 12px;
+    }
+
+    .service-heading p,
+    .service-heading p b {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .sc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
+        gap: 16px;
+    }
+
+    .sc-card {
+        padding: 28px 20px;
+        border-radius: 28px;
+    }
+}
+
+/* ── 580px — switch to single column ───────────── */
+@media (max-width: 580px) {
+    .service-main {
+        padding: 90px 20px 50px;
+    }
+
+    .sc-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .sc-card {
+        padding: 28px 24px;
+    }
+}
+
+/* ── 520px ──────────────────────────────────────── */
+@media (max-width: 520px) {
+    .service-main {
+        padding: 80px 16px 44px;
+    }
+
+    .service-heading h1 {
+        font-size: clamp(22px, 7vw, 30px);
+        line-height: clamp(28px, 9vw, 38px);
+    }
+
+    .service-heading p,
+    .service-heading p b {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    .sc-card {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .sc-icon-wrap svg {
+        width: 52px;
+        height: 52px;
+    }
+
+    .sc-title {
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    .sc-body {
+        font-size: 13px;
+        line-height: 21px;
+    }
+}
+
+/* ── 420px ──────────────────────────────────────── */
+@media (max-width: 420px) {
+    .service-main {
+        padding: 70px 14px 40px;
+    }
+
+    .service-heading {
+        padding-bottom: 24px;
+    }
+
+    .service-heading h1 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .sc-grid {
+        max-width: 100%;
+        gap: 12px;
+    }
+
+    .sc-card {
+        padding: 22px 18px;
+        border-radius: 22px;
+    }
+
+    .sc-icon-wrap svg {
+        width: 46px;
+        height: 46px;
+    }
+
+    .sc-title {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .sc-body {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
+
+/* ── 380px — smallest supported ────────────────── */
+@media (max-width: 380px) {
+    .service-main {
+        padding: 60px 12px 36px;
+    }
+
+    .service-heading h1 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .service-heading p,
+    .service-heading p b {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .sc-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .sc-icon-wrap svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .sc-title {
+        font-size: 15px;
+        line-height: 21px;
+    }
+
+    .sc-body {
+        font-size: 12px;
+        line-height: 19px;
     }
 }

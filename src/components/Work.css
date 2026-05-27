@@ -466,3 +466,662 @@
     letter-spacing: 0%;
     color: #E3E3E3;
 }
+
+
+/* ════════════════════════════════════════════════
+   WORK SECTION — RESPONSIVE CSS (1100px → 350px)
+   ════════════════════════════════════════════════ */
+
+/* ── 1100px ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .work-img {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    .orditline {
+        width: 600px;
+        height: 600px;
+    }
+
+    .tab-content {
+        flex-direction: column;
+        padding: 0 40px;
+    }
+
+    .tab-left-box,
+    .tab-right-box {
+        width: 100%;
+        padding: 40px 0;
+    }
+
+    .tab-right-box {
+        padding-top: 0;
+        min-height: 420px;
+    }
+
+    .top-to-bottom {
+        display: none;
+    }
+
+    .left-box-bg-glow {
+        top: -20%;
+        left: -10%;
+    }
+}
+
+/* ── 900px ──────────────────────────────────────── */
+@media (max-width: 900px) {
+    .work-img {
+        max-width: 580px;
+    }
+
+    .orditline {
+        width: 500px;
+        height: 500px;
+        top: -10px;
+    }
+
+    .icon-box-1 {
+        top: 90px;
+        left: 34%;
+    }
+
+    .icon-box-2 {
+        top: 280px;
+        left: 37%;
+    }
+
+    .icon-box-3 {
+        top: 175px;
+        left: 46%;
+    }
+
+    .icon-box-4 {
+        top: 100px;
+        left: 53%;
+    }
+
+    .icon-box-5 {
+        top: 245px;
+        left: 56%;
+    }
+
+    .tabs-main {
+        max-width: 580px;
+        padding-top: 40px;
+    }
+
+    .tab-content {
+        padding: 0 28px;
+    }
+
+    .tab-title h2 {
+        font-size: 30px;
+        line-height: 32px;
+    }
+
+    .GlowLTRMain {
+        margin-top: 70px;
+    }
+}
+
+/* ── 700px ──────────────────────────────────────── */
+@media (max-width: 700px) {
+    .work-section {
+        margin-top: 30px;
+    }
+
+    .work-img {
+        max-width: 420px;
+    }
+
+    .orditline {
+        width: 380px;
+        height: 380px;
+        top: 0;
+    }
+
+    .icon-box-1 {
+        top: 60px;
+        left: 30%;
+    }
+
+    .icon-box-2 {
+        top: 210px;
+        left: 34%;
+    }
+
+    .icon-box-3 {
+        top: 130px;
+        left: 43%;
+    }
+
+    .icon-box-4 {
+        top: 68px;
+        left: 51%;
+    }
+
+    .icon-box-5 {
+        top: 185px;
+        left: 55%;
+    }
+
+    .box-shadow-inner {
+        top: -55px;
+        left: -60px;
+    }
+
+    .icon-box {
+        height: 42px !important;
+        width: 42px !important;
+        border-radius: 11px;
+    }
+
+    .icon-box svg {
+        width: 22px;
+    }
+
+    .logo-button {
+        margin-top: -50px;
+    }
+
+    .tabs-main {
+        max-width: 100%;
+        padding: 30px 20px 0;
+    }
+
+    .tabs-main::before {
+        top: -70px;
+    }
+
+    .tab {
+        padding-top: 40px;
+        margin-top: -65px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+    }
+
+    .tab-title h2 {
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    .tab-left-box p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .tab-right-box {
+        min-height: 340px;
+    }
+
+    .GlowLTRMain {
+        margin-top: 50px;
+    }
+
+    /* Modal — full-width on mobile */
+    .icon-modal-card {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        max-width: calc(100vw - 40px);
+        width: 100%;
+    }
+
+    .icon-modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 998;
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ── 520px ──────────────────────────────────────── */
+@media (max-width: 520px) {
+    .work-img {
+        max-width: 320px;
+    }
+
+    .orditline {
+        width: 290px;
+        height: 290px;
+        top: 10px;
+    }
+
+    .icon-box-1 {
+        top: 40px;
+        left: 26%;
+    }
+
+    .icon-box-2 {
+        top: 165px;
+        left: 30%;
+    }
+
+    .icon-box-3 {
+        top: 100px;
+        left: 41%;
+    }
+
+    .icon-box-4 {
+        top: 46px;
+        left: 50%;
+    }
+
+    .icon-box-5 {
+        top: 147px;
+        left: 55%;
+    }
+
+    .icon-box {
+        height: 36px !important;
+        width: 36px !important;
+        border-radius: 9px;
+    }
+
+    .icon-box svg {
+        width: 18px;
+    }
+
+    .box-shadow-inner {
+        display: none;
+    }
+
+    .tabs-main {
+        padding: 20px 16px 0;
+        gap: 0;
+    }
+
+    .tabs-main .gradient-btn-inner {
+        padding: 0 12px;
+        font-size: 12px;
+    }
+
+    .tab-title h2 {
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    .tab-title-icon {
+        width: 28px;
+    }
+
+    .tab-left-box p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    .tab-right-box {
+        min-height: 280px;
+    }
+
+    .icon-modal-title,
+    .icon-modal-subtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .icon-modal-description {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .GlowLTRMain {
+        margin-top: 30px;
+    }
+}
+
+/* ── 420px ──────────────────────────────────────── */
+@media (max-width: 420px) {
+    .work-img {
+        max-width: 260px;
+    }
+
+    .orditline {
+        width: 240px;
+        height: 240px;
+    }
+
+    .icon-box-1 {
+        top: 28px;
+        left: 22%;
+    }
+
+    .icon-box-2 {
+        top: 138px;
+        left: 26%;
+    }
+
+    .icon-box-3 {
+        top: 82px;
+        left: 39%;
+    }
+
+    .icon-box-4 {
+        top: 32px;
+        left: 49%;
+    }
+
+    .icon-box-5 {
+        top: 125px;
+        left: 54%;
+    }
+
+    .icon-box {
+        height: 32px !important;
+        width: 32px !important;
+        border-radius: 8px;
+    }
+
+    .icon-box svg {
+        width: 16px;
+    }
+
+    .tab-content {
+        padding: 0 14px;
+    }
+
+    .tab-title h2 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+/* ── 380px — smallest supported ────────────────── */
+@media (max-width: 380px) {
+    .work-img {
+        max-width: 220px;
+    }
+
+    .orditline {
+        width: 200px;
+        height: 200px;
+    }
+
+    .icon-box-1 {
+        top: 20px;
+        left: 18%;
+    }
+
+    .icon-box-2 {
+        top: 116px;
+        left: 22%;
+    }
+
+    .icon-box-3 {
+        top: 66px;
+        left: 37%;
+    }
+
+    .icon-box-4 {
+        top: 24px;
+        left: 48%;
+    }
+
+    .icon-box-5 {
+        top: 107px;
+        left: 54%;
+    }
+
+    .icon-box {
+        height: 28px !important;
+        width: 28px !important;
+        border-radius: 7px;
+    }
+
+    .icon-box svg {
+        width: 14px;
+    }
+
+    .tab-content {
+        padding: 0 12px;
+    }
+
+    .tab-title h2 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .tab-left-box p {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .tabs-main .gradient-btn-inner {
+        padding: 0 8px;
+        font-size: 11px;
+    }
+}
+
+/* ── Tab image group — responsive ──────────────── */
+@media (max-width: 1100px) {
+    .tab-right-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 380px;
+        padding: 20px 0 40px;
+    }
+
+    .tab-image-group {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        height: 360px;
+        margin: 0 auto;
+    }
+
+    .tab-img-0 {
+        top: 120px;
+        left: 60px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 80px;
+        left: 200px;
+    }
+
+    .tab-shine {
+        top: 140px;
+        left: -60px;
+    }
+
+    .tab-img-0-shadow {
+        top: 80px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .tab-image-group {
+        max-width: 420px;
+        height: 300px;
+    }
+
+    .tab-img-0,
+    .tab-img-1,
+    .tab-img-2 {
+        width: auto;
+        max-height: 160px;
+    }
+
+    .tab-img-0 {
+        top: 100px;
+        left: 50px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 65px;
+        left: 170px;
+    }
+
+    .tab-shine {
+        width: 260px;
+        top: 110px;
+        left: -40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .tab-right-box {
+        min-height: 280px;
+        padding: 0 0 30px;
+    }
+
+    .tab-image-group {
+        max-width: 340px;
+        height: 240px;
+    }
+
+    .tab-img-0,
+    .tab-img-1,
+    .tab-img-2 {
+        max-height: 130px;
+    }
+
+    .tab-img-0 {
+        top: 80px;
+        left: 40px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 52px;
+        left: 138px;
+    }
+
+    .tab-shine {
+        width: 200px;
+        top: 88px;
+        left: -30px;
+    }
+
+    .tab-img-0-shadow {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .tab-right-box {
+        min-height: 220px;
+        padding: 0 0 20px;
+    }
+
+    .tab-image-group {
+        max-width: 280px;
+        height: 200px;
+    }
+
+    .tab-img-0,
+    .tab-img-1,
+    .tab-img-2 {
+        max-height: 108px;
+    }
+
+    .tab-img-0 {
+        top: 66px;
+        left: 30px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 44px;
+        left: 112px;
+    }
+
+    .tab-shine {
+        width: 160px;
+        top: 72px;
+        left: -20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .tab-image-group {
+        max-width: 240px;
+        height: 170px;
+    }
+
+    .tab-img-0,
+    .tab-img-1,
+    .tab-img-2 {
+        max-height: 90px;
+    }
+
+    .tab-img-0 {
+        top: 56px;
+        left: 24px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 36px;
+        left: 94px;
+    }
+
+    .tab-shine {
+        width: 130px;
+        top: 60px;
+        left: -14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .tab-image-group {
+        max-width: 200px;
+        height: 148px;
+    }
+
+    .tab-img-0,
+    .tab-img-1,
+    .tab-img-2 {
+        max-height: 76px;
+    }
+
+    .tab-img-0 {
+        top: 48px;
+        left: 18px;
+    }
+
+    .tab-img-1 {
+        top: 0;
+        left: 0;
+    }
+
+    .tab-img-2 {
+        top: 30px;
+        left: 78px;
+    }
+
+    .tab-shine {
+        width: 110px;
+        top: 50px;
+        left: -10px;
+    }
+}
