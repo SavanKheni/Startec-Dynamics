@@ -1266,11 +1266,11 @@
 /* ── 1100px ──────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
     .footer {
-        height: 680px;
+        height: 100vh !important;
     }
 
     .footer .earth-wrapper {
-        top: -430px;
+        top: -480px;
     }
 
     .footer .earth-wrapper .earth-img {
@@ -1283,7 +1283,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 660px;
+        top: 415px;
     }
 
     .footer .moon-wrapper .moon-img {
@@ -1322,7 +1322,7 @@
     }
 
     .footer .earth-wrapper {
-        top: -420px;
+        top: -475px;
     }
 
     .footer .earth-wrapper .earth-img {
@@ -1337,7 +1337,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 680px;
+        top: 390px;
     }
 
     .footer .moon-wrapper .moon-img {
@@ -1378,7 +1378,7 @@
     }
 
     .footer .earth-wrapper {
-        top: -285px;
+        top: -318px;
     }
 
     .footer .earth-wrapper .earth-img {
@@ -1392,7 +1392,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 754px;
+        top: 417px;
     }
 
     .footer .moon-wrapper .moon-img {
@@ -1445,7 +1445,7 @@
     }
 
     .footer .earth-wrapper {
-        top: -265px;
+        top: -340px;
         left: 50%;
         transform: translateX(-50%) !important;
     }
@@ -1462,7 +1462,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 760px;
+        top: 456px;
         left: 50%;
         transform: translateX(-50%) !important;
     }
@@ -1522,7 +1522,7 @@
     }
 
     .footer .earth-wrapper {
-        top: -265px;
+        top: -330px;
         left: 50%;
         transform: translateX(-50%) !important;
     }
@@ -1539,7 +1539,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 760px;
+        top: 480px;
         left: 50%;
         transform: translateX(-50%) !important;
     }
@@ -1637,31 +1637,7 @@
 
 /* ── 320px (min support) ─────────────────────────────────────────────── */
 @media (max-width: 320px) {
-    .footer {
-        height: 320px;
-    }
 
-    .footer .earth-wrapper {
-        top: -186px;
-    }
-
-    .footer .earth-wrapper .earth-img {
-        width: 320px;
-    }
-
-    .footer .earth-wrapper svg {
-        top: -50px;
-        width: 320px;
-        left: 0;
-    }
-
-    .footer .moon-wrapper {
-        top: 168px;
-    }
-
-    .footer .moon-wrapper .moon-img {
-        width: 196px;
-    }
 
     .footer-top-text {
         max-width: 178px;
@@ -1680,7 +1656,7 @@
     .footer-bottom-text p {
         font-size: 9px;
         line-height: 13px;
-        margin: 7px 0;
+        margin: 7px auto;
     }
 
     .social-links {
@@ -1694,7 +1670,7 @@
     }
 
     .copy-right-text {
-        padding: 10px 0;
+        padding: 10px auto;
     }
 
     .copy-right-text p {
