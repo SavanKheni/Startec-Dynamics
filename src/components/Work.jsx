@@ -117,7 +117,7 @@ const TABS = [
       "With an intuitive interface and centralized control, the platform allows users to make data-driven decisions, streamline logistics, and ensure smooth day-to-day operations.",
     buttonLabel: "Explore The Project",
     image: [sIConnect],
-    icon: fleet,
+    icon: null,
   },
   {
     id: 1,
@@ -143,7 +143,7 @@ const TABS = [
       "With an intuitive interface and centralized control, the platform allows users to make data-driven decisions, streamline workflows, and ensure smooth day-to-day intelligent operations.",
     buttonLabel: "Explore The Project",
     image: [sIIntelligent],
-    icon: fleet,
+    icon: null,
   },
   {
     id: 3,
@@ -156,7 +156,7 @@ const TABS = [
       "Unlike cars with automatic emergency systems like eCall, most motorcycles lack this protection. The SI Smart System bridges this gap — combining crash detection, emergency communication, live vehicle monitoring, and smart connectivity into a compact integrated solution.",
     buttonLabel: "Explore The Project",
     image: [smartDevice], // replace with your SI Smart System image imports when ready
-    icon: fleet,
+    icon: null,
   },
 ];
 
@@ -910,7 +910,7 @@ const Work = () => {
           )}
         </AnimatePresence>
 
-        <div className="GlowLTRMain">
+        <div className="GlowLTRMain GlowLTRMainBottom">
           <GlowLTR
             length={200}
             size={90}

@@ -285,6 +285,10 @@
 
 }
 
+.tab-content-main .GlowLTRMainBottom {
+    margin-top: 0px;
+}
+
 .tab-content {
     display: flex;
 }

@@ -12,7 +12,7 @@
 }
 
 .hero-main-bg-hight {
-    height: 1285px;
+    height: 1080px;
 }
 
 .hero {
@@ -148,9 +148,9 @@
     pointer-events: none;
 } */
 
-.earth-wrapper {
+.hero-main-bg-hight .earth-wrapper {
     position: absolute;
-    bottom: -380px;
+    bottom: -560px;
     left: 0;
     right: 0;
     width: fit-content;
@@ -252,7 +252,7 @@
     left: -204px;
     right: 0;
     margin: auto;
-    top: -408px;
+    top: -275px;
     z-index: -1;
     /* background: red; */
     display: block;
@@ -854,7 +854,7 @@
         top: -338px;
     }
 
-    .earth-wrapper {
+    .hero-main-bg-hight .earth-wrapper {
         bottom: -270px;
     }
 
@@ -977,7 +977,7 @@
 /* ── 1100px ─────────────────────────────────────── */
 @media (max-width: 1100px) {
     .hero-main-bg-hight {
-        height: 100vh !important;
+        height: 717px !important;
     }
 
     .hero-main-bg-hight .moon-wrapper {
@@ -1091,19 +1091,51 @@
 
 
     .hero-main-bg-hight .moon-wrapper {
-        top: -220px;
+        top: -90px;
+    }
+
+    .star-trail {
+        top: 140px;
+    }
+
+    .navbar .logo-img {
+        position: absolute;
+        top: 22px;
+        height: 20px;
+        width: auto;
+    }
+
+    .right-nav .gradient-btn-inner {
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .right-nav .icon-button {
+        height: 30px;
+        width: 30px;
+    }
+
+    .star-trail {
+        height: 174px;
+        width: auto;
+    }
+
+    .flare-img {
+        width: 291px;
+        height: auto;
+        top: 80px;
     }
 
     .hero-main-bg-hight .moon-wrapper .moon-img {
-        width: 360px;
+        width: 259px;
     }
 
     .hero-main-bg-hight .earth-wrapper {
-        bottom: -160px;
+        bottom: -140px;
     }
 
     .hero-main-bg-hight .earth-wrapper .earth-img {
-        width: 560px;
+        width: 520px;
     }
 
     .hero-main-bg-hight .earth-wrapper svg {
@@ -1145,34 +1177,34 @@
 @media (max-width: 520px) {
 
 
-    .hero-main-bg-hight .moon-wrapper {
+    /* .hero-main-bg-hight .moon-wrapper {
         top: -100px;
     }
 
     .hero-main-bg-hight .moon-wrapper .moon-img {
         width: 300px;
-    }
+    } */
 
-    .flare-img {
+    /* .flare-img {
         top: 90px;
-    }
+    } */
 
     .hero-main-bg-hight .earth-wrapper {
-        bottom: -25px;
+        /* bottom: -25px; */
         left: 50%;
         right: 0;
         transform: translateX(-50%) !important;
     }
 
-    .hero-main-bg-hight .earth-wrapper .earth-img {
+    /* .hero-main-bg-hight .earth-wrapper .earth-img {
         width: 460px;
-    }
+    } */
 
-    .hero-main-bg-hight .earth-wrapper svg {
-        /* left: -110px; */
+    /* .hero-main-bg-hight .earth-wrapper svg {
+        left: -110px;
         top: -60px;
         width: 580px;
-    }
+    } */
 
     .hero-content {
         max-width: 340px;
@@ -1241,10 +1273,10 @@
 /* ── 380px — smallest supported ────────────────── */
 @media (max-width: 380px) {
 
-
+    /* 
     .hero-main-bg-hight .earth-wrapper {
         bottom: -85px;
-    }
+    } */
 
 
 
@@ -1281,7 +1313,7 @@
 /* ── 1100px ──────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
     .footer {
-        height: 100vh !important;
+        height: 717px !important;
     }
 
     .footer .earth-wrapper {
@@ -1407,7 +1439,7 @@
     }
 
     .footer .moon-wrapper {
-        top: 417px;
+        top: 460px;
     }
 
     .footer .moon-wrapper .moon-img {
