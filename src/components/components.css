@@ -507,16 +507,31 @@
 }
 
 .menu-panel a.active {
-    border-bottom: 3px solid;
+    /* border-bottom: 3px solid;
     border-image-slice: 3;
-    border-image-source: linear-gradient(90deg, #2752FF 0%, #FF129D 100%);
+    border-image-source: linear-gradient(90deg, #2752FF 0%, #FF129D 100%); */
+    position: relative;
 
 
 }
 
+.menu-panel a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -26px;
+    height: 50px;
+    width: 100%;
+    background-image: url(../assets/small-flare.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .menu-panel a:hover {
-    border-bottom: 1px solid;
-    border-image-slice: 1;
+    border-bottom: 3px solid;
+    border-image-slice: 3;
     border-image-source: linear-gradient(90deg, #2752FF 0%, #FF129D 100%);
 }
 

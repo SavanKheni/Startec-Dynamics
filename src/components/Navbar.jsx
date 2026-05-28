@@ -27,7 +27,7 @@ const Navbar = () => {
     { href: "/serviceas", label: "Services" },
     { href: "/about-us", label: "About Us" },
     { href: "/team", label: "Team" },
-    { href: "/contact-us", label: "Contact" },
+    { href: "/contact-us", label: "Contact Us" },
     { href: "/partners", label: "Partners" },
   ];
 
@@ -82,7 +82,9 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-      <img alt="" src={logo} className="logo-img" />
+      <a href="/">
+        <img alt="" src={logo} className="logo-img" />
+      </a>
 
       {/* Right Nav */}
       <div className="right-nav">
@@ -169,7 +171,7 @@ const Navbar = () => {
           </AnimatePresence>
         </motion.div> */}
 
-        <GradientButton onClick={() => console.log("clicked")}>
+        <GradientButton onClick={() => navigate("/contact-us")}>
           Lets Talk
         </GradientButton>
       </div>

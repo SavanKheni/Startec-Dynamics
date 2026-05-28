@@ -5,8 +5,9 @@ import GlowAnimation from "./GlowAnimation";
 import PulseBox from "./PulseBox";
 import { motion, useInView } from "framer-motion";
 import AnimatedText from "./AnimatedText";
-
+import { useNavigate } from "react-router-dom";
 const GetInTouch = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
 
   // ✅ once: false + amount instead of margin
@@ -86,7 +87,7 @@ const GetInTouch = () => {
               whileHover={{ scale: 1.07, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.95 }}
             >
-              <GradientButton onClick={() => console.log("clicked")}>
+              <GradientButton onClick={() => navigate("/contact-us")}>
                 Get In Touch
               </GradientButton>
             </motion.div>

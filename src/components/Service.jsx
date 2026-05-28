@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Service.css";
 import { motion } from "framer-motion";
 import {
@@ -11,15 +11,14 @@ import {
 import StarTrail from "./StarTrail";
 import AnimatedText from "./AnimatedText";
 
-// ─── Animation variants ───────────────────────────────────────────────────────
-
+// Animations
 const headingVariants = {
   hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.9 },
   },
 };
 
@@ -29,29 +28,65 @@ const paraVariants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.2 },
+    transition: { duration: 0.8, delay: 0.2 },
   },
 };
 
 const gridVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.14, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.14 },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 60, scale: 0.92, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 60, scale: 0.92 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6 },
   },
 };
-// ─── Service Component ────────────────────────────────────────────────────────
+
 const Service = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const sliderRef = useRef(null);
+  const [dragWidth, setDragWidth] = useState(0);
+
+  // Detect screen
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1100);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Calculate drag width
+  useEffect(() => {
+    const updateDrag = () => {
+      if (!sliderRef.current) return;
+      // Force a layout read after paint
+      requestAnimationFrame(() => {
+        const children = sliderRef.current.children;
+        if (!children.length) return;
+        const lastChild = children[children.length - 1];
+        const containerRect =
+          sliderRef.current.parentElement.getBoundingClientRect();
+        const lastRect = lastChild.getBoundingClientRect();
+        // Total overflowing distance = right edge of last card - right edge of container
+        const overflow = lastRect.right - containerRect.right;
+        setDragWidth(Math.max(overflow, 0));
+      });
+    };
+
+    updateDrag();
+    window.addEventListener("resize", updateDrag);
+    return () => window.removeEventListener("resize", updateDrag);
+  }, [isMobile]);
+
   const CARDS = [
     {
       icon: <IconSmartSystem />,
@@ -81,60 +116,57 @@ const Service = () => {
 
   return (
     <div className="service-main">
-      {/* ── Heading block — fades up on scroll ── */}
       <StarTrail start={-300} end={-230} />
+
+      {/* Heading */}
       <motion.div
         className="service-heading"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.4 }}
       >
         <motion.h1 variants={headingVariants}>
           <AnimatedText as="span" text="Our Services" />
         </motion.h1>
+
         <motion.p variants={paraVariants}>
-          <b>
-            Startech Dynamics is a forward-thinking automobile and technology
-            company
-          </b>{" "}
-          delivering intelligent, future-ready mobility solutions. We specialize
-          in integrating advanced automotive engineering with smart digital
+          <b>Startech Dynamics is a forward-thinking company</b>delivering
+          intelligent, future-ready mobility solutions. We specialize in
+          integrating advanced automotive engineering with smart digital
           technologies to enhance vehicle performance, safety, and connectivity.
         </motion.p>
       </motion.div>
 
-      {/* ── Cards grid — staggered reveal on scroll ── */}
-      <div className="sc-wrap">
-        <motion.div
-          className="sc-grid"
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
-        >
-          {CARDS.map((card, i) => (
-            /* Each card: fade + slide + scale in, hover lift */
-            <motion.div
-              key={i}
-              variants={cardVariants}
-              whileHover={{
-                y: -8,
-                boxShadow: "0 28px 56px rgba(39, 82, 255, 0.22)",
-                transition: { duration: 0.28, ease: "easeOut" },
-              }}
-              whileTap={{ scale: 0.97 }}
-              style={{ borderRadius: "40px" }}
-            >
-              <ServiceCard
-                {...card}
-                ctaLabel="Know More"
-                onCtaClick={() =>
-                  alert(`${card.title.replace(/<[^>]+>/g, " ")} clicked`)
-                }
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+      {/* Cards */}
+      <div
+        style={{
+          overflow: isMobile ? "hidden" : "",
+          width: "100%",
+          display: "grid",
+        }}
+      >
+        <div className="sc-wrap">
+          <motion.div
+            ref={sliderRef}
+            className={`sc-grid ${isMobile ? "slider" : ""}`}
+            variants={!isMobile ? gridVariants : undefined}
+            initial={!isMobile ? "hidden" : false}
+            whileInView={!isMobile ? "visible" : false}
+            drag={isMobile ? "x" : false}
+            dragConstraints={{ left: -dragWidth, right: 0 }}
+          >
+            {CARDS.map((card, i) => (
+              <motion.div
+                key={i}
+                variants={!isMobile ? cardVariants : undefined}
+                whileHover={{ y: -8 }}
+                whileTap={{ scale: 0.97 }}
+                className="card-wrapper"
+              >
+                <ServiceCard {...card} ctaLabel="Know More" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   );

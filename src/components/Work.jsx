@@ -7,10 +7,10 @@ import logo from "../assets/logo.png";
 import GlowAnimation from "./GlowAnimation";
 import GlowLTR from "./GlowLTR";
 import fleet from "../assets/fleet.png";
-import f1 from "../assets/f-1.png";
-import f2 from "../assets/f-2.png";
-import f3 from "../assets/f-3.png";
-import tabShine from "../assets/flare.png";
+import smartDevice from "../assets/SI-Smart-Device.png";
+import sIConnect from "../assets/SI-Connect.png";
+import fleetManagement from "../assets/Fleet-Management.png";
+import sIIntelligent from "../assets/SI-Intelligent.png";
 import AnimatedText from "./AnimatedText";
 
 // ─── Icon Data ────────────────────────────────────────────────────────────────
@@ -116,7 +116,7 @@ const TABS = [
     description2:
       "With an intuitive interface and centralized control, the platform allows users to make data-driven decisions, streamline logistics, and ensure smooth day-to-day operations.",
     buttonLabel: "Explore The Project",
-    image: null,
+    image: [sIConnect],
     icon: fleet,
   },
   {
@@ -129,7 +129,7 @@ const TABS = [
     description2:
       "With an intuitive interface and centralized control, the platform allows users to make data-driven decisions, streamline logistics, and ensure smooth day-to-day fleet operations.",
     buttonLabel: "Explore The Project",
-    image: [f1, f2, f3],
+    image: [fleetManagement],
     icon: fleet,
   },
   {
@@ -142,7 +142,20 @@ const TABS = [
     description2:
       "With an intuitive interface and centralized control, the platform allows users to make data-driven decisions, streamline workflows, and ensure smooth day-to-day intelligent operations.",
     buttonLabel: "Explore The Project",
-    image: null,
+    image: [sIIntelligent],
+    icon: fleet,
+  },
+  {
+    id: 3,
+    label: "",
+    colorClass: "tab--blue", // add a new color class in your CSS
+    title: "SI Smart System",
+    description1:
+      "For riders, the greatest danger often starts after the crash. Injured or unconscious riders may be unable to call for help, while family or emergency responders may not know their location for hours. Delayed response can worsen injuries and reduce survival chances.",
+    description2:
+      "Unlike cars with automatic emergency systems like eCall, most motorcycles lack this protection. The SI Smart System bridges this gap — combining crash detection, emergency communication, live vehicle monitoring, and smart connectivity into a compact integrated solution.",
+    buttonLabel: "Explore The Project",
+    image: [smartDevice], // replace with your SI Smart System image imports when ready
     icon: fleet,
   },
 ];
@@ -340,17 +353,15 @@ const IconDetailModal = ({ icon, onClose }) => {
       onClick={onClose}
     >
       <motion.div
-        className="icon-modal-card"
+        className={`icon-modal-card ${icon.showOnRight ? "modal-right" : "modal-left"}`}
+        // className="icon-modal-card"
         variants={modalCardVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
         onClick={(e) => e.stopPropagation()}
         style={{
-          top: icon.position?.top || "50%",
-          left: icon.position?.left || "50%",
-          transform: "translate(-50%, -50%)", // Center cleanly from computed click coordinates
-          zIndex: 999, // Ensure it stays on top of any absolute layout assets
+          zIndex: 999,
         }}
       >
         {/* Close Button */}
@@ -571,28 +582,22 @@ const TabGlow = ({ color }) => (
 const Work = () => {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: false, amount: 0.15 });
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(3);
   const [activeModal, setActiveModal] = useState(null);
-
-  const handleIconClick = (icon, event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const modalWidth = 320; // approx modal width
-    const spacing = 16;
-
-    const spaceRight = window.innerWidth - rect.right;
-    const showOnRight = spaceRight > modalWidth;
-
+  const [showTabs, setShowTabs] = useState(false);
+  const handleIconClick = (icon, index) => {
+    const isDesktop = window.innerWidth > 768;
+    const isLeftIcon = index === 0 || index === 1;
     setActiveModal({
       ...icon,
-      position: {
-        top: rect.top + rect.height / 2,
-        left: showOnRight
-          ? rect.right + spacing
-          : rect.left - modalWidth - spacing,
-      },
+      showOnRight: isDesktop ? !isLeftIcon : false,
     });
   };
-
+  const tabsRef = useRef(null);
+  const isInView = useInView(tabsRef, {
+    once: false, // ← retriggers every time
+    amount: 0.3, // ← trigger when 30% is visible
+  });
   const handleModalClose = () => {
     setActiveModal(null);
   };
@@ -608,33 +613,26 @@ const Work = () => {
         variants={containerVariants}
       >
         <div className="netEarthBlock">
-          <motion.div
-            className="orditline"
-            variants={orbitVariants}
-            animate={
-              inView
-                ? {
-                    opacity: 1,
-                    scale: 1,
-                    rotate: [0, 360],
-                  }
-                : { opacity: 0, scale: 0.6 }
-            }
-            transition={
-              inView
-                ? {
-                    opacity: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
-                    scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
-                    rotate: {
-                      duration: 18,
-                      ease: "linear",
-                      repeat: Infinity,
-                      delay: 1.2,
-                    },
-                  }
-                : { duration: 0.4 }
-            }
-          />
+          {inView &&
+            [0, 1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                className="orbitline-ripple"
+                initial={{ scale: 1, opacity: 0 }}
+                animate={{
+                  scale: [1, 1.3],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 3.8,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  delay: i * 0.95,
+                  repeatDelay: 0,
+                  times: [0, 0.15, 1], // fade in fast, then slowly fade out
+                }}
+              />
+            ))}
 
           <motion.img
             src={netearth}
@@ -648,7 +646,7 @@ const Work = () => {
                 key={icon.id}
                 icon={icon}
                 index={index}
-                onIconClick={handleIconClick}
+                onIconClick={() => handleIconClick(icon, index)}
               />
             ))}
             {/* ─── Icon Detail Modal ───────────────────────────────────────────── */}
@@ -666,40 +664,87 @@ const Work = () => {
       </motion.section>
 
       {/* ─── Logo Button ────────────────────────────────────────────────── */}
-      <div className="logo-button">
+      <motion.div
+        className="logo-button"
+        initial={{ opacity: 0, y: 30, scale: 0.88 }}
+        animate={
+          inView
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 30, scale: 0.88 }
+        }
+        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1], delay: 0.2 }}
+      >
         <GradientButton onClick={() => console.log("clicked")}>
           <img alt="" src={logo} className="logo-img" />
         </GradientButton>
-      </div>
-      <div className="si-button">
-        <GradientButton onClick={() => console.log("clicked")}>
+      </motion.div>
+      <motion.div
+        className="si-button"
+        initial={{ opacity: 0, y: 24, scale: 0.9 }}
+        animate={
+          inView
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 24, scale: 0.9 }
+        }
+        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1], delay: 0.38 }}
+      >
+        <div className="dot-line" />
+        <GradientButton
+          onClick={() => {
+            setShowTabs((prev) => !prev);
+            setActiveTab(3);
+          }}
+        >
           SI Smart System
         </GradientButton>
-      </div>
-      <div className="tabs-main-box" style={{ position: "relative" }}>
-        {/* ─── Tabs ───────────────────────────────────────────────────────── */}
-        <div className="tabs-main">
-          {TABS.map((tab) => (
+      </motion.div>
+      <div className="tabs-wrapper" ref={tabsRef}>
+        <AnimatePresence mode="wait">
+          {showTabs && isInView && (
             <motion.div
-              key={tab.id}
-              className={`tab ${tab.colorClass} ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
+              key="tabs"
+              layout
+              className="tabs-main-box"
+              style={{ position: "relative" }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className={`top-line top-line-${tab.id + 1}`} />
-              <div className="dot-line" />
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2 }}
-              >
-                <GradientButton>{tab.label}</GradientButton>
-              </motion.div>
+              <div className="tabs-main">
+                {TABS.map((tab, index) =>
+                  tab.label ? (
+                    <motion.div
+                      key={tab.id}
+                      className={`tab ${tab.colorClass} ${
+                        activeTab === tab.id ? "active" : ""
+                      }`}
+                      onClick={() => setActiveTab(tab.id)}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        delay: index * 0.07, // ← staggered entry
+                      }}
+                    >
+                      <div className={`top-line top-line-${tab.id + 1}`} />
+                      <div className="dot-line" />
+                      <motion.div
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <GradientButton>{tab.label}</GradientButton>
+                      </motion.div>
+                    </motion.div>
+                  ) : null,
+                )}
+              </div>
             </motion.div>
-          ))}
-        </div>
-        <div className="hero-bottom-shadow-bottom" />
+          )}
+        </AnimatePresence>
       </div>
-
       {/* ─── Tab Content ────────────────────────────────────────────────── */}
       <div className="tab-content-main">
         <div className="GlowLTRMain">
@@ -821,63 +866,7 @@ const Work = () => {
                   variants={tabRightChildVariants}
                 >
                   {tab.image && Array.isArray(tab.image) && (
-                    <div className="tab-image-group">
-                      <motion.img
-                        src={tabShine}
-                        alt=""
-                        className="tab-shine"
-                        variants={tabShineVariants}
-                        initial="hidden"
-                        animate="visible"
-                        style={{ mixBlendMode: "screen" }}
-                      />
-
-                      <div className="tab-img-0-shadow">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="141"
-                          height="313"
-                          viewBox="0 0 141 313"
-                          fill="none"
-                        >
-                          <g filter="url(#filter0_f_5293_1741)">
-                            <ellipse
-                              cx="70.2234"
-                              cy="156.173"
-                              rx="20.2234"
-                              ry="106.173"
-                              fill="#040C28"
-                            />
-                          </g>
-                          <defs>
-                            <filter
-                              id="filter0_f_5293_1741"
-                              x="0"
-                              y="0"
-                              width="140.447"
-                              height="312.346"
-                              filterUnits="userSpaceOnUse"
-                              colorInterpolationFilters="sRGB"
-                            >
-                              <feFlood
-                                floodOpacity="0"
-                                result="BackgroundImageFix"
-                              />
-                              <feBlend
-                                mode="normal"
-                                in="SourceGraphic"
-                                in2="BackgroundImageFix"
-                                result="shape"
-                              />
-                              <feGaussianBlur
-                                stdDeviation="25"
-                                result="effect1_foregroundBlur_5293_1741"
-                              />
-                            </filter>
-                          </defs>
-                        </svg>
-                      </div>
-
+                    <div className="tab-image">
                       {tab.image.map((img, index) => {
                         const fc = floatConfigs[index] ?? floatConfigs[0];
                         return (

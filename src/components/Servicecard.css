@@ -7,6 +7,7 @@
     /* overflow: hidden; */
     max-width: 1674px;
     margin: auto;
+    /* overflow: visible; */
 }
 
 /* Starfield canvas sits behind everything */
@@ -17,7 +18,21 @@
     z-index: 0;
 }
 
+.sc-wrap {
+    display: flex;
+    justify-content: center;
+    max-width: 1674px;
+    margin: auto;
+    /* overflow: hidden; */
+}
+
 .sc-grid {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+/* .sc-grid {
     position: relative;
     z-index: 1;
     display: flex;
@@ -25,9 +40,9 @@
     gap: 1.25rem;
     justify-content: center;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
+    display: flex;
+    gap: 24px;
+} */
 
 /* ── Card ── */
 .sc-card {
@@ -176,6 +191,16 @@
 /* ════════════════════════════════════════════════
    SERVICE SECTION — RESPONSIVE CSS (1100px → 350px)
    ════════════════════════════════════════════════ */
+@media (min-width: 1101px) {
+    .sc-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sc-grid>* {
+        width: calc(25% - 18px);
+    }
+}
 
 /* ── 1100px ─────────────────────────────────────── */
 @media (max-width: 1100px) {
@@ -183,15 +208,39 @@
         padding: 180px 40px 80px;
     }
 
+    .sc-wrap {
+        overflow: hidden;
+    }
+
     .service-heading {
         max-width: 620px;
     }
 
-    .sc-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        padding: 0 40px;
+    .sc-grid.slider {
+        flex-wrap: nowrap;
+        /* overflow-x: auto; */
+        scroll-snap-type: x mandatory;
+        cursor: grab;
+        padding: 0 20px;
+        width: 100%;
+        /* ADD: explicit width */
+        overflow: visible;
+        /* ADD: don't clip dragged cards */
     }
+
+    .sc-grid.slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sc-grid.slider>* {
+        flex: 0 0 calc(100% / 2.2);
+    }
+
+    /* .sc-grid.slider>* {
+        min-width: 280px;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+    } */
 
     .sc-icon-wrap {
         margin: 25px 0px 20px 0px;
@@ -252,15 +301,19 @@
         line-height: 24px;
     }
 
-    .sc-grid {
+    /* .sc-grid {
         grid-template-columns: repeat(2, 1fr);
         padding: 0;
         gap: 16px;
-    }
+    } */
 
     .sc-card {
         padding: 28px 20px;
         border-radius: 28px;
+    }
+
+    .sc-grid.slider>* {
+        flex: 0 0 calc(100% / 1.9);
     }
 }
 
@@ -270,11 +323,11 @@
         padding: 90px 20px 50px;
     }
 
-    .sc-grid {
+    /* .sc-grid {
         grid-template-columns: 1fr;
         gap: 20px;
         margin: 0 auto;
-    }
+    } */
 
     .sc-card {
         padding: 28px 24px;
@@ -397,4 +450,9 @@
         font-size: 12px;
         line-height: 19px;
     }
+}
+
+.sc-grid.slider .card-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
 }

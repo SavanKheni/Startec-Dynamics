@@ -6,12 +6,13 @@ import GradientButton from "./Gradientbutton";
 import logo from "../assets/logo.png";
 import { motion, useInView } from "framer-motion";
 import StarTrail from "./StarTrail";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const footerRef = useRef(null);
   // ✅ once: false — replays every time footer scrolls into view
   const inView = useInView(footerRef, { once: false, amount: 0.15 });
-
+  const navigate = useNavigate();
   return (
     <section className="hero footer" ref={footerRef}>
       {/* ── Planets + background wrapper ── */}
@@ -230,7 +231,7 @@ const Footer = () => {
             whileTap={{ scale: 0.95 }}
             style={{ display: "inline-block" }}
           >
-            <GradientButton onClick={() => console.log("clicked")}>
+            <GradientButton onClick={() => navigate("/contact-us")}>
               Contact Us
             </GradientButton>
           </motion.div>

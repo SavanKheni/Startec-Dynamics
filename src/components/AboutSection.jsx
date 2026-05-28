@@ -5,10 +5,11 @@ import GlowAnimation from "./GlowAnimation";
 import PulseBox from "./PulseBox";
 import { motion, useInView } from "framer-motion";
 import AnimatedText from "./AnimatedText";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
-
+  const navigate = useNavigate();
   // ✅ once: false → replays every time section scrolls into view
   // amount: 0.2 → triggers when 20% of section is visible
   const inView = useInView(sectionRef, { once: false, amount: 0.2 });
@@ -110,7 +111,7 @@ const AboutSection = () => {
             whileTap={{ scale: 0.95 }}
             style={{ display: "inline-block" }}
           >
-            <GradientButton onClick={() => console.log("clicked")}>
+            <GradientButton onClick={() => navigate("/about-us")}>
               Who We Are
             </GradientButton>
           </motion.div>
