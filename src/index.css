@@ -230,6 +230,11 @@ button {
   line-height: 1em;
 }
 
+.others-hero {
+  height: 710px;
+  padding-top: 477px;
+}
+
 @media screen and (max-width: 1100px) {
   .app {
     width: fit-content;

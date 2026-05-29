@@ -28,6 +28,10 @@
 
 }
 
+.about-section-left-project {
+    width: 45%;
+}
+
 .about-section-left h6 {
     font-weight: 400;
     font-size: 15px;

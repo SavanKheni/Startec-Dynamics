@@ -82,3 +82,28 @@
     left: -25px;
     z-index: -1;
 }
+
+.ServiceBoxMainProjects {
+    grid-template-columns: unset !important;
+    gap: 40px !important;
+}
+
+.ServiceBoxMainProjects .service-box-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 15px;
+    gap: 40px;
+}
+
+.ServiceBoxMainProjects .service-box-head h2 {
+    max-width: unset !important;
+}
+
+.service-card-content {
+    padding: 30px;
+}
+
+.service-card-image {
+    width: 100%;
+    height: auto;
+}

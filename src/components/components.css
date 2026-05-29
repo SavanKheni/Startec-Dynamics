@@ -1045,6 +1045,14 @@
         top: -269px;
     }
 
+    .others-hero .moon-wrapper .moon-img {
+        width: 420px;
+    }
+
+    .others-hero .moon-wrapper {
+        top: -269px;
+    }
+
     .hero-main-bg-hight .earth-wrapper .earth-img {
         width: 640px;
     }
@@ -1094,6 +1102,10 @@
         top: -90px;
     }
 
+    .others-hero .moon-wrapper {
+        top: -90px;
+    }
+
     .star-trail {
         top: 140px;
     }
@@ -1127,6 +1139,10 @@
     }
 
     .hero-main-bg-hight .moon-wrapper .moon-img {
+        width: 259px;
+    }
+
+    .others-hero .moon-wrapper .moon-img {
         width: 259px;
     }
 
@@ -1171,6 +1187,13 @@
         width: 500px;
         height: auto;
     }
+
+    .others-hero .hero-content h1 {
+        font-size: 36px;
+        line-height: 50px;
+    }
+
+
 }
 
 /* ── 520px — matches mobile Figma ───────────────── */

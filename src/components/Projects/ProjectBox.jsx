@@ -1,7 +1,11 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "../Services/Service.css";
 import GlowLTR from "../GlowLTR";
+import s1 from "../../assets/s-1.png";
+import s2 from "../../assets/s-2.png";
+import AnimatedText from "../AnimatedText";
+// import { img } from "framer-motion/client";
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 
@@ -90,6 +94,7 @@ const servicesData = [
     id: 1,
     icon: <SmartSystemIcon />,
     title: "Market Context",
+    boxImg: s1,
     paragraphs: [
       {
         text: " In many emerging markets, motorcycles are the primary mode of transport for workers, students, delivery riders, and families. Despite their importance, motorcycles still lack modern safety and connectivity technologies.",
@@ -105,6 +110,7 @@ const servicesData = [
   {
     id: 2,
     icon: <EmbeddedIcon />,
+    boxImg: s2,
     title: "The Post-Crash Information Gap",
     paragraphs: [
       {
@@ -121,10 +127,22 @@ const servicesData = [
 ];
 
 // ─── Reusable ServiceCard ──────────────────────────────────────────────────────
-const ServiceCard = ({ icon, title, paragraphs }) => {
+const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: false, amount: 0.2 });
+  const chipVariants = {
+    hidden: { opacity: 0, scale: 0.82, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
   return (
     <motion.div
-      className="service-box-main"
+      className={`service-box-main ${index % 2 !== 0 ? "reverse" : ""}`}
       variants={cardVariants}
       whileHover={{
         y: -8,
@@ -133,120 +151,256 @@ const ServiceCard = ({ icon, title, paragraphs }) => {
       }}
       whileTap={{ scale: 0.98 }}
     >
-      <div className="service-box-head">
-        <motion.div
-          className="service-icon-main"
-          variants={iconWrapVariants}
-          initial="rest"
-          whileHover="hover"
-        >
-          {icon}
-          <div className="service-box-icon-shadow">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="188"
-              height="140"
-              viewBox="0 0 188 140"
-              fill="none"
-            >
-              <g opacity="0.3" filter="url(#filter0_f_5226_11217)">
-                <ellipse
-                  cx="94"
-                  cy="70"
-                  rx="64"
-                  ry="88"
-                  transform="rotate(-90 94 70)"
-                  fill="url(#paint0_radial_5226_11217)"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="filter0_f_5226_11217"
-                  x="0"
-                  y="0"
-                  width="188"
-                  height="140"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
-                >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    stdDeviation="3"
-                    result="effect1_foregroundBlur_5226_11217"
-                  />
-                </filter>
-                <radialGradient
-                  id="paint0_radial_5226_11217"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientTransform="matrix(-72.5036 10.3542 -14.1552 -99.6924 94 70)"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#FF129D" />
-                  <stop offset="1" stopColor="#00050F" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-            </svg>
-          </div>
-        </motion.div>
-
-        {/* ✅ Title — blur reveal */}
-        <motion.h2
-          className="service-card-title"
-          initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.5 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-        >
-          {title}
-        </motion.h2>
-      </div>
-
-      {/* ✅ Paragraphs — staggered fade up */}
-      <div className="service-card-body">
-        {paragraphs.map((para, index) => (
-          <motion.p
-            key={index}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+      {index % 2 === 0 ? (
+        <>
+          <motion.img
+            src={boxImg}
+            alt=""
+            variants={chipVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: false, amount: 0.3 }}
-            transition={{
-              duration: 0.65,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.2 + index * 0.1, // ✅ staggered per paragraph
-            }}
-          >
-            {para.bold && <b>{para.bold}</b>}
-            {para.text}
-          </motion.p>
-        ))}
-      </div>
+            className="service-card-image"
+          />
+          <div className="service-card-content">
+            <div className="service-box-head">
+              <motion.div
+                className="service-icon-main"
+                variants={iconWrapVariants}
+                initial="rest"
+                whileHover="hover"
+              >
+                {icon}
+                <div className="service-box-icon-shadow">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="188"
+                    height="140"
+                    viewBox="0 0 188 140"
+                    fill="none"
+                  >
+                    <g opacity="0.3" filter="url(#filter0_f_5226_11217)">
+                      <ellipse
+                        cx="94"
+                        cy="70"
+                        rx="64"
+                        ry="88"
+                        transform="rotate(-90 94 70)"
+                        fill="url(#paint0_radial_5226_11217)"
+                      />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_f_5226_11217"
+                        x="0"
+                        y="0"
+                        width="188"
+                        height="140"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                      >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="3"
+                          result="effect1_foregroundBlur_5226_11217"
+                        />
+                      </filter>
+                      <radialGradient
+                        id="paint0_radial_5226_11217"
+                        cx="0"
+                        cy="0"
+                        r="1"
+                        gradientTransform="matrix(-72.5036 10.3542 -14.1552 -99.6924 94 70)"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#FF129D" />
+                        <stop offset="1" stopColor="#00050F" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </motion.div>
+
+              {/* ✅ Title — blur reveal */}
+              <motion.h2
+                className="service-card-title"
+                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 0.15,
+                }}
+              >
+                <AnimatedText as="span" text={title} />
+              </motion.h2>
+            </div>
+
+            {/* ✅ Paragraphs — staggered fade up */}
+            <div className="service-card-body">
+              {paragraphs.map((para, index) => (
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    duration: 0.65,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.2 + index * 0.1, // ✅ staggered per paragraph
+                  }}
+                >
+                  {para.bold && <b>{para.bold}</b>}
+                  {para.text}
+                </motion.p>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="service-card-content">
+            <div className="service-box-head">
+              <motion.div
+                className="service-icon-main"
+                variants={iconWrapVariants}
+                initial="rest"
+                whileHover="hover"
+              >
+                {icon}
+                <div className="service-box-icon-shadow">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="188"
+                    height="140"
+                    viewBox="0 0 188 140"
+                    fill="none"
+                  >
+                    <g opacity="0.3" filter="url(#filter0_f_5226_11217)">
+                      <ellipse
+                        cx="94"
+                        cy="70"
+                        rx="64"
+                        ry="88"
+                        transform="rotate(-90 94 70)"
+                        fill="url(#paint0_radial_5226_11217)"
+                      />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_f_5226_11217"
+                        x="0"
+                        y="0"
+                        width="188"
+                        height="140"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                      >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="3"
+                          result="effect1_foregroundBlur_5226_11217"
+                        />
+                      </filter>
+                      <radialGradient
+                        id="paint0_radial_5226_11217"
+                        cx="0"
+                        cy="0"
+                        r="1"
+                        gradientTransform="matrix(-72.5036 10.3542 -14.1552 -99.6924 94 70)"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#FF129D" />
+                        <stop offset="1" stopColor="#00050F" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </motion.div>
+
+              {/* ✅ Title — blur reveal */}
+              <motion.h2
+                className="service-card-title"
+                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 0.15,
+                }}
+              >
+                {title}
+              </motion.h2>
+            </div>
+
+            {/* ✅ Paragraphs — staggered fade up */}
+            <div className="service-card-body">
+              {paragraphs.map((para, index) => (
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{
+                    duration: 0.65,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.2 + index * 0.1, // ✅ staggered per paragraph
+                  }}
+                >
+                  {para.bold && <b>{para.bold}</b>}
+                  {para.text}
+                </motion.p>
+              ))}
+            </div>
+          </div>
+          <motion.img
+            src={boxImg}
+            alt=""
+            variants={chipVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            className="service-card-image"
+          />
+        </>
+      )}
     </motion.div>
   );
 };
 
 const ProjectBox = () => {
+  const sectionRef = useRef(null);
   return (
     <motion.div
-      className="ServiceBoxMain"
+      ref={sectionRef}
+      className="ServiceBoxMain ServiceBoxMainProjects"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.1 }} // ✅ replays every scroll
     >
-      {servicesData.map((service) => (
+      {servicesData.map((service, index) => (
         <ServiceCard
           key={service.id}
+          index={index}
           icon={service.icon}
           title={service.title}
           paragraphs={service.paragraphs}
+          boxImg={service.boxImg} // ✅ FIX
         />
       ))}
     </motion.div>

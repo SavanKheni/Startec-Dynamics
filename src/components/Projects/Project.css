@@ -6,10 +6,7 @@
 
 }
 
-.others-hero {
-    height: unset;
-    padding-top: 400px;
-}
+
 
 .others-hero h1 {
     font-weight: 400;
@@ -47,16 +44,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 30px;
+    gap: 50px;
+    position: relative;
 }
 
 .card-featured {
     grid-column: 1 / -1;
+    margin-bottom: 50px !important;
 }
 
 /* Card 2 & 3 – each takes one column at the bottom */
 .card-half {
     grid-column: span 1;
+    margin-top: 80px !important;
 }
 
 .project-card-main-section {
@@ -161,19 +161,19 @@
 
 .open-chip-container {
     position: relative;
-    margin-top: 20px;
+    margin-top: 35px;
 }
 
-.open-chip-container svg {
-    position: absolute;
-    top: -70px;
-    left: -90px;
-    z-index: -1;
-}
+
 
 .about-flex-box {
     display: flex;
     gap: 30px;
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+    padding-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .about-flex-box .pulse-box {
@@ -193,6 +193,7 @@
     font-size: 16px;
     line-height: 26px;
     letter-spacing: 0%;
+    margin-top: 10px;
 
 }
 
@@ -204,7 +205,7 @@
 .about-flex-box-main {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    /* gap: 15px; */
 }
 
 .about-featured-right {
@@ -224,5 +225,136 @@
     line-height: 66px;
     letter-spacing: -2%;
     text-align: center;
+
+}
+
+.project-img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.project-line {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+}
+
+@media screen and (max-width: 1100px) {
+    .project-page-about-section {
+        flex-direction: column !important;
+        padding: 50px 30px;
+    }
+
+    .project-page-about-section .Featured-devider {
+        display: none;
+    }
+
+    .project-page-about-section .about-section-right {
+        width: 100%;
+        padding: 0px;
+        padding-top: 20px;
+    }
+
+    .project-page-about-section .about-section-left {
+        width: 100%;
+        padding: 0px;
+
+    }
+
+    .project-page-about-section .about-flex-details {
+        width: 100% !important;
+        max-width: unset !important;
+
+    }
+
+    .project-page-about-section .about-section-right p {
+        max-width: unset !important;
+    }
+
+    .open-chip-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .ServiceBoxMainProjects .service-box-main {
+        grid-template-columns: 1fr !important;
+    }
+
+    .ServiceBoxMainProjects {
+        padding: 40px 30px !important;
+    }
+
+    .project-card-main {
+        padding: 35px 30px !important;
+    }
+
+    .project-card {
+        width: unset;
+        height: unset;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .project-page-about-section .about-section-right,
+    .project-page-about-section .about-section-right p {
+
+        text-align: left !important;
+    }
+
+    .project-page-about-section .featured-right {
+        margin-top: 30px !important;
+    }
+
+    .service-card-content {
+        padding: 5px !important;
+    }
+
+    .others-hero {
+        height: 550px;
+        padding-top: 333px;
+    }
+
+    .ServiceBoxMainProjects .service-box-head h2 {
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    .ServiceBoxMainProjects .service-box-head {
+        gap: 15px;
+
+    }
+
+    .ServiceBoxMainProjects .service-icon-main svg {
+        height: 40px;
+        width: 40px;
+    }
+
+    .about-flex-box h3 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+
+    .project-info h1 {
+
+        font-size: 26px;
+        line-height: 30px;
+    }
+
+    .project-info h6 {
+        font-size: 18px;
+        line-height: 28px;
+        margin-top: 20px;
+        margin-bottom: 36px;
+    }
+
 
 }
