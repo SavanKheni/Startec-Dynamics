@@ -2,29 +2,33 @@ import React from "react";
 import "./project-details.css";
 import GlowAnimation from "../GlowAnimation";
 import fleetManagement from "../../assets/f-m-logo.png";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import AnimatedText from "../AnimatedText";
 
+// ─── Shared viewport config ───────────────────────────────────────────────────
+const viewProps = {
+  initial: "hidden",
+  whileInView: "visible",
+  viewport: { once: false, margin: "-80px" },
+};
+
+// ─── Variants ─────────────────────────────────────────────────────────────────
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      delay: i * 0.15,
-    },
+    transition: { duration: 0.6, ease: "easeOut", delay: i * 0.15 },
   }),
 };
 
 const iconVariants = {
   hidden: { scale: 0.6, opacity: 0 },
-  visible: {
+  visible: (i) => ({
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+    transition: { duration: 0.5, ease: "easeOut", delay: i * 0.15 + 0.2 },
+  }),
 };
 
 const textVariants = {
@@ -36,6 +40,7 @@ const textVariants = {
   }),
 };
 
+// ─── Cards data ───────────────────────────────────────────────────────────────
 const cards = [
   {
     title: "Real-Time GPS Tracking",
@@ -162,6 +167,7 @@ const cards = [
   },
 ];
 
+// ─── IconShadow ───────────────────────────────────────────────────────────────
 const IconShadow = () => (
   <div className="project-future-icon-shadow">
     <svg
@@ -219,32 +225,25 @@ const IconShadow = () => (
   </div>
 );
 
+// ─── Component ────────────────────────────────────────────────────────────────
 const ProjectFuture = () => {
-  const gridRef = useRef(null);
-  const bottomRef = useRef(null);
-
-  const gridInView = useInView(gridRef, { once: true, margin: "-80px" });
-  const bottomInView = useInView(bottomRef, { once: true, margin: "-80px" });
-
   return (
-    <div className="">
+    <div>
       {/* Card Grid */}
-      <div className="project-future-card-grid" ref={gridRef}>
+      <div className="project-future-card-grid">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
             className="project-future-card-box"
             custom={i}
             variants={cardVariants}
-            initial="hidden"
-            animate={gridInView ? "visible" : "hidden"}
+            {...viewProps}
           >
             <motion.div
               className="project-future-icon-box"
+              custom={i}
               variants={iconVariants}
-              initial="hidden"
-              animate={gridInView ? "visible" : "hidden"}
-              transition={{ delay: i * 0.15 + 0.2 }}
+              {...viewProps}
             >
               {card.icon}
               <IconShadow />
@@ -253,17 +252,15 @@ const ProjectFuture = () => {
             <motion.h3
               custom={i * 0.15 + 0.3}
               variants={textVariants}
-              initial="hidden"
-              animate={gridInView ? "visible" : "hidden"}
+              {...viewProps}
             >
-              {card.title}
+              <AnimatedText as="span" text={card.title} />
             </motion.h3>
 
             <motion.p
               custom={i * 0.15 + 0.4}
               variants={textVariants}
-              initial="hidden"
-              animate={gridInView ? "visible" : "hidden"}
+              {...viewProps}
             >
               {card.desc}
             </motion.p>
@@ -282,15 +279,20 @@ const ProjectFuture = () => {
       {/* Bottom Description */}
       <motion.div
         className="bottom-desc"
-        ref={bottomRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={bottomInView ? { opacity: 1, y: 0 } : {}}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        {...viewProps}
       >
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={bottomInView ? { opacity: 1, y: 0 } : {}}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          {...viewProps}
         >
           Fleet Management is a smart, centralized system designed to monitor,
           manage, and optimize a fleet of vehicles in real time. It enables
@@ -314,10 +316,12 @@ const ProjectFuture = () => {
         <motion.img
           src={fleetManagement}
           alt=""
-          className=""
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={bottomInView ? { opacity: 1, scale: 1 } : {}}
+          variants={{
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1 },
+          }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.35 }}
+          {...viewProps}
         />
       </motion.div>
     </div>

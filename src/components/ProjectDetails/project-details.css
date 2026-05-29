@@ -8,6 +8,7 @@
     padding: 50px 0px;
     display: flex;
     gap: 50px;
+    align-items: center;
 }
 
 .img-details h6 {
@@ -25,7 +26,7 @@
     line-height: 26px;
     letter-spacing: 0%;
     color: #D8DFEE;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .project-future-card-grid {
@@ -103,4 +104,112 @@
 
 .project-future-card-box:last-child .top-to-bottom {
     display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .project-details-page {
+        flex-direction: column;
+    }
+
+    .project-details-page .about-section-left {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .project-details-page .about-section-right {
+        width: 100%;
+        padding: 0px;
+        margin-top: 15px;
+    }
+
+    .project-details-page .about-section-right p {
+        max-width: unset;
+    }
+
+    .project-screen-main {
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+    }
+
+    .img-details img {
+        width: 100%;
+        height: auto;
+    }
+
+    .project-future-card-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 30px;
+        gap: 20px;
+        border-top: unset;
+        border-bottom: unset;
+    }
+
+    .project-future-card-box {
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -13.68%, rgba(122, 134, 196, 0.66) 47.97%, rgba(0, 0, 0, 0.66) 112.05%);
+
+        background: linear-gradient(90deg, #00052660 0%, #05103360 100%);
+
+    }
+
+    .bottom-desc {
+        flex-direction: column;
+        padding: 30px 30px;
+        gap: 30px;
+    }
+
+    .bottom-desc p {
+        max-width: unset;
+
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .bottom-desc p {
+        text-align: center;
+    }
+
+    .project-future-card-box {
+        text-align: center;
+    }
+
+    .project-screen-description p {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .project-details-main {
+        padding: 85px 0px 0px;
+    }
+
+    .bottom-desc img {
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .project-future-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-desc {
+        padding: 20px;
+    }
+
+    .project-future-card-grid {
+        padding: 20px;
+    }
+
+    .project-screen-main {
+        padding: 20px;
+    }
+
+    .project-details-page {
+        padding: 20px;
+    }
 }

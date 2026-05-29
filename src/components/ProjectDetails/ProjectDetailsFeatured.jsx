@@ -3,50 +3,60 @@ import "../AboutSection.css";
 import GradientButton from "../Gradientbutton";
 import GlowAnimation from "../GlowAnimation";
 import PulseBox from "../PulseBox";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import AnimatedText from "../AnimatedText";
 
 const ProjectDetailsFeatured = () => {
-  const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const viewProps = {
+    initial: "hidden",
+    whileInView: "visible",
+    viewport: { once: false, margin: "-100px" },
+  };
 
   return (
     <motion.section
-      className="about-section"
-      ref={sectionRef}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
+      className="about-section project-details-page"
+      variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
       transition={{ duration: 0.6 }}
+      {...viewProps}
     >
       {/* LEFT SIDE */}
       <motion.div
         className="about-section-left"
-        initial={{ opacity: 0, x: -60 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
+        variants={{
+          hidden: { opacity: 0, x: -60 },
+          visible: { opacity: 1, x: 0 },
+        }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        {...viewProps}
       >
         <PulseBox size={15} />
         <div>
           <motion.h6
-            initial={{ opacity: 0, y: -10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: { opacity: 1, y: 0 },
+            }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            {...viewProps}
           >
             Vehicle Tracking | Driver Management | Dashboard App
           </motion.h6>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.55 }}
+            {...viewProps}
           >
-            Fleet Management
+            <AnimatedText as="span" text=" Fleet Management" />
           </motion.h2>
         </div>
       </motion.div>
 
       {/* GLOW DIVIDER */}
-
       <GlowAnimation
         direction="top-to-bottom"
         className="top-to-bottom Featured-devider"
@@ -58,14 +68,20 @@ const ProjectDetailsFeatured = () => {
       {/* RIGHT SIDE */}
       <motion.div
         className="about-section-right featured-right"
-        initial={{ opacity: 0, x: 60 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
+        variants={{
+          hidden: { opacity: 0, x: 60 },
+          visible: { opacity: 1, x: 0 },
+        }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        {...viewProps}
       >
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.65 }}
+          {...viewProps}
         >
           Fleet Management is a comprehensive system designed to monitor,
           manage, and optimize your vehicles in real time. It empowers
