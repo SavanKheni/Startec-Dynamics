@@ -363,5 +363,23 @@
         margin-bottom: 36px;
     }
 
+    .project-line {
+        display: none;
+    }
 
+    .card-featured {
+        margin-bottom: unset !important;
+    }
+
+    .card-half {
+        margin-top: unset !important;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .project-card-main {
+        display: flex !important;
+        flex-direction: column !important;
+    }
 }
