@@ -243,6 +243,12 @@
     width: fit-content;
 }
 
+.ServiceBoxMainProjects .service-box-head {
+    border: unset !important;
+    margin-bottom: 15px;
+    padding: 0px;
+}
+
 @media screen and (max-width: 1100px) {
     .project-page-about-section {
         flex-direction: column !important;
@@ -282,6 +288,7 @@
 
     .ServiceBoxMainProjects .service-box-main {
         grid-template-columns: 1fr !important;
+        gap: 20px !important;
     }
 
     .ServiceBoxMainProjects {

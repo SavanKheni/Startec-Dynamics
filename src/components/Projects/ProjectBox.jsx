@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "../Services/Service.css";
 import GlowLTR from "../GlowLTR";
@@ -7,6 +7,20 @@ import s2 from "../../assets/s-2.png";
 import AnimatedText from "../AnimatedText";
 // import { img } from "framer-motion/client";
 
+const useIsMobile = (breakpoint = 1100) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 
 const SmartSystemIcon = () => (
@@ -130,6 +144,10 @@ const servicesData = [
 const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: false, amount: 0.2 });
+  const isMobile = useIsMobile(1100); // 👈 important
+  const [expanded, setExpanded] = useState(false);
+  const visibleParagraphs =
+    isMobile && !expanded ? paragraphs.slice(0, 1) : paragraphs;
   const chipVariants = {
     hidden: { opacity: 0, scale: 0.82, filter: "blur(10px)" },
     visible: {
@@ -144,6 +162,7 @@ const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
     <motion.div
       className={`service-box-main ${index % 2 !== 0 ? "reverse" : ""}`}
       variants={cardVariants}
+      layout
       whileHover={{
         y: -8,
         boxShadow: "0 28px 56px rgba(39, 82, 255, 0.18)",
@@ -245,7 +264,7 @@ const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
 
             {/* ✅ Paragraphs — staggered fade up */}
             <div className="service-card-body">
-              {paragraphs.map((para, index) => (
+              {visibleParagraphs.map((para, index) => (
                 <motion.p
                   key={index}
                   initial={{ opacity: 0, y: 14 }}
@@ -261,6 +280,14 @@ const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
                   {para.text}
                 </motion.p>
               ))}
+              {isMobile && paragraphs.length > 1 && (
+                <button
+                  className="read-more-btn"
+                  onClick={() => setExpanded(!expanded)}
+                >
+                  {expanded ? "Read Less" : "Read More"}
+                </button>
+              )}
             </div>
           </div>
         </>
@@ -343,13 +370,13 @@ const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
                   delay: 0.15,
                 }}
               >
-                {title}
+                <AnimatedText as="span" text={title} />
               </motion.h2>
             </div>
 
             {/* ✅ Paragraphs — staggered fade up */}
             <div className="service-card-body">
-              {paragraphs.map((para, index) => (
+              {visibleParagraphs.map((para, index) => (
                 <motion.p
                   key={index}
                   initial={{ opacity: 0, y: 14 }}
@@ -365,6 +392,14 @@ const ServiceCard = ({ icon, title, paragraphs, boxImg, index }) => {
                   {para.text}
                 </motion.p>
               ))}
+              {isMobile && paragraphs.length > 1 && (
+                <button
+                  className="read-more-btn"
+                  onClick={() => setExpanded(!expanded)}
+                >
+                  {expanded ? "Read Less" : "Read More"}
+                </button>
+              )}
             </div>
           </div>
           <motion.img
