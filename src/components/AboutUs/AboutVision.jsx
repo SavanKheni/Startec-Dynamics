@@ -1,114 +1,88 @@
 import React, { useRef } from "react";
-import "./AboutPage.css";
-import visionImg from "../../assets/vision.png";
-import PulseBox from "../PulseBox";
+import "./VisionSection.css";
 import { motion, useInView } from "framer-motion";
 
-const EASE = [0.16, 1, 0.3, 1];
+// ── placeholder images (swap with real imports) ──────────────────────────────
+import img1 from "../../assets/vision-img1.png"; // workers / factory
+import img2 from "../../assets/vision-img2.png"; // bike dashboard
+import img3 from "../../assets/mission-img1.png"; // smart city / scooter
+import img4 from "../../assets/mission-img2.png"; // R&D event
+import AnimatedText from "../AnimatedText";
 
-const AnimateInView = ({ children, delay = 0, direction = "up" }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
-
-  const variants = {
-    hidden: {
-      opacity: 0,
-      filter: "blur(4px)",
-      y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
-      x: direction === "left" ? 50 : direction === "right" ? -50 : 0,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      x: 0,
-      transition: { duration: 0.8, delay, ease: EASE },
-    },
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={variants}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-// Staggered card that animates its inner elements sequentially
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
-
-const childFade = {
-  hidden: { opacity: 0, y: 16, filter: "blur(3px)" },
+// ── animation helpers ─────────────────────────────────────────────────────────
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.6, ease: EASE },
+    transition: { delay, duration: 0.85, ease: [0.16, 1, 0.3, 1] },
   },
-};
+});
 
-const VisionCard = ({ title, text, delay }) => {
+const fadeIn = (delay = 0) => ({
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+});
+
+const vp = { once: false, amount: 0.15 };
+
+// ── reusable card ─────────────────────────────────────────────────────────────
+const VMCard = ({ title, body, images }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const inView = useInView(ref, { once: false, amount: 0.15 });
 
   return (
     <motion.div
+      className="vm-card"
       ref={ref}
-      className="vision-card"
-      variants={stagger}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      // Subtle lift on hover
-      whileHover={{ y: -4, transition: { duration: 0.25, ease: "easeOut" } }}
+      animate={inView ? "visible" : "hidden"}
     >
-      <motion.div
-        style={{ display: "block", marginTop: "10px" }}
-        variants={childFade}
-      >
-        <PulseBox size={15} />
-      </motion.div>
+      {/* Title */}
+      <motion.h2 className="vm-card-title" variants={fadeUp(0.05)}>
+        <AnimatedText as="span" text={title} />
+      </motion.h2>
 
-      <div>
-        <motion.h2 variants={childFade}>{title}</motion.h2>
-        <motion.p variants={childFade}>{text}</motion.p>
-      </div>
+      {/* Body paragraph */}
+      <motion.p className="vm-card-body" variants={fadeUp(0.15)}>
+        {body}
+      </motion.p>
+
+      {/* Image grid */}
+      <motion.div className="vm-card-images" variants={fadeIn(0.28)}>
+        {images.map((src, i) => (
+          <motion.div
+            key={i}
+            className="vm-card-img-wrap"
+            variants={fadeUp(0.28 + i * 0.1)}
+          >
+            <img src={src} alt="" draggable={false} />
+          </motion.div>
+        ))}
+      </motion.div>
     </motion.div>
   );
 };
 
+// ── main section ──────────────────────────────────────────────────────────────
 const AboutVision = () => {
   return (
-    <div className="about-vision-main-container">
-      {/* Image — slides in from left, sharpens as it arrives */}
-      <AnimateInView direction="right" delay={0}>
-        <motion.div
-          whileHover={{
-            scale: 1.02,
-            transition: { duration: 0.35, ease: "easeOut" },
-          }}
-        >
-          <img src={visionImg} alt="Vision" />
-        </motion.div>
-      </AnimateInView>
-
-      {/* Cards — staggered via their own inView hooks */}
-      <div className="vision-mission-main">
-        <VisionCard
-          delay={0.15}
+    <div className="vision-section-main">
+      <div className="vm-stack">
+        <VMCard
           title="Vision"
-          text="To redefine practical mobility through smart systems and range-extended electric technology — making everyday vehicles intelligent, connected, useful, and more human."
+          body="To redefine practical mobility through intelligent systems and range-extended electric technology that go beyond basic transportation. Our vision is to create vehicles that are not only efficient and sustainable, but also smart, connected, reliable, and deeply human-centered. By integrating advanced safety features, real-time connectivity, intelligent assistance, and extended-range electric solutions, we aim to make everyday mobility more accessible, secure, and dependable for millions of riders and drivers. We believe the future of transportation should solve real-world challenges — from safety and communication to convenience, energy efficiency, and peace of mind."
+          images={[img1, img2]}
         />
-        <VisionCard
-          delay={0.3}
+
+        <VMCard
           title="Mission"
-          text="Our mission is to develop practical intelligent mobility technologies that transform conventional vehicles into connected platforms, and range-extended electric vehicles into smarter, more efficient, and more adaptable mobility solutions."
+          body="Our mission is to develop practical, intelligent mobility technologies that redefine how people interact with everyday transportation. We aim to transform conventional vehicles into connected, data-driven platforms capable of enhancing safety, communication, efficiency, and real-time responsiveness. At the same time, we are committed to advancing range-extended electric vehicle technology by making it smarter, more energy-efficient, adaptable, and practical for real-world use across diverse environments and markets."
+          images={[img3, img4]}
         />
       </div>
     </div>

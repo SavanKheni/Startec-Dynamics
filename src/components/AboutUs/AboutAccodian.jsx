@@ -1,32 +1,118 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AboutPage.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+
+const EASE = [0.16, 1, 0.3, 1];
+
+// ── animation variants ────────────────────────────────────────────────────────
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.96, filter: "blur(6px)" },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, delay: i * 0.15, ease: EASE },
+  }),
+};
+
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.7, rotate: -12, filter: "blur(4px)" },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, delay: i * 0.15 + 0.2, ease: EASE },
+  }),
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, x: -20, filter: "blur(3px)" },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.65, delay: i * 0.15 + 0.3, ease: EASE },
+  }),
+};
+
+const chevronVariants = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, delay: i * 0.15 + 0.4, ease: EASE },
+  }),
+};
+
+// ── AccordionItem ─────────────────────────────────────────────────────────────
 
 const AccordionItem = ({ icon, title, content, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, amount: 0.2 });
 
   return (
     <motion.div
+      ref={ref}
       className="acc-item"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.15,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
+      custom={index}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      whileHover={
+        !isOpen
+          ? {
+              y: -4,
+              boxShadow: "0 20px 48px rgba(39,82,255,0.15)",
+              transition: { duration: 0.25, ease: "easeOut" },
+            }
+          : {}
+      }
     >
       <div
         className="acc-head"
         onClick={() => setIsOpen(!isOpen)}
         style={{ cursor: "pointer", userSelect: "none" }}
       >
-        <div className="acc-icon">{icon}</div>
-        <h2>{title}</h2>
+        {/* Icon — scale + rotate in */}
+        <motion.div
+          className="acc-icon"
+          custom={index}
+          variants={iconVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          whileHover={{
+            rotate: [0, -8, 6, 0],
+            transition: { duration: 0.5, ease: "easeInOut" },
+          }}
+        >
+          {icon}
+        </motion.div>
+
+        {/* Title — slide in from left */}
+        <motion.h2
+          custom={index}
+          variants={titleVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {title}
+        </motion.h2>
+
+        {/* Chevron — pop in, then rotate on open/close */}
         <motion.div
           className="acc-up-down-icon"
-          animate={{ rotate: isOpen ? 180 : 0 }}
+          custom={index}
+          variants={chevronVariants}
+          initial="hidden"
+          animate={
+            inView
+              ? { ...chevronVariants.visible(index), rotate: isOpen ? 180 : 0 }
+              : "hidden"
+          }
           transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <svg
@@ -55,22 +141,23 @@ const AccordionItem = ({ icon, title, content, index }) => {
         </motion.div>
       </div>
 
+      {/* Body — smooth height + fade + blur */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             className="acc-body"
             key="body"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ height: 0, opacity: 0, filter: "blur(4px)" }}
+            animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
+            exit={{ height: 0, opacity: 0, filter: "blur(4px)" }}
+            transition={{ duration: 0.45, ease: EASE }}
             style={{ overflow: "hidden" }}
           >
             <motion.p
-              initial={{ y: -10, opacity: 0 }}
+              initial={{ y: -12, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
+              exit={{ y: -12, opacity: 0 }}
+              transition={{ duration: 0.35, delay: 0.1, ease: EASE }}
             >
               {content}
             </motion.p>
@@ -80,6 +167,8 @@ const AccordionItem = ({ icon, title, content, index }) => {
     </motion.div>
   );
 };
+
+// ── Main component ────────────────────────────────────────────────────────────
 
 const AboutAccodian = () => {
   const items = [
@@ -140,8 +229,8 @@ const AboutAccodian = () => {
               y2="93"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#2752FF" />
-              <stop offset="1" stop-color="#FF129D" />
+              <stop stopColor="#2752FF" />
+              <stop offset="1" stopColor="#FF129D" />
             </linearGradient>
           </defs>
         </svg>
