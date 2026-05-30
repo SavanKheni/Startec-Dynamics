@@ -1,3 +1,9 @@
+/* ─── Base layout ──────────────────────────────────────────────────────────── */
+
+.partner-box-grid-main {
+    padding: 0 40px;
+}
+
 .partner-box-grid {
     margin: 50px auto;
     max-width: 1674px;
@@ -6,6 +12,8 @@
     gap: 20px;
 }
 
+/* ─── Card ─────────────────────────────────────────────────────────────────── */
+
 .partner-box {
     position: relative;
     background: #01112F75;
@@ -13,6 +21,7 @@
     padding: 70px 50px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .partner-box::before {
@@ -29,18 +38,43 @@
     pointer-events: none;
 }
 
-.partner-box {
-    position: relative;
+/* ─── Logo block ───────────────────────────────────────────────────────────── */
+
+.partners-logo {
+    width: 100%;
 }
 
 .partner-box .partner-logo-box-1 {
+    position: relative;
     width: 100%;
     margin-bottom: 50px;
     padding-bottom: 50px;
     border-bottom: 1px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, rgba(0, 0, 0, 0.66) -8.84%, rgba(122, 134, 196, 0.66) 49.34%, rgba(0, 0, 0, 0.66) 109.8%);
+    border-image-source: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.66) -8.84%,
+            rgba(122, 134, 196, 0.66) 49.34%,
+            rgba(0, 0, 0, 0.66) 109.8%);
+    /* overflow: hidden; */
 }
+
+.partner-box .partner-logo-box-1 img {
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.partner-box .partner-logo-box-1 svg {
+    position: absolute;
+    top: -189px !important;
+    left: -140px !important;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Paragraphs ───────────────────────────────────────────────────────────── */
 
 .partner-box p {
     font-weight: 400;
@@ -51,11 +85,243 @@
     margin-bottom: 20px;
 }
 
-.partner-box .partner-logo-box-1 svg {
-    top: -189px !important;
-    left: -140px !important;
+.partner-box p:last-child {
+    margin-bottom: 0;
 }
+
+/* ─── Glow strip ───────────────────────────────────────────────────────────── */
 
 .partner-box-grid-main .GlowLTRMain {
     max-width: 1674px !important;
+    margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE — 1100 → 350 px
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── ≤ 1100px : reduce padding, tighter gap ──────────────────────────────── */
+@media (max-width: 1100px) {
+    .partner-box-grid-main {
+        padding: 0 28px;
+    }
+
+    .partner-box-grid {
+        gap: 16px;
+        margin: 40px auto;
+    }
+
+    .partner-box {
+        padding: 56px 40px;
+        border-radius: 32px;
+    }
+
+    .partner-box::before {
+        border-radius: 32px;
+    }
+
+    .partner-box .partner-logo-box-1 {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+    }
+
+    .partner-box p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+}
+
+/* ─── ≤ 900px : switch to single column ──────────────────────────────────── */
+@media (max-width: 900px) {
+    .partner-box-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 36px auto;
+    }
+
+    .partner-box {
+        padding: 52px 44px;
+    }
+
+    /* Reset slide-in x-offset so cards don't overflow on small screens */
+    .partner-box {
+        /* motion inline styles will still apply — this is a safety fallback */
+        transform: none !important;
+    }
+}
+
+/* ─── ≤ 768px : tablet ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .partner-box-grid-main {
+        padding: 0 20px;
+    }
+
+    .partner-box {
+        padding: 44px 32px;
+        border-radius: 28px;
+    }
+
+    .partner-box::before {
+        border-radius: 28px;
+    }
+
+    .partner-box .partner-logo-box-1 {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+    }
+
+    .partner-box p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+
+    .partner-box .partner-logo-box-1 svg {
+        top: -140px !important;
+        left: -100px !important;
+    }
+}
+
+/* ─── ≤ 600px : large phone ───────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .partner-box-grid-main {
+        padding: 0 16px;
+    }
+
+    .partner-box-grid {
+        gap: 16px;
+        margin: 28px auto;
+    }
+
+    .partner-box {
+        padding: 36px 24px;
+        border-radius: 24px;
+    }
+
+    .partner-box::before {
+        border-radius: 24px;
+    }
+
+    .partner-box .partner-logo-box-1 {
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+    }
+
+    .partner-box .partner-logo-box-1 img {
+        max-width: 200px;
+    }
+
+    .partner-box p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .partner-box .partner-logo-box-1 svg {
+        top: -120px !important;
+        left: -80px !important;
+        width: 380px;
+        height: auto;
+    }
+}
+
+/* ─── ≤ 480px : standard phone ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .partner-box-grid-main {
+        padding: 0 12px;
+    }
+
+    .partner-box {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .partner-box::before {
+        border-radius: 20px;
+    }
+
+    .partner-box .partner-logo-box-1 {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+    }
+
+    .partner-box .partner-logo-box-1 img {
+        max-width: 180px;
+    }
+
+    .partner-box p {
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 14px;
+    }
+
+    .partner-box .partner-logo-box-1 svg {
+        top: -100px !important;
+        left: -60px !important;
+        width: 320px;
+        height: auto;
+    }
+}
+
+/* ─── ≤ 400px : very small phone ─────────────────────────────────────────── */
+@media (max-width: 400px) {
+    .partner-box-grid-main {
+        padding: 0 10px;
+    }
+
+    .partner-box {
+        padding: 26px 16px;
+        border-radius: 18px;
+    }
+
+    .partner-box::before {
+        border-radius: 18px;
+    }
+
+    .partner-box .partner-logo-box-1 img {
+        max-width: 160px;
+    }
+
+    .partner-box p {
+        font-size: 12.5px;
+        line-height: 19px;
+        margin-bottom: 12px;
+    }
+
+    .partner-box .partner-logo-box-1 svg {
+        width: 280px;
+        top: -90px !important;
+        left: -50px !important;
+    }
+}
+
+/* ─── ≤ 350px : edge-case minimum ────────────────────────────────────────── */
+@media (max-width: 350px) {
+    .partner-box-grid-main {
+        padding: 0 8px;
+    }
+
+    .partner-box {
+        padding: 22px 14px;
+        border-radius: 16px;
+    }
+
+    .partner-box::before {
+        border-radius: 16px;
+    }
+
+    .partner-box .partner-logo-box-1 img {
+        max-width: 140px;
+    }
+
+    .partner-box p {
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 10px;
+    }
+
+    .partner-box .partner-logo-box-1 svg {
+        width: 240px;
+        top: -80px !important;
+        left: -40px !important;
+    }
 }

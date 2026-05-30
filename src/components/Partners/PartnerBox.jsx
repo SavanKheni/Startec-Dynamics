@@ -24,8 +24,9 @@ const fadeUp = {
   },
 };
 
+// Clamped x so cards never overflow on narrow screens
 const fadeLeft = {
-  hidden: { opacity: 0, x: -60, filter: "blur(4px)" },
+  hidden: { opacity: 0, x: -48, filter: "blur(4px)" },
   show: {
     opacity: 1,
     x: 0,
@@ -35,7 +36,7 @@ const fadeLeft = {
 };
 
 const fadeRight = {
-  hidden: { opacity: 0, x: 60, filter: "blur(4px)" },
+  hidden: { opacity: 0, x: 48, filter: "blur(4px)" },
   show: {
     opacity: 1,
     x: 0,
@@ -97,18 +98,19 @@ const PartnerCard = ({
   slideVariant,
   paragraphs,
 }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: false, amount: 0.15 });
+  const cardRef = useRef(null);
+  // amount: 0.15 — fires when 15 % of the card enters the viewport
+  const inView = useInView(cardRef, { once: false, amount: 0.15 });
 
   return (
     <motion.div
-      ref={ref}
+      ref={cardRef}
       className="partner-box"
       variants={slideVariant}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
     >
-      {/* Logo — pops in as stagger child */}
+      {/* ── Logo section ── */}
       <motion.div
         className="partners-logo"
         variants={stagger}
@@ -132,7 +134,8 @@ const PartnerCard = ({
               transition: { duration: 0.25, ease: "easeOut" },
             }}
           />
-          {/* Decorative glow SVG — static, no animation needed */}
+
+          {/* Decorative glow SVG */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="518"
@@ -188,7 +191,7 @@ const PartnerCard = ({
         </motion.div>
       </motion.div>
 
-      {/* Paragraphs — stagger in after logo */}
+      {/* ── Paragraphs ── */}
       <motion.div
         variants={stagger}
         initial="hidden"
