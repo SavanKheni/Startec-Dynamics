@@ -116,8 +116,6 @@ const Service = () => {
 
   return (
     <div className="service-main">
-      <StarTrail start={-300} end={-230} />
-
       {/* Heading */}
       <motion.div
         className="service-heading"

@@ -48,6 +48,25 @@
     position: relative;
 }
 
+.project-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-card-footer p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: right;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    cursor: pointer;
+    color: #D8DFEE;
+}
+
 .card-featured {
     grid-column: 1 / -1;
     margin-bottom: 50px !important;
@@ -66,10 +85,16 @@
 
 .project-card {
     width: 822px;
-    height: 943px;
+    /* height: 943px; */
     border-radius: 60px;
     background: #02061199;
     margin: auto;
+    border: 1px solid transparent;
+    transition: 0.5s;
+}
+
+.project-card:hover {
+    border: 1px solid #2752FF
 }
 
 .project-info {
@@ -215,6 +240,8 @@
 .project-card-main-section .GlowLTRMain {
     margin-top: 0px !important;
     max-width: unset !important;
+    z-index: -1;
+    position: relative;
 }
 
 .section-title {
@@ -321,10 +348,7 @@
         padding: 5px !important;
     }
 
-    .others-hero {
-        height: 550px;
-        padding-top: 333px;
-    }
+
 
     .ServiceBoxMainProjects .service-box-head h2 {
         font-size: 24px;
@@ -381,6 +405,10 @@
     .project-card-main {
         display: flex !important;
         flex-direction: column !important;
+    }
+
+    .project-card {
+        border-radius: 20px;
     }
 }
 

@@ -232,7 +232,7 @@ button {
 
 .others-hero {
   /* height: 710px; */
-  padding-top: 477px;
+  padding-top: 240px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -241,6 +241,9 @@ button {
     overflow: hidden;
   }
 
+  .others-hero {
+    padding-top: 215px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -248,4 +251,7 @@ button {
     display: none;
   }
 
+  .others-hero {
+    padding-top: 180px;
+  }
 }

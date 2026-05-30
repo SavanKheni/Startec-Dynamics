@@ -76,7 +76,6 @@ const VisionSection = () => {
         >
           <UltraGlobe />
         </motion.div> */}
-        <StarTrail />
       </div>
     </motion.div>
   );

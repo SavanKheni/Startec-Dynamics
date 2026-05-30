@@ -12,6 +12,7 @@ import sIConnect from "../assets/SI-Connect.png";
 import fleetManagement from "../assets/Fleet-Management.png";
 import sIIntelligent from "../assets/SI-Intelligent.png";
 import AnimatedText from "./AnimatedText";
+import StarTrail from "./StarTrail";
 
 // ─── Icon Data ────────────────────────────────────────────────────────────────
 const ICONS = [
@@ -438,10 +439,10 @@ const IconDetailModal = ({ icon, onClose }) => {
 };
 
 // ─── Icon Component ───────────────────────────────────────────────────────────
-const IconBox = ({ icon, onIconClick }) => (
+const IconBox = ({ icon, onIconClick, activeIconId }) => (
   <motion.div
     variants={iconVariants}
-    className={`box-shadow ${icon.className}`}
+    className={`box-shadow ${icon.className}${activeIconId === icon.id ? " active" : ""}`}
     whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.2 } }}
     onClick={(e) => onIconClick(icon, e)}
     style={{ cursor: "pointer" }}
@@ -585,9 +586,11 @@ const Work = () => {
   const [activeTab, setActiveTab] = useState(3);
   const [activeModal, setActiveModal] = useState(null);
   const [showTabs, setShowTabs] = useState(false);
+  const [activeIcon, setActiveIcon] = useState(null);
   const handleIconClick = (icon, index) => {
     const isDesktop = window.innerWidth > 768;
     const isLeftIcon = index === 0 || index === 1;
+    setActiveIcon(icon);
     setActiveModal({
       ...icon,
       showOnRight: isDesktop ? !isLeftIcon : false,
@@ -600,6 +603,7 @@ const Work = () => {
   });
   const handleModalClose = () => {
     setActiveModal(null);
+    setActiveIcon(null);
   };
 
   return (
@@ -613,6 +617,7 @@ const Work = () => {
         variants={containerVariants}
       >
         <div className="netEarthBlock">
+          <StarTrail start={-550} end={-328} />
           {inView &&
             [0, 1, 2, 3].map((i) => (
               <motion.div
@@ -647,6 +652,7 @@ const Work = () => {
                 icon={icon}
                 index={index}
                 onIconClick={() => handleIconClick(icon, index)}
+                activeIconId={activeIcon?.id}
               />
             ))}
             {/* ─── Icon Detail Modal ───────────────────────────────────────────── */}
@@ -662,88 +668,97 @@ const Work = () => {
           </div>
         </div>
       </motion.section>
-
-      {/* ─── Logo Button ────────────────────────────────────────────────── */}
-      <motion.div
-        className="logo-button"
-        initial={{ opacity: 0, y: 30, scale: 0.88 }}
-        animate={
-          inView
-            ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 30, scale: 0.88 }
-        }
-        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1], delay: 0.2 }}
-      >
-        <GradientButton onClick={() => console.log("clicked")}>
-          <img alt="" src={logo} className="logo-img" />
-        </GradientButton>
-      </motion.div>
-      <motion.div
-        className="si-button"
-        initial={{ opacity: 0, y: 24, scale: 0.9 }}
-        animate={
-          inView
-            ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 24, scale: 0.9 }
-        }
-        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1], delay: 0.38 }}
-      >
-        <div className="dot-line" />
-        <GradientButton
-          onClick={() => {
-            setShowTabs((prev) => !prev);
-            setActiveTab(3);
+      <div>
+        {/* ─── Logo Button ────────────────────────────────────────────────── */}
+        <motion.div
+          className="logo-button"
+          initial={{ opacity: 0, y: 30, scale: 0.88 }}
+          animate={
+            inView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: 30, scale: 0.88 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: [0.34, 1.56, 0.64, 1],
+            delay: 0.2,
           }}
         >
-          SI Smart System
-        </GradientButton>
-      </motion.div>
-      <div className="tabs-wrapper" ref={tabsRef}>
-        <AnimatePresence mode="wait">
-          {showTabs && isInView && (
-            <motion.div
-              key="tabs"
-              layout
-              className="tabs-main-box"
-              style={{ position: "relative" }}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="tabs-main">
-                {TABS.map((tab, index) =>
-                  tab.label ? (
-                    <motion.div
-                      key={tab.id}
-                      className={`tab ${tab.colorClass} ${
-                        activeTab === tab.id ? "active" : ""
-                      }`}
-                      onClick={() => setActiveTab(tab.id)}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.4,
-                        ease: "easeOut",
-                        delay: index * 0.07, // ← staggered entry
-                      }}
-                    >
-                      <div className={`top-line top-line-${tab.id + 1}`} />
-                      <div className="dot-line" />
+          <GradientButton onClick={() => console.log("clicked")}>
+            <img alt="" src={logo} className="logo-img" />
+          </GradientButton>
+        </motion.div>
+        <motion.div
+          className="si-button"
+          initial={{ opacity: 0, y: 24, scale: 0.9 }}
+          animate={
+            inView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: 24, scale: 0.9 }
+          }
+          transition={{
+            duration: 0.8,
+            ease: [0.34, 1.56, 0.64, 1],
+            delay: 0.38,
+          }}
+        >
+          <div className="dot-line" />
+          <GradientButton
+            onClick={() => {
+              setShowTabs((prev) => !prev);
+              setActiveTab(3);
+            }}
+          >
+            SI Smart System
+          </GradientButton>
+        </motion.div>
+        <div className="tabs-wrapper" ref={tabsRef}>
+          <AnimatePresence mode="wait">
+            {showTabs && isInView && (
+              <motion.div
+                key="tabs"
+                layout
+                className="tabs-main-box"
+                style={{ position: "relative" }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="tabs-main">
+                  {TABS.map((tab, index) =>
+                    tab.label ? (
                       <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        transition={{ duration: 0.2 }}
+                        key={tab.id}
+                        className={`tab ${tab.colorClass} ${
+                          activeTab === tab.id ? "active" : ""
+                        }`}
+                        onClick={() => setActiveTab(tab.id)}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.4,
+                          ease: "easeOut",
+                          delay: index * 0.07, // ← staggered entry
+                        }}
                       >
-                        <GradientButton>{tab.label}</GradientButton>
+                        <div className={`top-line top-line-${tab.id + 1}`} />
+                        <div className="dot-line" />
+                        <motion.div
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <GradientButton>{tab.label}</GradientButton>
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  ) : null,
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    ) : null,
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
       {/* ─── Tab Content ────────────────────────────────────────────────── */}
       <div className="tab-content-main">

@@ -43,7 +43,7 @@ const Partners = () => {
         </motion.div>
 
         {/* ── Logos ── */}
-        <div className="partners-logo">
+        <div className="partners-logo" style={{ width: "unset" }}>
           {/* Logo 1 — slides from left */}
           <motion.div
             className="partner-logo-box-1"

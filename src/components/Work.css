@@ -47,6 +47,19 @@
 
 }
 
+.box-shadow.active .icon-box {
+    background: linear-gradient(154.06deg, #3D64FF 0.49%, #FF129D 99.41%);
+
+}
+
+.box-shadow.active .icon-box svg {
+    fill: #fff;
+}
+
+.box-shadow.active .icon-box svg path {
+    fill: #fff !important;
+}
+
 .netEarthBlock {
     position: relative;
 }

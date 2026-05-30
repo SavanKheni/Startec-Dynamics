@@ -99,7 +99,7 @@ const Featured = () => {
                 delay: 0.3,
               }}
             >
-              About Us
+              Projects
             </motion.h6>
 
             <motion.h2
@@ -116,10 +116,7 @@ const Featured = () => {
               }}
               style={{ margin: "15px 0px" }}
             >
-              <AnimatedText
-                as="span"
-                text="How SI Smart System Solves the Problem"
-              />
+              <AnimatedText as="span" text="SI Smart System" />
             </motion.h2>
 
             <motion.p

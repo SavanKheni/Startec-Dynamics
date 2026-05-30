@@ -27,9 +27,7 @@ const PageHero = ({ title, description }) => {
           >
             <img alt="" src={moon} className="moon-img" />
           </motion.div>
-          <img alt="" src={flare} className="flare-img" />
         </motion.div>
-        <StarTrail />
         <div style={{ position: "relative" }}>
           <div className="hero-content">
             <motion.h1
@@ -50,19 +48,6 @@ const PageHero = ({ title, description }) => {
             >
               {description}
             </motion.p>
-            <motion.div
-              style={{
-                height: "2px",
-                width: "60px",
-                background:
-                  "linear-gradient(90deg, var(--accent, #fff), transparent)",
-                marginTop: "1.5rem",
-                borderRadius: "2px",
-              }}
-              initial={{ opacity: 0, scaleX: 0, originX: 0 }}
-              animate={{ opacity: 0.6, scaleX: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-            />
           </div>
         </div>
       </section>

@@ -470,9 +470,6 @@ const ProjectCards = () => {
                 exit="exit"
                 whileHover="hover"
                 layout
-                onClick={() => {
-                  if (item.id === 1) setShowMore(true);
-                }}
               >
                 <div className="project-img-wrapper">
                   <motion.img
@@ -526,10 +523,20 @@ const ProjectCards = () => {
                     }}
                     whileHover={{ scale: 1.06, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.95 }}
+                    className="project-card-footer"
                   >
                     <a href={item.link}>
                       <GradientButton>Explore The Project</GradientButton>
                     </a>
+                    {item.id === 1 && (
+                      <p
+                        onClick={() => {
+                          setShowMore(true);
+                        }}
+                      >
+                        Expand More
+                      </p>
+                    )}
                   </motion.div>
                 </motion.div>
               </motion.div>
