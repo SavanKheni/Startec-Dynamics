@@ -16,6 +16,7 @@ import Lenis from "@studio-freight/lenis";
 import FleetManagement from "./pages/FleetManagement";
 import SIConnect from "./pages/SIConnect";
 import SIIntelligent from "./pages/SIIntelligent";
+import Press from "./pages/Press";
 
 function App() {
   const location = useLocation();
@@ -107,6 +108,7 @@ function App() {
             <Route path="/about-us" element={<AboutUS />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/press" element={<Press />} />
             <Route
               path="/project-details/fleet-management"
               element={<FleetManagement />}
