@@ -11,10 +11,12 @@ import Serviceas from "./pages/Serviceas";
 import AboutUS from "./pages/AboutUS";
 import ContactUs from "./pages/ContactUs";
 import Partners from "./pages/Partners";
-import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import { usePageScaler } from "./hooks/Usepagescaler";
 import Lenis from "@studio-freight/lenis";
+import FleetManagement from "./pages/FleetManagement";
+import SIConnect from "./pages/SIConnect";
+import SIIntelligent from "./pages/SIIntelligent";
 
 function App() {
   const { scalerRef, wrapperHeight } = usePageScaler({
@@ -82,7 +84,20 @@ function App() {
               <Route path="/about-us" element={<AboutUS />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/partners" element={<Partners />} />
-              <Route path="/project-details" element={<ProjectDetails />} />
+              <Route
+                path="/project-details/fleet-management"
+                element={<FleetManagement />}
+              />
+
+              <Route
+                path="/project-details/si-connect"
+                element={<SIConnect />}
+              />
+              <Route
+                path="/project-details/si-intelligent"
+                element={<SIIntelligent />}
+              />
+              {/* <Route path="/project-details" element={<ProjectDetails />} /> */}
               <Route path="/team" element={<Team />} />
             </Routes>
           </main>

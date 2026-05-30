@@ -6,7 +6,7 @@ import PulseBox from "../PulseBox";
 import { motion } from "framer-motion";
 import AnimatedText from "../AnimatedText";
 
-const ProjectDetailsFeatured = () => {
+const FeaturedSection = ({ subtitle, title, description }) => {
   const viewProps = {
     initial: "hidden",
     whileInView: "visible",
@@ -40,7 +40,7 @@ const ProjectDetailsFeatured = () => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             {...viewProps}
           >
-            Vehicle Tracking | Driver Management | Dashboard App
+            {subtitle}
           </motion.h6>
 
           <motion.h2
@@ -51,7 +51,7 @@ const ProjectDetailsFeatured = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.55 }}
             {...viewProps}
           >
-            <AnimatedText as="span" text=" Fleet Management" />
+            <AnimatedText as="span" text={title} />
           </motion.h2>
         </div>
       </motion.div>
@@ -83,17 +83,11 @@ const ProjectDetailsFeatured = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.65 }}
           {...viewProps}
         >
-          Fleet Management is a comprehensive system designed to monitor,
-          manage, and optimize your vehicles in real time. It empowers
-          businesses with complete visibility over their fleet operations,
-          helping improve efficiency, reduce operational costs, and ensure
-          driver safety. From live tracking to performance analytics, fleet
-          management transforms how you control and scale your transportation
-          ecosystem.
+          {description}
         </motion.p>
       </motion.div>
     </motion.section>
   );
 };
 
-export default ProjectDetailsFeatured;
+export default FeaturedSection;

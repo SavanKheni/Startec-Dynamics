@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isLight, setIsLight] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const showBackArrow = location.pathname === "/project-details";
+  const showBackArrow = location.pathname.startsWith("/project-details");
 
   const toggleTheme = () => {
     const newTheme = !isLight;

@@ -6,7 +6,8 @@
     max-width: 1678px;
     margin: auto;
     padding: 50px 0px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     gap: 50px;
     align-items: center;
 }
@@ -26,7 +27,16 @@
     line-height: 26px;
     letter-spacing: 0%;
     color: #D8DFEE;
+    margin-bottom: 50px;
     /* margin-top: 30px; */
+}
+
+.project-screen-description h3 {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
 }
 
 .project-future-card-grid {
@@ -127,9 +137,10 @@
     }
 
     .project-screen-main {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         padding: 30px;
         gap: 20px;
+        text-align: center;
     }
 
     .img-details img {
@@ -212,4 +223,87 @@
     .project-details-page {
         padding: 20px;
     }
+}
+
+
+/* ─── Add these rules to your project-details.css ────────────────────────────
+   They handle the image wrapper (overflow clip), dots, and arrow buttons.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Clip sliding images so they don't overflow the card */
+.project-img-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    /* match your existing card radius if any */
+}
+
+.project-img-wrapper img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* ─── Slider controls row (dots + arrows) ─────────────────────────────────── */
+
+.project-slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Arrow buttons */
+.project-slider-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(122, 134, 196, 0.4);
+    background: rgba(1, 17, 47, 0.55);
+    color: #a0aec0;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    flex-shrink: 0;
+}
+
+.project-slider-arrow:hover {
+    border-color: rgba(122, 134, 196, 0.9);
+    color: #ffffff;
+    background: rgba(36, 64, 180, 0.35);
+}
+
+/* Dots row */
+.project-slider-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(122, 134, 196, 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+}
+
+.project-dot.active {
+    background: #1d52ff;
+    width: 24px;
+    /* pill shape for active */
+    border-radius: 4px;
+    transform: none;
+}
+
+.project-dot:hover:not(.active) {
+    background: rgba(122, 134, 196, 0.7);
+    transform: scale(1.2);
 }

@@ -1,7 +1,12 @@
-import React from "react";
-import dashbordScreen from "../../assets/f-d.png";
+import React, { useState, useCallback } from "react";
 import "./project-details.css";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import GradientButton from "../Gradientbutton";
+import AnimatedText from "../AnimatedText";
+
+// ─── Animation variants ───────────────────────────────────────────────────────
+
+const EASE = [0.16, 1, 0.3, 1];
 
 const viewProps = {
   initial: "hidden",
@@ -9,7 +14,77 @@ const viewProps = {
   viewport: { once: false, margin: "-80px" },
 };
 
-const ProjectScreens = () => {
+const imgVariants = {
+  enter: (dir) => ({
+    opacity: 0,
+    x: dir > 0 ? 60 : -60,
+    scale: 0.97,
+    filter: "blur(4px)",
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.65, ease: EASE },
+  },
+  exit: (dir) => ({
+    opacity: 0,
+    x: dir > 0 ? -60 : 60,
+    scale: 0.97,
+    filter: "blur(4px)",
+    transition: { duration: 0.45, ease: EASE },
+  }),
+};
+
+const textVariants = {
+  enter: { opacity: 0, y: 22, filter: "blur(3px)" },
+  center: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: EASE },
+  },
+  exit: {
+    opacity: 0,
+    y: -14,
+    filter: "blur(3px)",
+    transition: { duration: 0.35, ease: EASE },
+  },
+};
+
+const ProjectScreens = ({
+  slides = [],
+  buttonLabel = "Explore The Project",
+}) => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const goTo = useCallback(
+    (index) => {
+      if (index === current) return;
+      setDirection(index > current ? 1 : -1);
+      setCurrent(index);
+    },
+    [current],
+  );
+
+  const prev = useCallback(() => {
+    const idx = (current - 1 + slides.length) % slides.length;
+    setDirection(-1);
+    setCurrent(idx);
+  }, [current, slides.length]);
+
+  const next = useCallback(() => {
+    const idx = (current + 1) % slides.length;
+    setDirection(1);
+    setCurrent(idx);
+  }, [current, slides.length]);
+
+  if (!slides.length) return null;
+
+  const slide = slides[current];
+
   return (
     <motion.div
       className="project-screen-main"
@@ -17,7 +92,7 @@ const ProjectScreens = () => {
       transition={{ duration: 0.6 }}
       {...viewProps}
     >
-      {/* Left — image block */}
+      {/* ── Left — image block ── */}
       <motion.div
         className="img-details"
         variants={{
@@ -27,30 +102,84 @@ const ProjectScreens = () => {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         {...viewProps}
       >
-        <motion.h6
-          variants={{
-            hidden: { opacity: 0, y: -10 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
-          {...viewProps}
-        >
-          Dashboard Screens
-        </motion.h6>
+        {/* Dynamic image label */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.h6
+            key={`label-${current}`}
+            custom={direction}
+            variants={textVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            {slide.imageLabel}
+          </motion.h6>
+        </AnimatePresence>
 
-        <motion.img
-          src={dashbordScreen}
-          alt=""
-          variants={{
-            hidden: { opacity: 0, scale: 0.96, y: 20 },
-            visible: { opacity: 1, scale: 1, y: 0 },
-          }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.45 }}
-          {...viewProps}
-        />
+        {/* Sliding image */}
+        <div className="project-img-wrapper">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.img
+              key={`img-${current}`}
+              src={slide.image}
+              alt={slide.imageLabel}
+              custom={direction}
+              variants={imgVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+            />
+          </AnimatePresence>
+        </div>
+
+        {/* Dot + arrow controls */}
+        <div className="project-slider-controls">
+          <button
+            className="project-slider-arrow"
+            onClick={prev}
+            aria-label="Previous slide"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M12.5 15L7.5 10L12.5 5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div className="project-slider-dots">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                className={`project-dot${i === current ? " active" : ""}`}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            className="project-slider-arrow"
+            onClick={next}
+            aria-label="Next slide"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M7.5 5L12.5 10L7.5 15"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </motion.div>
 
-      {/* Right — description */}
+      {/* ── Right — description ── */}
       <motion.div
         className="project-screen-description"
         variants={{
@@ -60,22 +189,41 @@ const ProjectScreens = () => {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
         {...viewProps}
       >
-        <motion.p
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.55 }}
-          {...viewProps}
-        >
-          Fleet Management is a comprehensive system designed to monitor,
-          manage, and optimize your vehicles in real time. It empowers
-          businesses with complete visibility over their fleet operations,
-          helping improve efficiency, reduce operational costs, and ensure
-          driver safety. From live tracking to performance analytics, fleet
-          management transforms how you control and scale your transportation
-          ecosystem.
-        </motion.p>
+        <AnimatePresence mode="wait">
+          <motion.h3
+            key={`title-${current}`}
+            variants={textVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            <AnimatedText as="span" text={slide.title} />
+          </motion.h3>
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={`desc-${current}`}
+            variants={textVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            {slide.description}
+          </motion.p>
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`btn-${current}`}
+            variants={textVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            <GradientButton href={slide.link}>{buttonLabel}</GradientButton>
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
     </motion.div>
   );

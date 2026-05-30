@@ -16,6 +16,7 @@ const projects = [
     desc: "Smart System  |   Intelligent vehicles   |  Advanced Sensing",
     image: project1,
     gridClass: "card-featured",
+    link: "/project-details/si-intelligent",
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ const projects = [
     desc: "Vehicle Tracking | Driver Management | Dashboard App",
     image: project3,
     gridClass: "card-half",
+    link: "/project-details/fleet-management",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const projects = [
     desc: "Smart Tracker | Mobile App | Smarter Riders",
     image: project2,
     gridClass: "card-half",
+    link: "/project-details/si-connect",
   },
 ];
 
@@ -524,11 +527,9 @@ const ProjectCards = () => {
                     whileHover={{ scale: 1.06, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <GradientButton
-                      onClick={() => navigate("/project-details")}
-                    >
-                      Explore The Project
-                    </GradientButton>
+                    <a href={item.link}>
+                      <GradientButton>Explore The Project</GradientButton>
+                    </a>
                   </motion.div>
                 </motion.div>
               </motion.div>
