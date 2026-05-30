@@ -190,3 +190,339 @@
 .contact-form-main .GlowLTRMain {
     max-width: 1674px !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════
+   ContactForm Responsive — 1100px → 350px
+═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+    .contact-form {
+        gap: 36px;
+        margin: 70px auto;
+        padding: 0 28px;
+    }
+
+    .form-main {
+        padding: 40px 36px;
+        gap: 28px;
+        border-radius: 30px;
+    }
+
+    .form-main::before {
+        border-radius: 30px;
+    }
+
+    .form-main h2 {
+        font-size: 28px;
+        padding-bottom: 28px;
+    }
+
+    .email-box h2 {
+        font-size: 26px;
+    }
+
+    .email-box p {
+        font-size: 20px;
+    }
+
+    .location-box h2 {
+        font-size: 28px;
+    }
+
+    .flex-box h6 {
+        font-size: 22px;
+    }
+
+    .flex-box p {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .flex-box {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* Stack form above info */
+    .contact-form {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin: 50px auto;
+        padding: 0 24px;
+    }
+
+    .form-main {
+        padding: 36px 30px;
+        gap: 24px;
+        border-radius: 24px;
+    }
+
+    .form-main::before {
+        border-radius: 24px;
+    }
+
+    .form-main h2 {
+        font-size: 26px;
+        padding-bottom: 24px;
+    }
+
+    .contact-input {
+        height: 52px;
+        font-size: 15px;
+    }
+
+    .contact-textarea {
+        height: 180px;
+        font-size: 15px;
+    }
+
+    .email-box {
+        margin-bottom: 36px;
+        padding-bottom: 36px;
+    }
+
+    .email-box h2 {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .email-box p {
+        font-size: 17px;
+    }
+
+    .location-box h2 {
+        font-size: 26px;
+    }
+
+    .flex-box {
+        margin-top: 40px;
+    }
+
+    .flex-box h6 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .flex-box p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    /* Hide glow SVG overflow */
+    .email-icon-shaow {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        gap: 24px;
+        margin: 36px auto;
+        padding: 0 16px;
+    }
+
+    .form-main {
+        padding: 28px 22px;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    .form-main::before {
+        border-radius: 20px;
+    }
+
+    .form-main h2 {
+        font-size: 22px;
+        line-height: 32px;
+        padding-bottom: 20px;
+    }
+
+    .contact-input {
+        height: 48px;
+        font-size: 14px;
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .contact-textarea {
+        height: 150px;
+        font-size: 14px;
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .form-main p {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .email-box {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+    }
+
+    .email-box h2 {
+        font-size: 18px;
+        margin-top: 8px;
+        word-break: break-all;
+    }
+
+    .email-box p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .location-box h2 {
+        font-size: 22px;
+    }
+
+    .flex-box {
+        margin-top: 28px;
+        gap: 14px;
+    }
+
+    .flex-box h6 {
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    .flex-box p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 420px) {
+    .contact-form {
+        padding: 0 12px;
+        margin: 28px auto;
+        gap: 20px;
+    }
+
+    .form-main {
+        padding: 22px 18px;
+        gap: 16px;
+        border-radius: 16px;
+    }
+
+    .form-main::before {
+        border-radius: 16px;
+    }
+
+    .form-main h2 {
+        font-size: 20px;
+        padding-bottom: 16px;
+    }
+
+    .contact-input {
+        height: 44px;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .contact-textarea {
+        height: 130px;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .email-box h2 {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .email-box p {
+        font-size: 13px;
+    }
+
+    .location-box h2 {
+        font-size: 20px;
+    }
+
+    .flex-box h6 {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .flex-box p {
+        font-size: 13px;
+        line-height: 20px;
+        margin-top: 6px;
+    }
+
+    .flex-box {
+        margin-top: 22px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 350px) {
+    .contact-form {
+        padding: 0 10px;
+        margin: 22px auto;
+    }
+
+    .form-main {
+        padding: 18px 14px;
+        gap: 14px;
+        border-radius: 14px;
+    }
+
+    .form-main::before {
+        border-radius: 14px;
+    }
+
+    .form-main h2 {
+        font-size: 18px;
+        padding-bottom: 14px;
+    }
+
+    .contact-input,
+    .contact-textarea {
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .contact-input {
+        height: 40px;
+    }
+
+    .contact-textarea {
+        height: 110px;
+    }
+
+    .email-box h2 {
+        font-size: 13px;
+    }
+
+    .location-box h2 {
+        font-size: 18px;
+    }
+
+    .flex-box h6 {
+        font-size: 14px;
+    }
+
+    .flex-box p {
+        font-size: 12px;
+        line-height: 19px;
+    }
+
+    .flex-box {
+        margin-top: 18px;
+        gap: 10px;
+    }
+
+    .form-main p {
+        font-size: 11px;
+        line-height: 18px;
+    }
+}

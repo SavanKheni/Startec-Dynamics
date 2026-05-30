@@ -1,82 +1,111 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./ContactUs.css";
 import GradientButton from "../Gradientbutton";
 import PulseBox from "../PulseBox";
 import GlowLTR from "../GlowLTR";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
-// ─── Reusable variants ────────────────────────────────────────────────────────
+const EASE = [0.16, 1, 0.3, 1];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (delay = 0) => ({
+// ── Variants ──────────────────────────────────────────────────────────────────
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 36, filter: "blur(4px)" },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-};
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: EASE, delay },
+  },
+});
 
-const fadeIn = {
+const fadeIn = (delay = 0) => ({
   hidden: { opacity: 0 },
-  visible: (delay = 0) => ({
+  visible: {
     opacity: 1,
-    transition: { duration: 0.7, ease: "easeOut", delay },
-  }),
-};
+    transition: { duration: 0.6, ease: EASE, delay },
+  },
+});
 
-const slideRight = {
-  hidden: { opacity: 0, x: -50 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-};
-
-const slideLeft = {
-  hidden: { opacity: 0, x: 50 },
-  visible: (delay = 0) => ({
+const slideRight = (delay = 0) => ({
+  hidden: { opacity: 0, x: -55, filter: "blur(5px)" },
+  visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-};
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE, delay },
+  },
+});
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: (delay = 0) => ({
+const slideLeft = (delay = 0) => ({
+  hidden: { opacity: 0, x: 55, filter: "blur(5px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: EASE, delay },
+  },
+});
+
+const scaleIn = (delay = 0) => ({
+  hidden: { opacity: 0, scale: 0.8, filter: "blur(3px)" },
+  visible: {
     opacity: 1,
     scale: 1,
+    filter: "blur(0px)",
     transition: { duration: 0.55, ease: [0.34, 1.56, 0.64, 1], delay },
-  }),
+  },
+});
+
+const staggerList = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
 };
 
-// Shared viewport config — triggers once when 20 % of element is visible
-const viewport = { once: true, amount: 0.2 };
+const listItem = {
+  hidden: { opacity: 0, x: -24, filter: "blur(3px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: EASE },
+  },
+};
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ── useSection helper ─────────────────────────────────────────────────────────
+
+const useSection = (amount = 0.15) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, amount });
+  return { ref, inView };
+};
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 const ContactForm = () => {
+  const formRef = useSection(0.15);
+  const infoRef = useSection(0.15);
+  const emailRef = useSection(0.3);
+  const locRef = useSection(0.2);
+  const glowRef = useSection(0.5);
+
   return (
     <div className="contact-form-main">
       <div className="contact-form">
-        {/* ── Left column: form ────────────────────────────────────────────── */}
+        {/* ── LEFT: form panel ─────────────────────────────────────────────── */}
         <motion.div
+          ref={formRef.ref}
           className="form-main"
-          variants={slideRight}
+          variants={slideRight(0)}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          custom={0}
+          animate={formRef.inView ? "visible" : "hidden"}
         >
           {/* Background glow */}
           <motion.div
             className="form-glow"
-            variants={fadeIn}
+            variants={fadeIn(0.1)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.1}
+            animate={formRef.inView ? "visible" : "hidden"}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -134,11 +163,9 @@ const ContactForm = () => {
 
           {/* Heading */}
           <motion.h2
-            variants={fadeUp}
+            variants={fadeUp(0.1)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.1}
+            animate={formRef.inView ? "visible" : "hidden"}
           >
             Connect with us
           </motion.h2>
@@ -154,30 +181,24 @@ const ContactForm = () => {
               type={type}
               placeholder={placeholder}
               className="contact-input"
-              variants={fadeUp}
+              variants={fadeUp(0.18 + i * 0.09)}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              custom={0.15 + i * 0.08}
+              animate={formRef.inView ? "visible" : "hidden"}
             />
           ))}
 
           <motion.textarea
             placeholder="Your Message"
             className="contact-textarea"
-            variants={fadeUp}
+            variants={fadeUp(0.46)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.39}
+            animate={formRef.inView ? "visible" : "hidden"}
           />
 
           <motion.div
-            variants={scaleIn}
+            variants={scaleIn(0.55)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.48}
+            animate={formRef.inView ? "visible" : "hidden"}
             style={{ marginLeft: "auto" }}
           >
             <GradientButton onClick={() => console.log("clicked")}>
@@ -186,11 +207,9 @@ const ContactForm = () => {
           </motion.div>
 
           <motion.p
-            variants={fadeIn}
+            variants={fadeIn(0.62)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.56}
+            animate={formRef.inView ? "visible" : "hidden"}
           >
             This site is protected by Captcha and the Captcha{" "}
             <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>{" "}
@@ -198,33 +217,33 @@ const ContactForm = () => {
           </motion.p>
         </motion.div>
 
-        {/* ── Right column: contact info ────────────────────────────────────── */}
+        {/* ── RIGHT: contact info ───────────────────────────────────────────── */}
         <motion.div
+          ref={infoRef.ref}
           className="contact-info"
-          variants={slideLeft}
+          variants={slideLeft(0)}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          custom={0.1}
+          animate={infoRef.inView ? "visible" : "hidden"}
         >
           {/* Email box */}
           <motion.div
+            ref={emailRef.ref}
             className="email-box"
-            variants={fadeUp}
+            variants={fadeUp(0.1)}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.2}
+            animate={emailRef.inView ? "visible" : "hidden"}
           >
+            {/* Icon — pop + wobble on hover */}
             <motion.div
               className="email-icon"
-              variants={scaleIn}
+              variants={scaleIn(0.15)}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              custom={0.25}
-              whileHover={{ scale: 1.08, rotate: 3 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              animate={emailRef.inView ? "visible" : "hidden"}
+              whileHover={{
+                scale: 1.1,
+                rotate: [0, -8, 6, 0],
+                transition: { duration: 0.45 },
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +270,6 @@ const ContactForm = () => {
                   </linearGradient>
                 </defs>
               </svg>
-
               <div className="email-icon-shaow">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -309,11 +327,9 @@ const ContactForm = () => {
             </motion.div>
 
             <motion.div
-              variants={fadeUp}
+              variants={fadeUp(0.25)}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              custom={0.3}
+              animate={emailRef.inView ? "visible" : "hidden"}
             >
               <p>Email Us :</p>
               <h2>info@startecdynamics.com</h2>
@@ -321,66 +337,68 @@ const ContactForm = () => {
           </motion.div>
 
           {/* Location box */}
-          <motion.div
-            className="location-box"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            custom={0.35}
-          >
+          <motion.div ref={locRef.ref} className="location-box">
             <motion.h2
-              variants={fadeUp}
+              variants={fadeUp(0.1)}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              custom={0.4}
+              animate={locRef.inView ? "visible" : "hidden"}
             >
               Our Locations
             </motion.h2>
 
-            {/* Location items — staggered */}
-            {[
-              {
-                title: "Canada Headquarters",
-                address: "804 Pacific St, Vancouver, BC, CANADA V6Z 1C2",
-                delay: 0.46,
-              },
-              {
-                title: "Canada R&D Centre",
-                address:
-                  "8Labs Life Sciences Innovation Hub, 3655 36 St NW, Calgary, AB, CANADA T2L 1Y8",
-                delay: 0.54,
-              },
-            ].map(({ title, address, delay }) => (
-              <motion.div
-                key={title}
-                className="flex-box"
-                variants={slideRight}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewport}
-                custom={delay}
-              >
-                <PulseBox size={10} />
-                <div className="location-details">
-                  <h6>{title}</h6>
-                  <p>{address}</p>
-                </div>
-              </motion.div>
-            ))}
+            {/* Location items — stagger slide in */}
+            <motion.div
+              variants={staggerList}
+              initial="hidden"
+              animate={locRef.inView ? "visible" : "hidden"}
+            >
+              {[
+                {
+                  title: "Canada Headquarters",
+                  address: "804 Pacific St, Vancouver, BC, CANADA V6Z 1C2",
+                },
+                {
+                  title: "Canada R&D Centre",
+                  address:
+                    "8Labs Life Sciences Innovation Hub, 3655 36 St NW, Calgary, AB, CANADA T2L 1Y8",
+                },
+              ].map(({ title, address }) => (
+                <motion.div
+                  key={title}
+                  className="flex-box"
+                  variants={listItem}
+                  whileHover={{
+                    x: 6,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                >
+                  <PulseBox size={10} />
+                  <div className="location-details">
+                    <h6>{title}</h6>
+                    <p>{address}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* GlowLTR — fades up from the bottom */}
+      {/* GlowLTR */}
       <motion.div
+        ref={glowRef.ref}
         className="GlowLTRMain"
-        variants={fadeUp}
+        variants={{
+          hidden: { opacity: 0, scaleX: 0.3 },
+          visible: {
+            opacity: 1,
+            scaleX: 1,
+            transition: { duration: 1.1, ease: EASE },
+          },
+        }}
         initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-        custom={0.2}
+        animate={glowRef.inView ? "visible" : "hidden"}
+        style={{ transformOrigin: "center" }}
       >
         <GlowLTR
           length={200}
