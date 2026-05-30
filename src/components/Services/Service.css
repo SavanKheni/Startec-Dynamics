@@ -107,3 +107,146 @@
     width: 100%;
     height: auto;
 }
+
+/* ─── Responsive: 1100px → 350px ──────────────────────────────────────────── */
+
+@media screen and (max-width: 1100px) {
+    .servicesPageServiceBoxMain {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 50px 20px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-main {
+        padding: 36px 30px;
+        border-radius: 30px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head {
+        gap: 24px;
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head h2,
+    .servicesPageServiceBoxMain .service-card-title {
+        font-size: 22px;
+        line-height: 32px;
+        max-width: 260px;
+    }
+
+    .servicesPageServiceBoxMain .service-card-body p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .servicesPageServiceBoxMain {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 40px 16px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-main {
+        padding: 30px 24px;
+        border-radius: 24px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head {
+        gap: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head h2,
+    .servicesPageServiceBoxMain .service-card-title {
+        font-size: 20px;
+        line-height: 30px;
+        max-width: unset;
+    }
+
+    .servicesPageServiceBoxMain .service-card-body p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 18px;
+    }
+
+    /* Scale down SVG icons slightly */
+    .servicesPageServiceBoxMain .service-icon-main svg {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .servicesPageServiceBoxMain {
+        gap: 14px;
+        padding: 32px 14px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-main {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head h2,
+    .servicesPageServiceBoxMain .service-card-title {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .servicesPageServiceBoxMain .service-card-body p {
+        font-size: 13px;
+        line-height: 21px;
+        margin-bottom: 14px;
+    }
+
+    .servicesPageServiceBoxMain .service-icon-main svg {
+        width: 46px;
+        height: 46px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-icon-shadow {
+        display: none;
+        /* avoids overflow issues at small sizes */
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .servicesPageServiceBoxMain {
+        padding: 24px 10px;
+        gap: 12px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-main {
+        padding: 20px 14px;
+        border-radius: 16px;
+    }
+
+    .servicesPageServiceBoxMain .service-box-head h2,
+    .servicesPageServiceBoxMain .service-card-title {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .servicesPageServiceBoxMain .service-card-body p {
+        font-size: 12px;
+        line-height: 19px;
+        margin-bottom: 12px;
+    }
+
+    .servicesPageServiceBoxMain .service-icon-main svg {
+        width: 38px;
+        height: 38px;
+    }
+}

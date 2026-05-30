@@ -4,6 +4,7 @@ import GlowLTR from "../GlowLTR";
 import GradientButton from "../Gradientbutton";
 import logo from "../../assets/logo.png";
 import { motion } from "framer-motion";
+import AnimatedText from "../AnimatedText";
 
 // ✅ Updated variants — expo easing + blur throughout
 const fadeUp = (delay = 0) => ({
@@ -151,7 +152,10 @@ const NewsLatter = () => {
           viewport={vp}
           variants={fadeUp(0.2)}
         >
-          Where creative ideas transform into immersive experiences
+          <AnimatedText
+            as="span"
+            text="Where creative ideas transform into immersive experiences"
+          />
         </motion.h1>
 
         {/* ── Middle Glow Line ── */}
@@ -189,7 +193,7 @@ const NewsLatter = () => {
           viewport={vp}
           variants={fadeUp(0.48)}
         >
-          Let's Start Work Together
+          <AnimatedText as="span" text="Lets Start Work Together" />
         </motion.h2>
 
         {/* ── Input + Button — spring pop ── */}

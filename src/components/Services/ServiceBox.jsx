@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Service.css";
+import AnimatedText from "../AnimatedText";
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 
@@ -289,7 +290,7 @@ const ServiceCard = ({ icon, title, paragraphs }) => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         >
-          {title}
+          <AnimatedText as="span" text={title} />
         </motion.h2>
       </div>
 
@@ -321,7 +322,7 @@ const ServiceCard = ({ icon, title, paragraphs }) => {
 const ServiceBox = () => {
   return (
     <motion.div
-      className="ServiceBoxMain"
+      className="ServiceBoxMain servicesPageServiceBoxMain"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
