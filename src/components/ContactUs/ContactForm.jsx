@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./ContactUs.css";
 import GradientButton from "../Gradientbutton";
 import PulseBox from "../PulseBox";
@@ -88,7 +88,8 @@ const ContactForm = () => {
   const emailRef = useSection(0.3);
   const locRef = useSection(0.2);
   const glowRef = useSection(0.5);
-
+  const [message, setMessage] = useState("");
+  const MAX_CHARS = 240;
   return (
     <div className="contact-form-main">
       <div className="contact-form">
@@ -187,13 +188,35 @@ const ContactForm = () => {
             />
           ))}
 
-          <motion.textarea
-            placeholder="Your Message"
-            className="contact-textarea"
+          <motion.div
             variants={fadeUp(0.46)}
             initial="hidden"
             animate={formRef.inView ? "visible" : "hidden"}
-          />
+            style={{ position: "relative", width: "100%" }}
+          >
+            <motion.textarea
+              placeholder="Your Message"
+              className="contact-textarea"
+              value={message}
+              onChange={(e) => {
+                if (e.target.value.length <= MAX_CHARS) {
+                  setMessage(e.target.value);
+                }
+              }}
+            />
+            <span
+              style={{
+                position: "absolute",
+                bottom: "10px",
+                right: "14px",
+                fontSize: "12px",
+                color: message.length >= MAX_CHARS ? "#ff4d4d" : "#888",
+                pointerEvents: "none",
+              }}
+            >
+              {message.length}/{MAX_CHARS}
+            </span>
+          </motion.div>
 
           <motion.div
             variants={scaleIn(0.55)}
@@ -359,8 +382,10 @@ const ContactForm = () => {
                 },
                 {
                   title: "Canada R&D Centre",
-                  address:
-                    "8Labs Life Sciences Innovation Hub, 3655 36 St NW, Calgary, AB, CANADA T2L 1Y8",
+                  address: [
+                    "Labs Life Sciences Innovation Hub, ",
+                    "3655 36 St NW, Calgary, AB, CANADA T2L 1Y8",
+                  ],
                 },
               ].map(({ title, address }) => (
                 <motion.div
@@ -375,7 +400,14 @@ const ContactForm = () => {
                   <PulseBox size={10} />
                   <div className="location-details">
                     <h6>{title}</h6>
-                    <p>{address}</p>
+                    {(Array.isArray(address) ? address : [address]).map(
+                      (line, i) => (
+                        <span key={i}>
+                          {line}
+                          <br />
+                        </span>
+                      ),
+                    )}
                   </div>
                 </motion.div>
               ))}
