@@ -743,3 +743,240 @@
         display: none;
     }
 }
+
+
+/* ═══════════════════════════════════════════════════════
+   TeamCards Responsive — 1100px → 350px
+═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+    .team-section {
+        padding: 0 28px;
+    }
+
+    .team-card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        margin-top: 50px;
+    }
+
+    .team-card {
+        padding: 36px 28px;
+        border-radius: 30px;
+        min-height: unset;
+    }
+
+    .team-card::before {
+        border-radius: 30px;
+    }
+
+    .team-details h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .team-details h6 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .team-card p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 20px;
+    }
+
+    /* Scale avatar shadow down */
+    .team-img-shadow svg {
+        width: 200px;
+        height: auto;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* 3-col → 2-col */
+    .team-card-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 40px;
+    }
+
+    .team-section {
+        padding: 0 20px;
+    }
+
+    .team-card {
+        padding: 30px 24px;
+        border-radius: 24px;
+    }
+
+    .team-card::before {
+        border-radius: 24px;
+    }
+
+    .team-details h2 {
+        font-size: 19px;
+        line-height: 28px;
+    }
+
+    .team-card p {
+        font-size: 13.5px;
+        line-height: 21px;
+        margin-top: 18px;
+    }
+
+    .team-img img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .team-img-shadow {
+        top: -30px;
+        left: -40px;
+    }
+
+    .team-img-shadow svg {
+        width: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* 2-col → 1-col */
+    .team-card-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 32px;
+    }
+
+    .team-section {
+        padding: 0 16px;
+    }
+
+    .team-card {
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+
+    .team-card::before {
+        border-radius: 20px;
+    }
+
+    .team-details h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .team-details h6 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .team-card p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 16px;
+    }
+
+    .team-img img {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Hide glow shadow on small screens to prevent overflow */
+    .team-img-shadow {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .team-section {
+        padding: 0 12px;
+    }
+
+    .team-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+    }
+
+    .team-card::before {
+        border-radius: 16px;
+    }
+
+    .team-card-grid {
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .team-details {
+        padding: 14px 0;
+    }
+
+    .team-details h2 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .team-details h6 {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .team-card p {
+        font-size: 13px;
+        line-height: 21px;
+        margin-top: 14px;
+    }
+
+    .team-img img {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* GlowLTR strip */
+    .team-section-main .GlowLTRMain {
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 350px) {
+    .team-section {
+        padding: 0 10px;
+    }
+
+    .team-card {
+        padding: 18px 14px;
+        border-radius: 14px;
+    }
+
+    .team-card::before {
+        border-radius: 14px;
+    }
+
+    .team-card-grid {
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .team-details h2 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .team-details h6 {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .team-card p {
+        font-size: 12px;
+        line-height: 19px;
+        margin-top: 12px;
+    }
+
+    .team-img img {
+        width: 60px;
+        height: 60px;
+    }
+}

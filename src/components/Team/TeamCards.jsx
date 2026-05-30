@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../AboutUs/AboutPage.css";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
 import team1 from "../../assets/team-1.png";
 import team2 from "../../assets/team-2.png";
@@ -12,43 +11,36 @@ import GlowLTR from "../GlowLTR";
 
 const EASE = [0.16, 1, 0.3, 1];
 
-// ── Variants ────────────────────────────────────────────────────────
-
-const gridVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.13, delayChildren: 0.1 },
-  },
-};
+// ── Variants ──────────────────────────────────────────────────────────────────
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 48, filter: "blur(5px)", scale: 0.97 },
+  hidden: { opacity: 0, y: 52, scale: 0.95, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     scale: 1,
-    transition: { duration: 0.75, ease: EASE },
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: EASE },
   },
 };
 
 const imgVariants = {
-  hidden: { opacity: 0, scale: 0.75, filter: "blur(4px)" },
+  hidden: { opacity: 0, scale: 0.7, filter: "blur(5px)" },
   visible: {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.6, ease: EASE },
+    transition: { duration: 0.65, ease: EASE, delay: 0.1 },
   },
 };
 
 const detailStagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.2 } },
 };
 
 const detailFade = {
-  hidden: { opacity: 0, y: 10, filter: "blur(2px)" },
+  hidden: { opacity: 0, y: 12, filter: "blur(2px)" },
   visible: {
     opacity: 1,
     y: 0,
@@ -57,32 +49,78 @@ const detailFade = {
   },
 };
 
-const glowVariants = {
-  hidden: { opacity: 0, scaleX: 0.4 },
+const descFade = {
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
-    scaleX: 1,
-    transition: { duration: 1.1, ease: EASE, delay: 0.2 },
+    y: 0,
+    transition: { duration: 0.55, ease: EASE, delay: 0.35 },
   },
 };
 
-// ── Reusable Animated Card ──────────────────────────────────────────
+const glowVariants = {
+  hidden: { opacity: 0, scaleX: 0.3 },
+  visible: {
+    opacity: 1,
+    scaleX: 1,
+    transition: { duration: 1.2, ease: EASE, delay: 0.15 },
+  },
+};
 
-const TeamCard = ({ img, name, role, desc }) => {
+const shadowVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.8, ease: EASE, delay: 0.2 },
+  },
+};
+
+// ── TeamCard — each card has its own useInView ────────────────────────────────
+
+const TeamCard = ({ img, name, role, desc, delay = 0 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, amount: 0.2 });
+
   return (
     <motion.div
+      ref={ref}
       className="team-card"
-      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={{
+        hidden: cardVariants.hidden,
+        visible: {
+          ...cardVariants.visible,
+          transition: { ...cardVariants.visible.transition, delay },
+        },
+      }}
       whileHover={{
-        y: -6,
+        y: -7,
         scale: 1.02,
+        boxShadow: "0 24px 52px rgba(39, 82, 255, 0.18)",
         transition: { duration: 0.28, ease: "easeOut" },
       }}
     >
-      {/* Avatar */}
-      <motion.div className="team-img" variants={imgVariants}>
+      {/* Avatar — pops in */}
+      <motion.div
+        className="team-img"
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={imgVariants}
+        whileHover={{
+          scale: 1.06,
+          transition: { duration: 0.3, ease: "easeOut" },
+        }}
+      >
         <img src={img} alt={name} />
-        <div className="team-img-shadow">
+
+        {/* Glow shadow fades in after avatar */}
+        <motion.div
+          className="team-img-shadow"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={shadowVariants}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="306"
@@ -135,22 +173,33 @@ const TeamCard = ({ img, name, role, desc }) => {
               </radialGradient>
             </defs>
           </svg>
-        </div>
+        </motion.div>
       </motion.div>
 
-      {/* Name + role stagger in after avatar */}
-      <motion.div className="team-details" variants={detailStagger}>
+      {/* Name + role — staggered fade up */}
+      <motion.div
+        className="team-details"
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={detailStagger}
+      >
         <motion.h2 variants={detailFade}>{name}</motion.h2>
         <motion.h6 variants={detailFade}>{role}</motion.h6>
       </motion.div>
 
-      {/* Description fades in last */}
-      <motion.p variants={detailFade}>{desc}</motion.p>
+      {/* Description — fades in last */}
+      <motion.p
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={descFade}
+      >
+        {desc}
+      </motion.p>
     </motion.div>
   );
 };
 
-// ── Main Component ──────────────────────────────────────────────────
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const teamData = [
   {
@@ -179,36 +228,34 @@ const teamData = [
   },
 ];
 
-const TeamCards = () => {
-  const gridRef = useRef(null);
-  const gridInView = useInView(gridRef, { once: false, amount: 0.1 });
+// ── Main Component ────────────────────────────────────────────────────────────
 
+const TeamCards = () => {
   const glowRef = useRef(null);
   const glowInView = useInView(glowRef, { once: false, amount: 0.5 });
 
   return (
     <div className="team-section-main">
       <div className="team-section">
-        <motion.div
-          className="team-card-grid"
-          ref={gridRef}
-          variants={gridVariants}
-          initial="hidden"
-          animate={gridInView ? "visible" : "hidden"}
-        >
+        <div className="team-card-grid">
           {teamData.map((member, index) => (
-            <TeamCard key={index} {...member} />
+            <TeamCard
+              key={index}
+              {...member}
+              delay={index * 0.1} // ← stagger cards slightly by index
+            />
           ))}
-        </motion.div>
+        </div>
       </div>
 
-      {/* Glow strip */}
+      {/* Glow strip — scales in from center */}
       <motion.div
         className="GlowLTRMain"
         ref={glowRef}
         variants={glowVariants}
         initial="hidden"
         animate={glowInView ? "visible" : "hidden"}
+        style={{ transformOrigin: "center" }}
       >
         <GlowLTR
           length={200}

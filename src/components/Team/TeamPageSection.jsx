@@ -49,7 +49,7 @@ const TeamPageSection = () => {
   const inView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   return (
-    <div className="about-section-container">
+    <div className="about-section-container team-page-main-container">
       <motion.section
         className="about-section AboutPageSection TeamPageSection"
         ref={sectionRef}

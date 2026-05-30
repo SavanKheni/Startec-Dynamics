@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import "./AboutPage.css";
 import ExpertiseImage from "../../assets/expertise.png";
 import { motion, useInView } from "framer-motion";
+import AnimatedText from "../AnimatedText";
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -153,7 +154,7 @@ const PlanItem = ({ icon, title, text, delay }) => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {title}
+          <AnimatedText as="span" text={title} />
         </motion.h4>
         <motion.p
           variants={fadeUp(delay + 0.25)}
@@ -217,7 +218,7 @@ const Expertise = () => {
             initial="hidden"
             animate={headInView ? "visible" : "hidden"}
           >
-            Global Expertise, Local Testing
+            <AnimatedText as="span" text="Global Expertise, Local Testing" />
           </motion.h3>
 
           {/* Paragraph */}

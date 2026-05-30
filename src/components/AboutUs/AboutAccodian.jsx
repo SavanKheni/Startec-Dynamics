@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./AboutPage.css";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import AnimatedText from "../AnimatedText";
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -99,7 +100,7 @@ const AccordionItem = ({ icon, title, content, index }) => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {title}
+          <AnimatedText as="span" text={title} />
         </motion.h2>
 
         {/* Chevron — pop in, then rotate on open/close */}
