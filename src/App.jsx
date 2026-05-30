@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ShootingStar from "./components/ShootingStart";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import { BgStar } from "./components/BgStar";
@@ -19,31 +18,30 @@ import SIConnect from "./pages/SIConnect";
 import SIIntelligent from "./pages/SIIntelligent";
 
 function App() {
+  const location = useLocation();
+  const lenisRef = useRef(null);
+
   const { scalerRef, wrapperHeight } = usePageScaler({
     minWidth: 1100,
     maxWidth: 1920,
     designWidth: 1920,
   });
+
+  // ✅ Disable browser scroll restoration
   useEffect(() => {
-    const observerOptions = { threshold: 0.1 };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
   }, []);
+
+  // ✅ Lenis setup
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
     });
+
+    lenisRef.current = lenis;
 
     let rafId;
 
@@ -56,68 +54,87 @@ function App() {
 
     return () => {
       cancelAnimationFrame(rafId);
-      lenis.stop(); // stop scrolling
+      lenis.destroy(); // ✅ correct cleanup
     };
   }, []);
+
+  // ✅ FIX: Reset scroll on route change (Lenis way)
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]);
+
+  // ✅ Reveal animation (re-run per page)
+  useEffect(() => {
+    const observerOptions = { threshold: 0.1 };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll(".reveal");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
   const isSmallScreen = window.innerWidth < 1100;
+
   return (
-    <Router>
-      <div>
-        {/* <ShootingStar /> */}
-        <BgStar />
+    <div>
+      <BgStar />
 
-        <div
-          className="app"
-          ref={isSmallScreen ? null : scalerRef}
-          style={{
-            height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
-            transform: isSmallScreen ? "none" : undefined,
-          }}
-        >
-          <Navbar />
+      <div
+        className="app"
+        ref={isSmallScreen ? null : scalerRef}
+        style={{
+          height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
+          transform: isSmallScreen ? "none" : undefined,
+        }}
+      >
+        <Navbar />
 
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/serviceas" element={<Serviceas />} />
-              <Route path="/about-us" element={<AboutUS />} />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route path="/partners" element={<Partners />} />
-              <Route
-                path="/project-details/fleet-management"
-                element={<FleetManagement />}
-              />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/serviceas" element={<Serviceas />} />
+            <Route path="/about-us" element={<AboutUS />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route
+              path="/project-details/fleet-management"
+              element={<FleetManagement />}
+            />
+            <Route path="/project-details/si-connect" element={<SIConnect />} />
+            <Route
+              path="/project-details/si-intelligent"
+              element={<SIIntelligent />}
+            />
+            <Route path="/team" element={<Team />} />
+          </Routes>
+        </main>
 
-              <Route
-                path="/project-details/si-connect"
-                element={<SIConnect />}
-              />
-              <Route
-                path="/project-details/si-intelligent"
-                element={<SIIntelligent />}
-              />
-              {/* <Route path="/project-details" element={<ProjectDetails />} /> */}
-              <Route path="/team" element={<Team />} />
-            </Routes>
-          </main>
+        <Footer />
 
-          <Footer />
-
-          <style jsx global>{`
-            .reveal {
-              opacity: 0;
-              transform: translateY(30px);
-              transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .reveal.active {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          `}</style>
-        </div>
+        <style jsx global>{`
+          .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        `}</style>
       </div>
-    </Router>
+    </div>
   );
 }
 
