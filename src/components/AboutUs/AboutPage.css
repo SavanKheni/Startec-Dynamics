@@ -130,6 +130,7 @@
     padding: 50px;
     position: relative;
     min-height: 571px;
+    /* transition: 0.5s; */
 }
 
 .team-card::before {
@@ -186,6 +187,18 @@
 
 .team-img {
     position: relative;
+}
+
+.team-card .team-img img {
+    -webkit-filter: grayscale(100%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+.team-card:hover .team-img img {
+    -webkit-filter: grayscale(0%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(0%);
 }
 
 .team-img-shadow {
