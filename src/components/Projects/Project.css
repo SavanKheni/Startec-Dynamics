@@ -410,6 +410,19 @@
     .project-card {
         border-radius: 20px;
     }
+
+    .project-card-footer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: unset;
+        align-items: unset;
+        gap: 20px;
+    }
+
+    .project-card-footer p {
+        text-align: left;
+        text-decoration: underline;
+    }
 }
 
 

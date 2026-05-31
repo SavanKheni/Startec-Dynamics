@@ -9,8 +9,9 @@ const Navbar = () => {
   const [isLight, setIsLight] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const showBackArrow = location.pathname.startsWith("/project-details");
-
+  const showBackArrow =
+    location.pathname.startsWith("/project-details") ||
+    location.pathname.startsWith("/press/");
   const toggleTheme = () => {
     const newTheme = !isLight;
     setIsLight(newTheme);
@@ -40,7 +41,7 @@ const Navbar = () => {
           {showBackArrow && (
             <motion.div
               className="back-arrow"
-              onClick={() => navigate("/projects")}
+              onClick={() => navigate(-1)}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
