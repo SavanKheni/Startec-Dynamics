@@ -17,6 +17,7 @@ import FleetManagement from "./pages/FleetManagement";
 import SIConnect from "./pages/SIConnect";
 import SIIntelligent from "./pages/SIIntelligent";
 import Press from "./pages/Press";
+import PressDetails from "./pages/PressDetails";
 
 function App() {
   const location = useLocation();
@@ -109,6 +110,7 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/press" element={<Press />} />
+            <Route path="/press/:id" element={<PressDetails />} />
             <Route
               path="/project-details/fleet-management"
               element={<FleetManagement />}
