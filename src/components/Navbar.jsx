@@ -84,9 +84,14 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-      <a href="/">
-        <img alt="" src={logo} className="logo-img" />
-      </a>
+      {/* <a href="/"> */}
+      <img
+        alt=""
+        src={logo}
+        className="logo-img"
+        onClick={() => navigate("/")}
+      />
+      {/* </a> */}
 
       {/* Right Nav */}
       <div className="right-nav">
