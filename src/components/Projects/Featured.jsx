@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../AboutSection.css";
 import GradientButton from "../Gradientbutton";
 import GlowAnimation from "../GlowAnimation";
 import PulseBox from "../PulseBox";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import openChip from "../../assets/open-chip.png";
 import AnimatedText from "../AnimatedText";
 
@@ -21,7 +21,7 @@ const featureItems = [
   {
     title: "Theft Protection and Remote Lock",
     description:
-      "If a vehicle moves without authorization, SI flags it instantly and gives owners the ability to remotely lock the ride from anywhere. Peace of mind comes built in — whether you re parked outside a café or managing a fleet across the city.",
+      "If a vehicle moves without authorization, SI flags it instantly and gives owners the ability to remotely lock the ride from anywhere. Peace of mind comes built in — whether you're parked outside a café or managing a fleet across the city.",
   },
   {
     title: "Enabling Insurance, Financing, Leasing and Fleet Management",
@@ -29,8 +29,6 @@ const featureItems = [
       "SI gives insurers, financiers, and fleet operators the data and controls they need to offer better terms, manage risk, and run smoother operations. The result: smarter coverage, easier financing, and fleets that practically manage themselves.",
   },
 ];
-
-// ── Variants ──────────────────────────────────────────────────────────────────
 
 const containerVariants = {
   hidden: {},
@@ -40,12 +38,12 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: 50, filter: "blur(4px)" }, // ✅ blur + wider slide
+  hidden: { opacity: 0, x: 50, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     x: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }, // ✅ expo easing
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -59,31 +57,99 @@ const chipVariants = {
   },
 };
 
-// ── Component ─────────────────────────────────────────────────────────────────
+// ── NEW CUSTOM ACCORDION SUB-COMPONENT ─────────────────────────────────────────
+const CustomAccordionItem = ({ item, index, isOpen, onToggle }) => {
+  const contentRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
 
+  // Measure the exact element height dynamically (handles text wrapping on resize)
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        // Add 8px buffer for top padding spacing
+        setContentHeight(entry.target.scrollHeight + 8);
+      }
+    });
+
+    observer.observe(contentRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      layout="position"
+      className="about-flex-box"
+      variants={itemVariants}
+      whileHover={{
+        x: 8,
+        transition: { duration: 0.2, ease: "easeOut" },
+      }}
+    >
+      <motion.div layout="position">
+        <PulseBox size={15} />
+      </motion.div>
+
+      <motion.div layout="position" className="about-flex-details">
+        <h3
+          onClick={() => onToggle(index)}
+          style={{ cursor: "pointer", margin: 0, userSelect: "none" }}
+        >
+          {item.title}
+        </h3>
+
+        {/* Custom Pixel-Perfect Height Animation Container */}
+        <motion.div
+          initial={false}
+          animate={{
+            height: isOpen ? contentHeight : 0,
+            opacity: isOpen ? 1 : 0,
+          }}
+          transition={{
+            height: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+            opacity: {
+              duration: isOpen ? 0.25 : 0.15,
+              delay: isOpen ? 0.1 : 0,
+            },
+          }}
+          style={{ overflow: "hidden" }}
+        >
+          <div ref={contentRef} style={{ paddingTop: "8px" }}>
+            <p style={{ margin: 0, color: "#D8DFEE", lineHeight: "1.6" }}>
+              {item.description}
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// ── MAIN FEATURED COMPONENT ───────────────────────────────────────────────────
 const Featured = () => {
   const sectionRef = useRef(null);
-  // ✅ once: false — replays every scroll
   const inView = useInView(sectionRef, { once: false, amount: 0.2 });
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleItem = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
   return (
     <div className="featured-section-bg">
       <motion.section
         className="about-section project-page-about-section"
         ref={sectionRef}
         initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : { opacity: 0 }} // ✅ exit state
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
         {/* ── LEFT SIDE ── */}
         <motion.div
           className="about-section-left about-section-left-project"
           initial={{ opacity: 0, x: -65 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -65 }} // ✅
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -65 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         >
           <div style={{ display: "block" }}>
@@ -92,7 +158,7 @@ const Featured = () => {
           <div>
             <motion.h6
               initial={{ opacity: 0, y: -12 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }} // ✅
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
               transition={{
                 duration: 0.6,
                 ease: [0.16, 1, 0.3, 1],
@@ -107,7 +173,7 @@ const Featured = () => {
               animate={
                 inView
                   ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                  : { opacity: 0, y: 30, filter: "blur(6px)" } // ✅
+                  : { opacity: 0, y: 30, filter: "blur(6px)" }
               }
               transition={{
                 duration: 0.9,
@@ -124,7 +190,7 @@ const Featured = () => {
               animate={
                 inView
                   ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                  : { opacity: 0, y: 20, filter: "blur(4px)" } // ✅
+                  : { opacity: 0, y: 20, filter: "blur(4px)" }
               }
               transition={{
                 duration: 0.85,
@@ -138,13 +204,12 @@ const Featured = () => {
               scalable solutions.
             </motion.p>
 
-            {/* Chip image — scale + blur reveal */}
             <div className="open-chip-container">
               <motion.img
                 src={openChip}
                 alt=""
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"} // ✅
+                animate={inView ? "visible" : "hidden"}
                 variants={chipVariants}
               />
             </div>
@@ -164,62 +229,25 @@ const Featured = () => {
         <motion.div
           className="about-section-right featured-right about-featured-right"
           initial={{ opacity: 0, x: 65 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 65 }} // ✅
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 65 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
         >
           <motion.div
+            layout="position"
+            layoutDependency={activeIndex}
             className="about-flex-box-main"
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"} // ✅ resets + replays
+            animate={inView ? "visible" : "hidden"}
           >
             {featureItems.map((item, index) => (
-              <motion.div
+              <CustomAccordionItem
                 key={index}
-                className="about-flex-box"
-                variants={itemVariants}
-                whileHover={{
-                  x: 8,
-                  transition: { duration: 0.2, ease: "easeOut" },
-                }}
-              >
-                <PulseBox size={15} />
-                <div className="about-flex-details">
-                  {/* ✅ Clickable Title */}
-                  <h3
-                    onClick={() => toggleItem(index)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {item.title}
-                  </h3>
-
-                  {/* ✅ Animated Description */}
-                  <AnimatePresence>
-                    {activeIndex === index && item.description && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0, y: 10 }}
-                        animate={{
-                          opacity: 1,
-                          height: "auto",
-                          y: 0,
-                        }}
-                        exit={{
-                          opacity: 0,
-                          height: 0,
-                          y: 10,
-                        }}
-                        transition={{
-                          duration: 0.4,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                        style={{ overflow: "hidden" }}
-                      >
-                        {item.description}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </motion.div>
+                item={item}
+                index={index}
+                isOpen={activeIndex === index}
+                onToggle={toggleItem}
+              />
             ))}
           </motion.div>
         </motion.div>
