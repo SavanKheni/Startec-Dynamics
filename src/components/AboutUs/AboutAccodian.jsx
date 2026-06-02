@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./AboutPage.css";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import AnimatedText from "../AnimatedText";
@@ -52,8 +52,26 @@ const chevronVariants = {
 
 const AccordionItem = ({ icon, title, content, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, amount: 0.2 });
+
+  // ✅ Always track real height
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      // Added a 24px safety buffer to handle layout wrapping flawlessly
+      const extraBuffer = 24;
+      setHeight(contentRef.current.scrollHeight + extraBuffer);
+    });
+
+    resizeObserver.observe(contentRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
 
   return (
     <motion.div
@@ -73,27 +91,22 @@ const AccordionItem = ({ icon, title, content, index }) => {
           : {}
       }
     >
+      {/* HEADER */}
       <div
         className="acc-head"
         onClick={() => setIsOpen(!isOpen)}
         style={{ cursor: "pointer", userSelect: "none" }}
       >
-        {/* Icon — scale + rotate in */}
         <motion.div
           className="acc-icon"
           custom={index}
           variants={iconVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          whileHover={{
-            rotate: [0, -8, 6, 0],
-            transition: { duration: 0.5, ease: "easeInOut" },
-          }}
         >
           {icon}
         </motion.div>
 
-        {/* Title — slide in from left */}
         <motion.h2
           custom={index}
           variants={titleVariants}
@@ -103,7 +116,6 @@ const AccordionItem = ({ icon, title, content, index }) => {
           <AnimatedText as="span" text={title} />
         </motion.h2>
 
-        {/* Chevron — pop in, then rotate on open/close */}
         <motion.div
           className="acc-up-down-icon"
           custom={index}
@@ -114,57 +126,51 @@ const AccordionItem = ({ icon, title, content, index }) => {
               ? { ...chevronVariants.visible(index), rotate: isOpen ? 180 : 0 }
               : "hidden"
           }
-          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.35, ease: EASE }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-            fill="none"
-          >
+          {/* SVG SAME */}
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
             <path
-              d="M22.0002 3.66634C11.8749 3.66634 3.66683 11.8745 3.66683 21.9997C3.66683 32.1249 11.8749 40.333 22.0002 40.333C32.1254 40.333 40.3335 32.1249 40.3335 21.9997C40.3335 11.8745 32.1254 3.66634 22.0002 3.66634Z"
+              d="M22 3.66C11.87 3.66 3.66 11.87 3.66 22C3.66 32.12 11.87 40.33 22 40.33C32.12 40.33 40.33 32.12 40.33 22C40.33 11.87 32.12 3.66 22 3.66Z"
               stroke="white"
               strokeWidth="1.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
             />
             <path
-              d="M28.4717 24.3096L22 17.8562L15.5284 24.3096"
+              d="M28.47 24.3L22 17.85L15.52 24.3"
               stroke="white"
               strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
             />
           </svg>
         </motion.div>
       </div>
 
-      {/* Body — smooth height + fade + blur */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            className="acc-body"
-            key="body"
-            initial={{ height: 0, opacity: 0, filter: "blur(4px)" }}
-            animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
-            exit={{ height: 0, opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 0.45, ease: EASE }}
-            style={{ overflow: "hidden" }}
+      {/* ✅ SMOOTH ACCORDION BODY */}
+      <motion.div
+        className="acc-body"
+        initial={false}
+        animate={{
+          height: isOpen ? height : 0,
+          opacity: isOpen ? 1 : 0,
+        }}
+        transition={{
+          height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 0.25 },
+        }}
+        style={{ overflow: "hidden" }}
+      >
+        <div ref={contentRef}>
+          <motion.p
+            initial={false}
+            animate={{
+              y: isOpen ? 0 : -10,
+              opacity: isOpen ? 1 : 0,
+            }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.p
-              initial={{ y: -12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -12, opacity: 0 }}
-              transition={{ duration: 0.35, delay: 0.1, ease: EASE }}
-            >
-              {content}
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {content}
+          </motion.p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -176,7 +182,7 @@ const AboutAccodian = () => {
     {
       title: "Company Positioning",
       content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "Startec Dynamics positions itself as an innovation-driven mobility technology company, focused on delivering intelligent, future-ready solutions that redefine how people and systems move, connect, and operate.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +214,7 @@ const AboutAccodian = () => {
     {
       title: "Philosophy",
       content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "Startec Dynamics believes in harnessing intelligent innovation to create smarter, more sustainable mobility solutions—driven by a commitment to efficiency, user-centric design, and continuous technological evolution.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

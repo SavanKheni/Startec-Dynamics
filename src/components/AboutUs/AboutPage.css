@@ -340,6 +340,19 @@
     border-image-source: linear-gradient(90deg, rgba(255, 255, 255, 0.0858) -8.84%, rgba(255, 255, 255, 0.66) 49.34%, rgba(255, 255, 255, 0.0792) 109.8%);
 }
 
+.acc-item .acc-body {
+    overflow: hidden;
+}
+
+.acc-item .acc-body div {
+    padding-top: 12px;
+    padding-bottom: 16px;
+}
+
+.acc-item .acc-body div p {
+    /* line-height: 1.6; */
+    margin: 0;
+}
 
 /* ═══════════════════════════════════════════════════════
    Accordion Responsive — 1100px → 350px

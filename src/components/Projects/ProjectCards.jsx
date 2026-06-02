@@ -47,10 +47,13 @@ const cardVariants = {
   }),
   exit: {
     opacity: 0,
-    y: 30,
-    scale: 0.95,
-    filter: "blur(4px)",
-    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+    y: 40,
+    scale: 0.9,
+    filter: "blur(6px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
   },
   hover: {
     y: -10,
@@ -158,7 +161,7 @@ const diamondVariants = (delay) => ({
     transition: {
       delay,
       duration: 0.45,
-      ease: [0.34, 1.56, 0.64, 1], // spring overshoot pop
+      ease: [0.34, 1.56, 0.64, 1],
     },
   },
 });
@@ -208,7 +211,9 @@ const ProjectCards = () => {
       </motion.h1>
 
       {/* ── Cards grid ── */}
+      {/* ADDED: layout prop to smoothly animate layout transitions */}
       <motion.div
+        layout="position"
         className="project-card-main"
         initial="hidden"
         whileInView="visible"
@@ -219,244 +224,252 @@ const ProjectCards = () => {
         }}
       >
         {/* ── Animated SVG connector line ── */}
-        {showMore && (
-          <div className="project-line">
-            <motion.svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1076"
-              height="187"
-              viewBox="0 0 1076 187"
-              fill="none"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+        {/* ADDED: Inner AnimatePresence wrapper to slide & fade the line seamlessly */}
+        <AnimatePresence>
+          {showMore && (
+            <motion.div
+              className="project-line"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ overflow: "hidden" }}
             >
-              {/* Horizontal line — drawn left-to-right */}
-              <motion.line
-                x1="1020.58"
-                y1="68.25"
-                x2="54.5764"
-                y2="68.25"
-                stroke="#7A86C4"
-                strokeWidth="0.5"
-                variants={lineH}
-              />
-
-              {/* Left vertical drop */}
-              <motion.line
-                x1="54.8264"
-                y1="68"
-                x2="54.8264"
-                y2="139"
-                stroke="#7A86C4"
-                strokeWidth="0.5"
-                variants={lineVLeft}
-              />
-
-              {/* Right vertical drop */}
-              <motion.line
-                x1="1020.83"
-                y1="68"
-                x2="1020.83"
-                y2="138"
-                stroke="#7A86C4"
-                strokeWidth="0.5"
-                variants={lineVRight}
-              />
-
-              {/* Center vertical rise */}
-              <motion.line
-                x1="540.826"
-                y1="0"
-                x2="540.826"
-                y2="70"
-                stroke="#7A86C4"
-                strokeWidth="0.5"
-                variants={lineVMid}
-              />
-
-              {/* Left glow */}
-              <motion.g
-                filter="url(#filter0_f_5866_2576)"
-                variants={glowVariants(1.45)}
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1076"
+                height="187"
+                viewBox="0 0 1076 187"
+                fill="none"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
               >
-                <ellipse
-                  cx="24.5581"
-                  cy="20.3112"
-                  rx="24.5581"
-                  ry="20.3112"
-                  transform="matrix(1 0 -0.0210409 0.999779 30.4312 116)"
-                  fill="url(#paint0_radial_5866_2576)"
+                {/* Horizontal line */}
+                <motion.line
+                  x1="1020.58"
+                  y1="68.25"
+                  x2="54.5764"
+                  y2="68.25"
+                  stroke="#7A86C4"
+                  strokeWidth="0.5"
+                  variants={lineH}
                 />
-              </motion.g>
 
-              {/* Left diamond */}
-              <motion.rect
-                x="53.9968"
-                y="128.696"
-                width="10.9497"
-                height="10.9497"
-                fill="#2764FF"
-                // style={{ originX: "59.47px", originY: "134.17px" }}
-                variants={diamondVariants(1.45)}
-              />
-
-              {/* Right glow */}
-              <motion.g
-                filter="url(#filter1_f_5866_2576)"
-                variants={glowVariants(1.45)}
-              >
-                <ellipse
-                  cx="24.5581"
-                  cy="20.3112"
-                  rx="24.5581"
-                  ry="20.3112"
-                  transform="matrix(1 0 -0.0210409 0.999779 996.431 115)"
-                  fill="url(#paint1_radial_5866_2576)"
+                {/* Left vertical drop */}
+                <motion.line
+                  x1="54.8264"
+                  y1="68"
+                  x2="54.8264"
+                  y2="139"
+                  stroke="#7A86C4"
+                  strokeWidth="0.5"
+                  variants={lineVLeft}
                 />
-              </motion.g>
 
-              {/* Right diamond */}
-              <motion.rect
-                x="1020"
-                y="127.696"
-                width="10.9497"
-                height="10.9497"
-                fill="#2764FF"
-                // style={{ originX: "1025.47px", originY: "133.17px" }}
-                variants={diamondVariants(1.45)}
-              />
-
-              {/* Mid glow */}
-              <motion.g
-                filter="url(#filter2_f_5866_2576)"
-                variants={glowVariants(0.85)}
-              >
-                <ellipse
-                  cx="24.5581"
-                  cy="20.3112"
-                  rx="24.5581"
-                  ry="20.3112"
-                  transform="matrix(1 0 -0.0210409 0.999779 516.431 48)"
-                  fill="url(#paint2_radial_5866_2576)"
+                {/* Right vertical drop */}
+                <motion.line
+                  x1="1020.83"
+                  y1="68"
+                  x2="1020.83"
+                  y2="138"
+                  stroke="#7A86C4"
+                  strokeWidth="0.5"
+                  variants={lineVRight}
                 />
-              </motion.g>
 
-              {/* Mid diamond */}
-              <motion.rect
-                x="539.997"
-                y="60.6963"
-                width="10.9497"
-                height="10.9497"
-                fill="#2764FF"
-                // style={{ originX: "545.47px", originY: "66.17px" }}
-                variants={diamondVariants(0.85)}
-              />
+                {/* Center vertical rise */}
+                <motion.line
+                  x1="540.826"
+                  y1="0"
+                  x2="540.826"
+                  y2="70"
+                  stroke="#7A86C4"
+                  strokeWidth="0.5"
+                  variants={lineVMid}
+                />
 
-              <defs>
-                <filter
-                  id="filter0_f_5866_2576"
-                  x="0"
-                  y="86"
-                  width="109.124"
-                  height="100.613"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
+                {/* Left glow */}
+                <motion.g
+                  filter="url(#filter0_f_5866_2576)"
+                  variants={glowVariants(1.45)}
                 >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
+                  <ellipse
+                    cx="24.5581"
+                    cy="20.3112"
+                    rx="24.5581"
+                    ry="20.3112"
+                    transform="matrix(1 0 -0.0210409 0.999779 30.4312 116)"
+                    fill="url(#paint0_radial_5866_2576)"
                   />
-                  <feGaussianBlur
-                    stdDeviation="15"
-                    result="effect1_foregroundBlur_5866_2576"
-                  />
-                </filter>
-                <filter
-                  id="filter1_f_5866_2576"
-                  x="966"
-                  y="85"
-                  width="109.124"
-                  height="100.613"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
+                </motion.g>
+
+                {/* Left diamond */}
+                <motion.rect
+                  x="53.9968"
+                  y="128.696"
+                  width="10.9497"
+                  height="10.9497"
+                  fill="#2764FF"
+                  variants={diamondVariants(1.45)}
+                />
+
+                {/* Right glow */}
+                <motion.g
+                  filter="url(#filter1_f_5866_2576)"
+                  variants={glowVariants(1.45)}
                 >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
+                  <ellipse
+                    cx="24.5581"
+                    cy="20.3112"
+                    rx="24.5581"
+                    ry="20.3112"
+                    transform="matrix(1 0 -0.0210409 0.999779 996.431 115)"
+                    fill="url(#paint1_radial_5866_2576)"
                   />
-                  <feGaussianBlur
-                    stdDeviation="15"
-                    result="effect1_foregroundBlur_5866_2576"
+                </motion.g>
+
+                {/* Right diamond */}
+                <motion.rect
+                  x="1020"
+                  y="127.696"
+                  width="10.9497"
+                  height="10.9497"
+                  fill="#2764FF"
+                  variants={diamondVariants(1.45)}
+                />
+
+                {/* Mid glow */}
+                <motion.g
+                  filter="url(#filter2_f_5866_2576)"
+                  variants={glowVariants(0.85)}
+                >
+                  <ellipse
+                    cx="24.5581"
+                    cy="20.3112"
+                    rx="24.5581"
+                    ry="20.3112"
+                    transform="matrix(1 0 -0.0210409 0.999779 516.431 48)"
+                    fill="url(#paint2_radial_5866_2576)"
                   />
-                </filter>
-                <filter
-                  id="filter2_f_5866_2576"
-                  x="486"
-                  y="18"
-                  width="109.124"
-                  height="100.613"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
-                >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    stdDeviation="15"
-                    result="effect1_foregroundBlur_5866_2576"
-                  />
-                </filter>
-                <radialGradient
-                  id="paint0_radial_5866_2576"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#2752FF" />
-                  <stop offset="1" stopColor="#080C18" />
-                </radialGradient>
-                <radialGradient
-                  id="paint1_radial_5866_2576"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#2752FF" />
-                  <stop offset="1" stopColor="#080C18" />
-                </radialGradient>
-                <radialGradient
-                  id="paint2_radial_5866_2576"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#2752FF" />
-                  <stop offset="1" stopColor="#080C18" />
-                </radialGradient>
-              </defs>
-            </motion.svg>
-          </div>
-        )}
+                </motion.g>
+
+                {/* Mid diamond */}
+                <motion.rect
+                  x="539.997"
+                  y="60.6963"
+                  width="10.9497"
+                  height="10.9497"
+                  fill="#2764FF"
+                  variants={diamondVariants(0.85)}
+                />
+
+                <defs>
+                  <filter
+                    id="filter0_f_5866_2576"
+                    x="0"
+                    y="86"
+                    width="109.124"
+                    height="100.613"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                  >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="BackgroundImageFix"
+                      result="shape"
+                    />
+                    <feGaussianBlur
+                      stdDeviation="15"
+                      result="effect1_foregroundBlur_5866_2576"
+                    />
+                  </filter>
+                  <filter
+                    id="filter1_f_5866_2576"
+                    x="966"
+                    y="85"
+                    width="109.124"
+                    height="100.613"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                  >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="BackgroundImageFix"
+                      result="shape"
+                    />
+                    <feGaussianBlur
+                      stdDeviation="15"
+                      result="effect1_foregroundBlur_5866_2576"
+                    />
+                  </filter>
+                  <filter
+                    id="filter2_f_5866_2576"
+                    x="486"
+                    y="18"
+                    width="109.124"
+                    height="100.613"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                  >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="BackgroundImageFix"
+                      result="shape"
+                    />
+                    <feGaussianBlur
+                      stdDeviation="15"
+                      result="effect1_foregroundBlur_5866_2576"
+                    />
+                  </filter>
+                  <radialGradient
+                    id="paint0_radial_5866_2576"
+                    cx="0"
+                    cy="0"
+                    r="1"
+                    gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#2752FF" />
+                    <stop offset="1" stopColor="#080C18" />
+                  </radialGradient>
+                  <radialGradient
+                    id="paint1_radial_5866_2576"
+                    cx="0"
+                    cy="0"
+                    r="1"
+                    gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#2752FF" />
+                    <stop offset="1" stopColor="#080C18" />
+                  </radialGradient>
+                  <radialGradient
+                    id="paint2_radial_5866_2576"
+                    cx="0"
+                    cy="0"
+                    r="1"
+                    gradientTransform="matrix(0.513293 24.395 -29.4697 0.62062 24.5581 20.3112)"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#2752FF" />
+                    <stop offset="1" stopColor="#080C18" />
+                  </radialGradient>
+                </defs>
+              </motion.svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* ── Cards ── */}
-        <AnimatePresence mode="wait">
+        {/* CHANGED: Swapped "wait" mode out. Default or crossfade works best with continuous layout changes */}
+        <AnimatePresence mode="popLayout">
           {projects
             .filter((_, index) => (showMore ? true : index === 0))
             .map((item, index) => (
@@ -469,7 +482,7 @@ const ProjectCards = () => {
                 animate="visible"
                 exit="exit"
                 whileHover="hover"
-                layout
+                layout // ← Ensures the cards morph to their new grid positions seamlessly
               >
                 <div className="project-img-wrapper">
                   <motion.img
@@ -478,6 +491,7 @@ const ProjectCards = () => {
                     className="project-img"
                     variants={imgVariants}
                     initial="rest"
+                    await="rest"
                   />
                   <motion.span
                     className="project-shine"
@@ -521,7 +535,6 @@ const ProjectCards = () => {
                       duration: 0.65,
                       ease: [0.34, 1.56, 0.64, 1],
                     }}
-                    // whileTap={{ scale: 0.95 }}
                     className="project-card-footer"
                   >
                     <GradientButton onClick={() => navigate(item.link)}>
@@ -529,9 +542,11 @@ const ProjectCards = () => {
                     </GradientButton>
                     {item.id === 1 && (
                       <p
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation(); // Stop click bubbling up to card elements
                           setShowMore(!showMore);
                         }}
+                        style={{ cursor: "pointer" }}
                       >
                         {showMore ? "Show Less" : "Show More"}
                       </p>
