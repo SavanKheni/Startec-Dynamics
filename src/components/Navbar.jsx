@@ -43,7 +43,15 @@ const Navbar = () => {
           {showBackArrow && (
             <motion.div
               className="back-arrow"
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                if (location.pathname.startsWith("/project-details")) {
+                  navigate("/projects");
+                } else if (location.pathname.startsWith("/press/")) {
+                  navigate("/press");
+                } else {
+                  navigate(-1);
+                }
+              }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
