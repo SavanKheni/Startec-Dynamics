@@ -188,13 +188,21 @@ const TeamCard = ({ img, name, role, desc, delay = 0 }) => {
       </motion.div>
 
       {/* Description — fades in last */}
-      <motion.p
+      <motion.div
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={descFade}
       >
-        {desc}
-      </motion.p>
+        {Array.isArray(desc) ? (
+          desc.map((para, i) => (
+            <p key={i} style={{ marginBottom: "8px" }}>
+              {para}
+            </p>
+          ))
+        ) : (
+          <p>{desc}</p>
+        )}
+      </motion.div>
     </motion.div>
   );
 };
@@ -205,14 +213,17 @@ const teamData = [
   {
     img: team1,
     name: "Wai Cheung (Ivan) Ting",
-    role: "Director",
+    role: "CEO",
     desc: "With 20+ years of experience in the motorcycle industry, Ivan established Startec Dynamics Inc., exploring worldwide market opportunities, organizing R&D teams, and launching R&D products successfully.",
   },
   {
     img: team3,
     name: "Rishabh Goel",
     role: "R&D Manager",
-    desc: "With background in Mechatronics Design, Rishabh has expertise in AI and Machine Learning applications. He works with Python, OpenCV, Flask, and AWS.",
+    desc: [
+      "Rishabh Goel is the R&D Manager at Startec Dynamics with 6+ years of experience in embedded systems, IoT, firmware, and automotive electronics. He specializes in end-to-end product development, from concept to deployment.",
+      "He has led the creation of safety-focused IoT solutions for motorcycles, including accident detection, anti-theft systems, GPS/LTE connectivity, remote control, and fleet management—delivering reliable, scalable solutions built for real-world use.",
+    ],
   },
   {
     img: team4,
