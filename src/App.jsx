@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -25,11 +25,22 @@ function App() {
 
   const { scalerRef, wrapperHeight } = usePageScaler({
     minWidth: 1100,
-    maxWidth: 1920,
     designWidth: 1920,
   });
 
-  // ✅ Disable browser scroll restoration
+  // ✅ responsive screen fix
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1100);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // ✅ Disable scroll restoration
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -47,45 +58,44 @@ function App() {
 
     let rafId;
 
-    function raf(time) {
+    const raf = (time) => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
-    }
+    };
 
     rafId = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(rafId);
-      lenis.destroy(); // ✅ correct cleanup
+      lenis.destroy();
     };
   }, []);
 
-  // ✅ FIX: Reset scroll on route change (Lenis way)
+  // ✅ Reset scroll
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     }
   }, [location.pathname]);
 
-  // ✅ Reveal animation (re-run per page)
+  // ✅ Reveal animation
   useEffect(() => {
-    const observerOptions = { threshold: 0.1 };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    }, observerOptions);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
     const elements = document.querySelectorAll(".reveal");
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, [location.pathname]);
-
-  const isSmallScreen = window.innerWidth < 1100;
 
   return (
     <div>
@@ -96,7 +106,6 @@ function App() {
         ref={isSmallScreen ? null : scalerRef}
         style={{
           height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
-          transform: isSmallScreen ? "none" : undefined,
         }}
       >
         <Navbar />

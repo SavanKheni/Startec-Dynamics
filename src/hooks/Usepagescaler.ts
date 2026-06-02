@@ -8,66 +8,72 @@ interface UsePageScalerOptions {
 }
 
 export const usePageScaler = (options: UsePageScalerOptions = {}) => {
-  const { minWidth = 1024, maxWidth = 1920, designWidth = 1920 } = options;
+  const { minWidth = 1024, designWidth = 1920 } = options;
 
   const scalerRef = useRef<HTMLDivElement>(null);
   const [wrapperHeight, setWrapperHeight] = useState<number | "auto">("auto");
 
-  const location = useLocation(); // 🔥 NEW
+  const location = useLocation();
 
   useEffect(() => {
-    const scalePageContent = () => {
-      const scaler = scalerRef.current;
-      if (!scaler) return;
+    const scaler = scalerRef.current;
+    if (!scaler) return;
 
-      const screenWidth = window.innerWidth;
+    const screenWidth = window.innerWidth;
+    const scaleFactor = screenWidth / designWidth;
 
-      if (screenWidth >= minWidth) {
-        const scaleFactor = screenWidth / designWidth;
+    // ✅ SMALL SCREEN
+    if (screenWidth < minWidth) {
+      scaler.style.transform = "none";
+      scaler.style.width = "100%";
+      document.body.style.overflowX = "auto";
+      setWrapperHeight("auto");
+      return;
+    }
 
-        scaler.style.transform = `scale(${scaleFactor})`;
-        scaler.style.transformOrigin = "top left";
-        scaler.style.width = `${designWidth}px`;
-        scaler.style.margin = "0 0";
+    // ✅ 1920 EXACT
+    if (scaleFactor === 1) {
+      scaler.style.transform = "none";
+      scaler.style.width = "100%";
+      document.body.style.overflowX = "auto";
+      setWrapperHeight("auto");
+      return;
+    }
 
-        document.body.style.overflowX = "hidden";
+    // ✅ SCALED RANGE (1100–1919)
+    scaler.style.transform = `scale(${scaleFactor})`;
+    scaler.style.transformOrigin = "top left";
+    scaler.style.width = `${designWidth}px`;
+    document.body.style.overflowX = "hidden";
 
-        // 🔥 WAIT for layout to settle
-        setTimeout(() => {
-          requestAnimationFrame(() => {
-            const contentHeight = scaler.scrollHeight;
-            const scaledHeight = contentHeight * scaleFactor;
-            setWrapperHeight(scaledHeight);
-          });
-        }, 50); // small delay fixes route/render timing
-      } else {
-        scaler.style.transform = "none";
-        scaler.style.width = "100%";
-        scaler.style.margin = "0";
-        document.body.style.overflowX = "auto";
-        setWrapperHeight("auto");
-      }
+    const updateHeight = () => {
+      // 🔥 MOST STABLE METHOD
+      const contentHeight = scaler.scrollHeight;
+      const scaledHeight = contentHeight * scaleFactor;
+
+      setWrapperHeight(scaledHeight);
     };
 
-    // 🔥 RUN on:
-    scalePageContent();
+    // 🔥 Run multiple times to ensure stability
+    requestAnimationFrame(updateHeight);
+    requestAnimationFrame(() => requestAnimationFrame(updateHeight));
 
-    // Resize handling
-    let timeoutId: NodeJS.Timeout;
+    const timeout1 = setTimeout(updateHeight, 100);
+    const timeout2 = setTimeout(updateHeight, 300);
+
+    // 🔥 Resize support
     const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(scalePageContent, 50);
+      requestAnimationFrame(updateHeight);
     };
 
     window.addEventListener("resize", handleResize);
-    window.addEventListener("load", scalePageContent);
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("load", scalePageContent);
-      clearTimeout(timeoutId);
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
     };
-  }, [minWidth, maxWidth, designWidth, location.pathname]); // 🔥 CRITICAL FIX
+  }, [location.pathname, minWidth, designWidth]);
 
   return { scalerRef, wrapperHeight };
 };
