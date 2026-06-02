@@ -6,12 +6,12 @@ import FeaturedSection from "../components/ProjectDetails/FeaturedSection";
 import SIIntelligent1 from "../assets/SIIntelligent-1.png";
 import SIIntelligent2 from "../assets/SIIntelligent-2.png";
 import SIIntelligent3 from "../assets/SIIntelligent-3.png";
-import fleetManagement from "../assets/f-m-logo.png";
+import fleetManagement from "../assets/SIIntelligent-b.png";
 import BottomSection from "../components/ProjectDetails/BottomSection";
 const SIIntelligent = () => {
   const fleetSlides = [
     {
-      imageLabel: "Smart Protection, Always On",
+      imageLabel: "SI Intelligent Device",
       image: SIIntelligent1,
       title: "Smart Protection, Always On",
       description:
@@ -19,7 +19,7 @@ const SIIntelligent = () => {
       link: "#",
     },
     {
-      imageLabel: "Real-Time Tracking & Alerts",
+      imageLabel: "SI Intelligent Device",
       image: SIIntelligent2, // swap to analyticsScreen when available
       title: "Real-Time Tracking & Alerts",
       description:
@@ -27,7 +27,7 @@ const SIIntelligent = () => {
       link: "#",
     },
     {
-      imageLabel: "Complete Control & Insights",
+      imageLabel: "SI Intelligent Device",
       image: SIIntelligent3, // swap to maintenanceScreen when available
       title: "Vehicle Maintenance",
       description:
