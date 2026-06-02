@@ -15,7 +15,7 @@ import BottomSection from "../components/ProjectDetails/BottomSection";
 const FleetManagement = () => {
   const fleetSlides = [
     {
-      imageLabel: "Overview Screen",
+      imageLabel: "Dashboard screens",
       image: dashboardScreen2, // swap to analyticsScreen when available
       title: "Overview Screen",
       description:
@@ -23,7 +23,7 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Live Tracking",
+      imageLabel: "Dashboard screens",
       image: dashboardScreen,
       title: "Live Tracking",
       description:
@@ -31,7 +31,7 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Driver Management",
+      imageLabel: "Dashboard screens",
       image: dashboardScreen4, // swap to maintenanceScreen when available
       title: "Driver Management",
       description:
@@ -39,7 +39,7 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Geo-Fencing Module",
+      imageLabel: "Dashboard screens",
       image: dashboardScreen5, // swap to maintenanceScreen when available
       title: "Geo-Fencing Module",
       description:
@@ -47,7 +47,7 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Alerts Notifications",
+      imageLabel: "Dashboard screens",
       image: dashboardScreen6, // swap to maintenanceScreen when available
       title: "Alerts Notifications",
       description:
@@ -55,7 +55,7 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "GPS Tracking ",
+      imageLabel: "Dashboard screens ",
       image: dashboardScreen7, // swap to maintenanceScreen when available
       title: "GPS Tracking",
       description:
