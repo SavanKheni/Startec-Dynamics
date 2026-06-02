@@ -214,7 +214,10 @@ const teamData = [
     img: team1,
     name: "Wai Cheung (Ivan) Ting",
     role: "CEO",
-    desc: "With 20+ years of experience in the motorcycle industry, Ivan established Startec Dynamics Inc., exploring worldwide market opportunities, organizing R&D teams, and launching R&D products successfully.",
+    desc: [
+      "Ivan Ting is a serial entrepreneur with 25+ years of experience in technology, manufacturing, and smart mobility across Asia and Canada. He has founded and led multiple companies, focusing on product innovation, engineering, and international business growth.",
+      "As Founder and CEO of Startec Dynamics, he drives the company’s vision in smart mobility, IoT systems, and connected motorcycle technology, with expertise in R&D, patents, and large-scale production.",
+    ],
   },
   {
     img: team3,
