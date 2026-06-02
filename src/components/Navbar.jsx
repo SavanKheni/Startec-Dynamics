@@ -3,8 +3,10 @@ import logo from "../assets/logo.png";
 import GradientButton from "./Gradientbutton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const MotionLink = motion(Link);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLight, setIsLight] = useState(false);
   const location = useLocation();
@@ -202,9 +204,10 @@ const Navbar = () => {
               transition={{ duration: 0.2, delay: 0.3 }}
             >
               {navLinks.map(({ href, label }, i) => (
-                <motion.a
+                <MotionLink
                   key={href}
-                  href={href}
+                  to={href}
+                  onClick={() => setMenuOpen(false)}
                   className={location.pathname === href ? "active" : ""}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -216,7 +219,7 @@ const Navbar = () => {
                   }}
                 >
                   {label}
-                </motion.a>
+                </MotionLink>
               ))}
             </motion.nav>
 
