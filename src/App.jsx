@@ -18,12 +18,13 @@ import SIConnect from "./pages/SIConnect";
 import SIIntelligent from "./pages/SIIntelligent";
 import Press from "./pages/Press";
 import PressDetails from "./pages/PressDetails";
+import { RecalculateContext } from "./hooks/RecalculateContext";
 
 function App() {
   const location = useLocation();
   const lenisRef = useRef(null);
 
-  const { scalerRef, wrapperHeight } = usePageScaler({
+  const { scalerRef, wrapperHeight, recalculate } = usePageScaler({
     minWidth: 1100,
     designWidth: 1920,
   });
@@ -71,7 +72,7 @@ function App() {
     };
   }, []);
 
-  // ✅ Reset scroll
+  // ✅ Reset scroll on route change
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
@@ -98,56 +99,62 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div>
-      <BgStar />
+    // ✅ Provide recalculate to all children via context
+    <RecalculateContext.Provider value={recalculate}>
+      <div>
+        <BgStar />
 
-      <div
-        className="app"
-        ref={isSmallScreen ? null : scalerRef}
-        style={{
-          height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
-        }}
-      >
-        <Navbar />
+        <div
+          className="app"
+          ref={isSmallScreen ? null : scalerRef}
+          style={{
+            height: wrapperHeight === "auto" ? "auto" : `${wrapperHeight}px`,
+          }}
+        >
+          <Navbar />
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/serviceas" element={<Serviceas />} />
-            <Route path="/about-us" element={<AboutUS />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/press" element={<Press />} />
-            <Route path="/press/:id" element={<PressDetails />} />
-            <Route
-              path="/project-details/fleet-management"
-              element={<FleetManagement />}
-            />
-            <Route path="/project-details/si-connect" element={<SIConnect />} />
-            <Route
-              path="/project-details/si-intelligent"
-              element={<SIIntelligent />}
-            />
-            <Route path="/team" element={<Team />} />
-          </Routes>
-        </main>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/serviceas" element={<Serviceas />} />
+              <Route path="/about-us" element={<AboutUS />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/press" element={<Press />} />
+              <Route path="/press/:id" element={<PressDetails />} />
+              <Route
+                path="/project-details/fleet-management"
+                element={<FleetManagement />}
+              />
+              <Route
+                path="/project-details/si-connect"
+                element={<SIConnect />}
+              />
+              <Route
+                path="/project-details/si-intelligent"
+                element={<SIIntelligent />}
+              />
+              <Route path="/team" element={<Team />} />
+            </Routes>
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <style jsx global>{`
-          .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        `}</style>
+          <style jsx global>{`
+            .reveal {
+              opacity: 0;
+              transform: translateY(30px);
+              transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .reveal.active {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          `}</style>
+        </div>
       </div>
-    </div>
+    </RecalculateContext.Provider>
   );
 }
 

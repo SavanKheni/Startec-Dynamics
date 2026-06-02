@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import GlowLTR from "../GlowLTR";
 import AnimatedText from "../AnimatedText";
+import { useRecalculate } from "../../hooks/RecalculateContext";
 
 const projects = [
   {
@@ -89,13 +90,12 @@ const fadeIn = (delay = 0) => ({
   },
 });
 
-// ── SVG line animation variants ──
 const lineH = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }, // ← Increased line draw duration
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 },
   },
 };
 
@@ -148,13 +148,30 @@ const glowVariants = (delay) => ({
   },
 });
 
+// Accordion open duration in ms — must match the motion transition below (1.5s)
+const ACCORDION_DURATION_MS = 1500;
+
 const ProjectCards = () => {
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
   const accordionRef = useRef(null);
 
+  // ✅ Grab recalculate from context
+  const recalculate = useRecalculate();
+
   const featuredProject = projects[0];
   const secondaryProjects = projects.slice(1);
+
+  // ✅ Toggle handler — fires recalculate after accordion animation finishes
+  const handleToggle = (e) => {
+    e.stopPropagation();
+    setShowMore((prev) => {
+      const next = !prev;
+      // +50ms buffer so Framer Motion fully commits the final height
+      setTimeout(() => recalculate?.(), ACCORDION_DURATION_MS + 50);
+      return next;
+    });
+  };
 
   return (
     <div className="project-card-main-section">
@@ -227,11 +244,9 @@ const ProjectCards = () => {
               <GradientButton onClick={() => navigate(featuredProject.link)}>
                 Explore The Project
               </GradientButton>
+              {/* ✅ Updated onClick */}
               <p
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowMore(!showMore);
-                }}
+                onClick={handleToggle}
                 style={{ cursor: "pointer", userSelect: "none" }}
               >
                 {showMore ? "Show Less" : "Show More"}
@@ -247,7 +262,6 @@ const ProjectCards = () => {
             height: showMore ? "auto" : 0,
             opacity: showMore ? 1 : 0,
           }}
-          // FIXED: Bumped duration to 0.65s and customized easing parameters for a ultra-premium rollout glide
           transition={{
             duration: showMore ? 1.5 : 0.45,
             ease: [0.16, 1, 0.3, 1],
