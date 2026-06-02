@@ -623,26 +623,17 @@ const Work = () => {
       >
         <div className="netEarthBlock">
           <StarTrail start={-550} end={-328} />
-          {inView &&
-            [0, 1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                className="orbitline-ripple"
-                initial={{ scale: 1, opacity: 0 }}
-                animate={{
-                  scale: [1, 1.3],
-                  opacity: [0, 0.7, 0],
-                }}
-                transition={{
-                  duration: 3.8,
-                  ease: "easeOut",
-                  repeat: Infinity,
-                  delay: i * 0.95,
-                  repeatDelay: 0,
-                  times: [0, 0.15, 1], // fade in fast, then slowly fade out
-                }}
-              />
-            ))}
+          {inView && (
+            <motion.div
+              className="orbitline-ripple"
+              initial={{ scale: 1, opacity: 0 }}
+              animate={{ scale: 1.2, opacity: 1 }}
+              transition={{
+                duration: 1,
+                ease: "easeOut",
+              }}
+            />
+          )}
 
           <motion.img
             src={netearth}
