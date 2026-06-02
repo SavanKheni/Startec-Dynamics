@@ -526,3 +526,13 @@
         line-height: 18px;
     }
 }
+
+.location-details h6 {
+    margin-bottom: 15px;
+}
+
+.location-title .email-box {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom: none;
+}

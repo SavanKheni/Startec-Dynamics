@@ -360,14 +360,132 @@ const ContactForm = () => {
           </motion.div>
 
           {/* Location box */}
-          <motion.div ref={locRef.ref} className="location-box">
-            <motion.h2
+          <motion.div ref={locRef.ref} className="location-box location-title">
+            <motion.div
+              ref={emailRef.ref}
+              className="email-box"
               variants={fadeUp(0.1)}
               initial="hidden"
-              animate={locRef.inView ? "visible" : "hidden"}
+              animate={emailRef.inView ? "visible" : "hidden"}
             >
-              Our Locations
-            </motion.h2>
+              {/* Icon — pop + wobble on hover */}
+              <motion.div
+                className="email-icon"
+                variants={scaleIn(0.15)}
+                initial="hidden"
+                animate={emailRef.inView ? "visible" : "hidden"}
+                whileHover={{
+                  scale: 1.1,
+                  rotate: [0, -8, 6, 0],
+                  transition: { duration: 0.45 },
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="58"
+                  height="58"
+                  viewBox="0 0 58 58"
+                  fill="none"
+                >
+                  <path
+                    d="M29 32.456C33.1642 32.456 36.54 29.0802 36.54 24.916C36.54 20.7518 33.1642 17.376 29 17.376C24.8357 17.376 21.46 20.7518 21.46 24.916C21.46 29.0802 24.8357 32.456 29 32.456Z"
+                    stroke="url(#paint0_linear_6113_1207)"
+                    stroke-width="2.5"
+                  />
+                  <path
+                    d="M8.74877 20.5172C13.5096 -0.411153 44.5154 -0.386986 49.2521 20.5413C52.0313 32.818 44.3946 43.2097 37.7004 49.638C32.8429 54.3263 25.1579 54.3263 20.2763 49.638C13.6063 43.2097 5.9696 32.7938 8.74877 20.5172Z"
+                    stroke="url(#paint1_linear_6113_1207)"
+                    stroke-width="2.5"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_6113_1207"
+                      x1="29"
+                      y1="17.376"
+                      x2="29"
+                      y2="32.456"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#2752FF" />
+                      <stop offset="1" stop-color="#FF129D" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint1_linear_6113_1207"
+                      x1="29.0004"
+                      y1="4.83301"
+                      x2="29.0004"
+                      y2="53.1543"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#2752FF" />
+                      <stop offset="1" stop-color="#FF129D" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="email-icon-shaow">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="169"
+                    height="126"
+                    viewBox="0 0 169 126"
+                    fill="none"
+                  >
+                    <g opacity="0.3" filter="url(#filter0_f_5258_1495)">
+                      <ellipse
+                        cx="84.5"
+                        cy="63"
+                        rx="57"
+                        ry="78.5"
+                        transform="rotate(-90 84.5 63)"
+                        fill="url(#paint0_radial_5258_1495)"
+                      />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_f_5258_1495"
+                        x="0"
+                        y="0"
+                        width="169"
+                        height="126"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                      >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="3"
+                          result="effect1_foregroundBlur_5258_1495"
+                        />
+                      </filter>
+                      <radialGradient
+                        id="paint0_radial_5258_1495"
+                        cx="0"
+                        cy="0"
+                        r="1"
+                        gradientTransform="matrix(-64.5735 9.23639 -12.607 -88.9302 84.5 63)"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#FF129D" />
+                        <stop offset="1" stopColor="#00050F" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeUp(0.25)}
+                initial="hidden"
+                animate={emailRef.inView ? "visible" : "hidden"}
+              >
+                <h2>Our Locations</h2>
+              </motion.div>
+            </motion.div>
 
             {/* Location items — stagger slide in */}
             <motion.div

@@ -71,7 +71,7 @@ const PressDetailPage = () => {
   const related = [pressData[prevIndex], pressData[nextIndex]];
 
   return (
-    <div className="press-details-page">
+    <div className="press-details-page" key={id}>
       {/* ── HERO SECTION ── */}
       <div className="press-hero">
         {/* Left: Image */}
@@ -140,8 +140,7 @@ const PressDetailPage = () => {
           className="press-related-main"
           variants={staggerContainer}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.2 }}
+          animate="visible"
         >
           {related.map((item, index) => (
             <React.Fragment key={item.id}>
