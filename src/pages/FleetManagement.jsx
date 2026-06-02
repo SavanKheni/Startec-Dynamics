@@ -7,10 +7,21 @@ import dashboardScreen from "../assets/f-d.png";
 import dashboardScreen2 from "../assets/f-d2.png";
 import dashboardScreen3 from "../assets/f-3.png";
 import dashboardScreen4 from "../assets/f-d4.png";
+import dashboardScreen5 from "../assets/f-d5.png";
+import dashboardScreen6 from "../assets/f-d6.png";
+import dashboardScreen7 from "../assets/f-d7.png";
 import fleetManagement from "../assets/f-m-logo.png";
 import BottomSection from "../components/ProjectDetails/BottomSection";
 const FleetManagement = () => {
   const fleetSlides = [
+    {
+      imageLabel: "Overview Screen",
+      image: dashboardScreen2, // swap to analyticsScreen when available
+      title: "Overview Screen",
+      description:
+        "Overview screen serves as a high-level command center providing real-time data visualization of the fleet's health, activity, and key metrics. The top row features high-impact KPI summary cards tracking total and active bikes, system alerts, registered users, and trip counts. The middle tier delivers deep-dive analytics through comparative line charts for bike activity, a bar graph for weekly traffic, and a breakdown wheel for user transactions. Finally, the bottom section pairs an interactive GPS map tracking vehicle accidents with operational modules for vehicle maintenance workflows and multi-year alert trends.",
+      link: "#",
+    },
     {
       imageLabel: "Live Tracking",
       image: dashboardScreen,
@@ -20,20 +31,35 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Overview Screen",
-      image: dashboardScreen2, // swap to analyticsScreen when available
-      title: "Overview Screen",
-      description:
-        "Overview screen serves as a high-level command center providing real-time data visualization of the fleet's health, activity, and key metrics. The top row features high-impact KPI summary cards tracking total and active bikes, system alerts, registered users, and trip counts. The middle tier delivers deep-dive analytics through comparative line charts for bike activity, a bar graph for weekly traffic, and a breakdown wheel for user transactions. Finally, the bottom section pairs an interactive GPS map tracking vehicle accidents with operational modules for vehicle maintenance workflows and multi-year alert trends.",
-      link: "#",
-    },
-
-    {
       imageLabel: "Driver Management",
       image: dashboardScreen4, // swap to maintenanceScreen when available
       title: "Driver Management",
       description:
         "Driver Management module serves as a central control hub for monitoring fleet assets, tracking critical security events like theft and accident detection, and assigning vehicle hardware to specific owners. Additionally, it streamlines administration by providing dedicated panels to manage user permissions and track account roles, active statuses, and systemic permissions across the entire fleet network.",
+      link: "#",
+    },
+    {
+      imageLabel: "Geo-Fencing Module",
+      image: dashboardScreen5, // swap to maintenanceScreen when available
+      title: "Geo-Fencing Module",
+      description:
+        "Monitor, manage, and secure vehicle movements with real-time geo-fencing intelligence. This dashboard provides instant alerts when vehicles enter or exit predefined zones, enabling proactive fleet monitoring, improved security, and operational efficiency. With interactive maps, boundary management, incident tracking, and detailed alert records, fleet operators can quickly identify violations, respond to events, and maintain complete visibility over vehicle activity.",
+      link: "#",
+    },
+    {
+      imageLabel: "Alerts Notifications",
+      image: dashboardScreen6, // swap to maintenanceScreen when available
+      title: "Alerts Notifications",
+      description:
+        "Stay informed and maintain complete control over your fleet operations with our centralized Alert/Notification hub. This page provides real-time visibility into critical events, ensuring rapid response times and enhanced safety. Key Features: Interactive Accident Map: Visualize the geographic distribution of alerts across your fleet. Select individual markers to view detailed incident information, check status, and initiate contact with drivers immediately. Live Alert List: Monitor incoming alerts categorized by urgency (Active, Critical, Awaiting Response). Quickly assess driver status, location, and incident severity at a glance.",
+      link: "#",
+    },
+    {
+      imageLabel: "GPS Tracking ",
+      image: dashboardScreen7, // swap to maintenanceScreen when available
+      title: "GPS Tracking",
+      description:
+        "Maintain complete oversight of your fleet with our comprehensive GPS Tracking interface. This dashboard allows you to monitor vehicle movements, status, and performance metrics in one centralized location. Map Overview: Track specific vehicles by VIN to visualize routes and current positioning on an interactive map. Bike Status Monitoring: Keep tabs on critical vehicle health and security indicators, including engine disabling, lock status, and ignition status through visual timeline charts. Performance Analytics: Utilize detailed IMU Data (pitch, roll, and yaw) along with Speed & Acceleration Data to analyze driving behavior and vehicle dynamics over time. Data Management: Easily export your tracking data for further record-keeping or reporting needs.",
       link: "#",
     },
   ];
