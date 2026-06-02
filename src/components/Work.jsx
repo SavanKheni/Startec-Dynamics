@@ -162,6 +162,7 @@ const TABS = [
       "Unlike cars with automatic emergency systems like eCall, most motorcycles lack this protection. The SI Smart System bridges this gap — combining crash detection, emergency communication, live vehicle monitoring, and smart connectivity into a compact integrated solution.",
     buttonLabel: "Explore The Project",
     image: [smartDevice], // replace with your SI Smart System image imports when ready
+    link: "project-details/si-intelligent",
     icon: null,
   },
 ];

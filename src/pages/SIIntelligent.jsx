@@ -20,7 +20,7 @@ const SIIntelligent = () => {
     },
     {
       imageLabel: "Real-Time Tracking & Alerts",
-      image: SIIntelligent1, // swap to analyticsScreen when available
+      image: SIIntelligent2, // swap to analyticsScreen when available
       title: "Real-Time Tracking & Alerts",
       description:
         "Stay connected to your motorcycle no matter where you are. SI Intelligent sends instant alerts for unauthorized movement or suspicious behavior. You can track your vehicle’s live location directly from the app. Every movement is recorded for your reference. The system ensures you’re always informed. Control and awareness are always in your hands.",
@@ -28,7 +28,7 @@ const SIIntelligent = () => {
     },
     {
       imageLabel: "Complete Control & Insights",
-      image: SIIntelligent1, // swap to maintenanceScreen when available
+      image: SIIntelligent3, // swap to maintenanceScreen when available
       title: "Vehicle Maintenance",
       description:
         "Access detailed trip history and event logs anytime you need. Review past alerts and understand activity patterns. SI Intelligent offers full remote monitoring for total control. Designed with user-friendly features, it keeps everything simple and accessible. Stay informed, stay secure, and stay in control. Your motorcycle’s safety is now smarter than ever.",
