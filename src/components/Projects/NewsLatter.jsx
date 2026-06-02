@@ -154,7 +154,7 @@ const NewsLatter = () => {
         >
           <AnimatedText
             as="span"
-            text="Where creative ideas transform into immersive experiences"
+            text="Where Creative Ideas Transform Into Immersive Experiences"
           />
         </motion.h1>
 

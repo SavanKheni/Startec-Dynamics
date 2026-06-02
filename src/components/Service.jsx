@@ -10,6 +10,7 @@ import {
 } from "./Servicecard";
 import StarTrail from "./StarTrail";
 import AnimatedText from "./AnimatedText";
+import { useNavigate } from "react-router-dom";
 
 // Animations
 const headingVariants = {
@@ -53,7 +54,7 @@ const Service = () => {
   const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef(null);
   const [dragWidth, setDragWidth] = useState(0);
-
+  const navigate = useNavigate();
   // Detect screen
   useEffect(() => {
     const handleResize = () => {
@@ -159,6 +160,7 @@ const Service = () => {
                 whileHover={{ y: -8 }}
                 whileTap={{ scale: 0.97 }}
                 className="card-wrapper"
+                onClick={() => navigate(card.onCtaClick || "/serviceas")}
               >
                 <ServiceCard {...card} ctaLabel="Know More" />
               </motion.div>

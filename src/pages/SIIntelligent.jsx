@@ -3,40 +3,43 @@ import "../components/ProjectDetails/project-details.css";
 import ProjectScreens from "../components/ProjectDetails/ProjectScreens";
 import ProjectFuture from "../components/ProjectDetails/ProjectFuture";
 import FeaturedSection from "../components/ProjectDetails/FeaturedSection";
-import dashboardScreen from "../assets/f-d.png";
+import SIIntelligent1 from "../assets/SIIntelligent-1.png";
+import SIIntelligent2 from "../assets/SIIntelligent-2.png";
+import SIIntelligent3 from "../assets/SIIntelligent-3.png";
 import fleetManagement from "../assets/f-m-logo.png";
+import BottomSection from "../components/ProjectDetails/BottomSection";
 const SIIntelligent = () => {
   const fleetSlides = [
     {
-      imageLabel: "Dashboard Screens",
-      image: dashboardScreen,
-      title: "Live Tracking",
+      imageLabel: "Smart Protection, Always On",
+      image: SIIntelligent1,
+      title: "Smart Protection, Always On",
       description:
-        "Fleet Management is a comprehensive system designed to monitor, manage, and optimize your vehicles in real time. It empowers businesses with complete visibility over their fleet operations, helping improve efficiency, reduce operational costs, and ensure driver safety. From live tracking to performance analytics, fleet management transforms how you control and scale your transportation ecosystem.",
+        "SI Intelligent keeps your motorcycle secure with continuous real-time monitoring. It instantly detects unusual activity and alerts you before things escalate. Whether you're parked at home or outside, your vehicle stays under constant watch. The system is built to respond quickly and accurately. You always stay one step ahead of potential threats. Peace of mind comes standard.",
       link: "#",
     },
     {
-      imageLabel: "Analytics Screens",
-      image: dashboardScreen, // swap to analyticsScreen when available
-      title: "Performance Analytics",
+      imageLabel: "Real-Time Tracking & Alerts",
+      image: SIIntelligent1, // swap to analyticsScreen when available
+      title: "Real-Time Tracking & Alerts",
       description:
-        "Unlock deep insights into your fleet with powerful analytics dashboards. Track fuel consumption, driver behaviour, trip history, and vehicle health scores — all in one unified view. Make data-driven decisions that slash costs and keep your fleet running at peak efficiency around the clock.",
+        "Stay connected to your motorcycle no matter where you are. SI Intelligent sends instant alerts for unauthorized movement or suspicious behavior. You can track your vehicle’s live location directly from the app. Every movement is recorded for your reference. The system ensures you’re always informed. Control and awareness are always in your hands.",
       link: "#",
     },
     {
-      imageLabel: "Maintenance Screens",
-      image: dashboardScreen, // swap to maintenanceScreen when available
+      imageLabel: "Complete Control & Insights",
+      image: SIIntelligent1, // swap to maintenanceScreen when available
       title: "Vehicle Maintenance",
       description:
-        "Stay ahead of breakdowns with proactive maintenance scheduling and real-time diagnostics. Receive automated alerts when a vehicle needs servicing, track repair history, and manage maintenance workflows seamlessly — minimising downtime and extending the lifespan of every asset in your fleet.",
+        "Access detailed trip history and event logs anytime you need. Review past alerts and understand activity patterns. SI Intelligent offers full remote monitoring for total control. Designed with user-friendly features, it keeps everything simple and accessible. Stay informed, stay secure, and stay in control. Your motorcycle’s safety is now smarter than ever.",
       link: "#",
     },
   ];
 
   const fleetCards = [
     {
-      title: "Real-Time GPS Tracking",
-      desc: "Track every vehicle live with accurate location updates and route history.",
+      title: "Intelligent Vehicle Insights",
+      desc: "Get smart, real-time insights into your vehicle’s activity and performance.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +66,8 @@ const SIIntelligent = () => {
       ),
     },
     {
-      title: "Centralized Dashboard",
-      desc: "Manage all fleet activities from a single, intuitive interface.",
+      title: "Unified Command Center",
+      desc: "Manage everything seamlessly from one powerful and intuitive dashboard.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +108,8 @@ const SIIntelligent = () => {
       ),
     },
     {
-      title: "Driver Management",
-      desc: "Monitor driver behavior, assign trips, and improve accountability.",
+      title: "Smart Driver Intelligence",
+      desc: "Monitor driver behavior and improve safety with intelligent tracking.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -123,8 +126,8 @@ const SIIntelligent = () => {
       ),
     },
     {
-      title: "Alerts & Notifications",
-      desc: "Get instant alerts for overspeeding, idling, geofencing breaches, and more.",
+      title: "Predictive Alerts System",
+      desc: "Receive proactive alerts to prevent risks before they happen.",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -158,34 +161,37 @@ const SIIntelligent = () => {
       ),
     },
   ];
+  const data = [
+    {
+      title: "Fleet Management",
+      subtitle: "Vehicle Tracking  |  Driver Management  |  Dashboard App",
+      path: "/project-details/fleet-management",
+    },
+    {
+      title: "SI Connect",
+      subtitle: "Smart Tracker | Mobile App | Smarter Riders",
+      path: "/project-details/si-connect",
+    },
+  ];
   return (
     <div className="project-details-main">
       <FeaturedSection
-        subtitle="Vehicle Tracking | Driver Management | Dashboard App"
+        subtitle="Smart System  |   Intelligent vehicles   |  Advanced Sensing"
         title=" SI Intelligent"
-        description="Fleet Management is a comprehensive system designed to monitor,
-        manage, and optimize your vehicles in real time. It empowers
-        businesses with complete visibility over their fleet operations,
-        helping improve efficiency, reduce operational costs, and ensure
-        driver safety. From live tracking to performance analytics, fleet
-        management transforms how you control and scale your transportation
-        ecosystem."
+        description="SI Intelligent is a smart system designed to enhance vehicle safety and control by using real-time monitoring, intelligent alerts, and advanced tracking features, helping you stay connected to your motorcycle and respond instantly to any unusual activity."
       />
       <ProjectScreens slides={fleetSlides} buttonLabel="Explore The Project" />
       <ProjectFuture
         cards={fleetCards}
-        bottomText="Fleet Management is a smart, centralized system designed to monitor,
-      manage, and optimize a fleet of vehicles in real time. It enables
-      businesses to track vehicle locations using GPS, monitor driver
-      behavior, and gain valuable insights through a unified dashboard. With
-      features like route optimization, fuel monitoring, maintenance alerts,
-      and geofencing, fleet management helps reduce operational costs,
-      improve efficiency, and enhance safety. Whether managing a small group
-      of vehicles or a large-scale transportation network, it empowers
-      organizations with data-driven control and seamless coordination."
+        bottomText="SI Intelligent delivers advanced vehicle monitoring with real-time insights and smart analytics.
+Stay informed with intelligent alerts and continuous activity tracking.
+Enhance safety through predictive detection and quick response features.
+Understand vehicle performance, usage patterns, and behavior with ease.
+All powered through a seamless and intuitive digital experience."
         bottomImage={fleetManagement}
         bottomImageAlt="Fleet Management"
       />
+      <BottomSection cards={data} />
     </div>
   );
 };

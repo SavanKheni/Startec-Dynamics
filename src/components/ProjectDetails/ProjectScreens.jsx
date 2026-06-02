@@ -212,18 +212,6 @@ const ProjectScreens = ({
             {slide.description}
           </motion.p>
         </AnimatePresence>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`btn-${current}`}
-            variants={textVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-          >
-            <GradientButton href={slide.link}>{buttonLabel}</GradientButton>
-          </motion.div>
-        </AnimatePresence>
       </motion.div>
     </motion.div>
   );

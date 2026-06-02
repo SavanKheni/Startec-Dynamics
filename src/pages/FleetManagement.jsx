@@ -4,11 +4,15 @@ import ProjectScreens from "../components/ProjectDetails/ProjectScreens";
 import ProjectFuture from "../components/ProjectDetails/ProjectFuture";
 import FeaturedSection from "../components/ProjectDetails/FeaturedSection";
 import dashboardScreen from "../assets/f-d.png";
+import dashboardScreen2 from "../assets/f-d2.png";
+import dashboardScreen3 from "../assets/f-3.png";
+import dashboardScreen4 from "../assets/f-d4.png";
 import fleetManagement from "../assets/f-m-logo.png";
+import BottomSection from "../components/ProjectDetails/BottomSection";
 const FleetManagement = () => {
   const fleetSlides = [
     {
-      imageLabel: "Dashboard Screens",
+      imageLabel: "Live Tracking",
       image: dashboardScreen,
       title: "Live Tracking",
       description:
@@ -16,19 +20,20 @@ const FleetManagement = () => {
       link: "#",
     },
     {
-      imageLabel: "Analytics Screens",
-      image: dashboardScreen, // swap to analyticsScreen when available
-      title: "Performance Analytics",
+      imageLabel: "Overview Screen",
+      image: dashboardScreen2, // swap to analyticsScreen when available
+      title: "Overview Screen",
       description:
-        "Unlock deep insights into your fleet with powerful analytics dashboards. Track fuel consumption, driver behaviour, trip history, and vehicle health scores — all in one unified view. Make data-driven decisions that slash costs and keep your fleet running at peak efficiency around the clock.",
+        "Overview screen serves as a high-level command center providing real-time data visualization of the fleet's health, activity, and key metrics. The top row features high-impact KPI summary cards tracking total and active bikes, system alerts, registered users, and trip counts. The middle tier delivers deep-dive analytics through comparative line charts for bike activity, a bar graph for weekly traffic, and a breakdown wheel for user transactions. Finally, the bottom section pairs an interactive GPS map tracking vehicle accidents with operational modules for vehicle maintenance workflows and multi-year alert trends.",
       link: "#",
     },
+
     {
-      imageLabel: "Maintenance Screens",
-      image: dashboardScreen, // swap to maintenanceScreen when available
-      title: "Vehicle Maintenance",
+      imageLabel: "Driver Management",
+      image: dashboardScreen4, // swap to maintenanceScreen when available
+      title: "Driver Management",
       description:
-        "Stay ahead of breakdowns with proactive maintenance scheduling and real-time diagnostics. Receive automated alerts when a vehicle needs servicing, track repair history, and manage maintenance workflows seamlessly — minimising downtime and extending the lifespan of every asset in your fleet.",
+        "Driver Management module serves as a central control hub for monitoring fleet assets, tracking critical security events like theft and accident detection, and assigning vehicle hardware to specific owners. Additionally, it streamlines administration by providing dedicated panels to manage user permissions and track account roles, active statuses, and systemic permissions across the entire fleet network.",
       link: "#",
     },
   ];
@@ -158,6 +163,18 @@ const FleetManagement = () => {
       ),
     },
   ];
+  const data = [
+    {
+      title: "SI Intelligent",
+      subtitle: "Smart System | Intelligent vehicles | Advanced Sensing",
+      path: "/project-details/si-intelligent",
+    },
+    {
+      title: "SI Connect",
+      subtitle: "Smart Tracker | Mobile App | Smarter Riders",
+      path: "/project-details/si-connect",
+    },
+  ];
   return (
     <div className="project-details-main">
       <FeaturedSection
@@ -186,6 +203,7 @@ const FleetManagement = () => {
         bottomImage={fleetManagement}
         bottomImageAlt="Fleet Management"
       />
+      <BottomSection cards={data} />
     </div>
   );
 };

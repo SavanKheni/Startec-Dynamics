@@ -3,39 +3,42 @@ import "../components/ProjectDetails/project-details.css";
 import ProjectScreens from "../components/ProjectDetails/ProjectScreens";
 import ProjectFuture from "../components/ProjectDetails/ProjectFuture";
 import FeaturedSection from "../components/ProjectDetails/FeaturedSection";
-import dashboardScreen from "../assets/f-d.png";
-import fleetManagement from "../assets/f-m-logo.png";
+import siCon1 from "../assets/si-sonnect-1.png";
+import siCon2 from "../assets/si-sonnect-2.png";
+import siCon3 from "../assets/si-sonnect-3.png";
+import siConnect from "../assets/si-logo.png";
+import BottomSection from "../components/ProjectDetails/BottomSection";
 const SIConnect = () => {
   const fleetSlides = [
     {
-      imageLabel: "Dashboard Screens",
-      image: dashboardScreen,
-      title: "Live Tracking",
+      imageLabel: "Theft Detection",
+      image: siCon1,
+      title: "Theft Detection",
       description:
-        "Fleet Management is a comprehensive system designed to monitor, manage, and optimize your vehicles in real time. It empowers businesses with complete visibility over their fleet operations, helping improve efficiency, reduce operational costs, and ensure driver safety. From live tracking to performance analytics, fleet management transforms how you control and scale your transportation ecosystem.",
+        "SI Connect continuously monitors your motorcycle and instantly detects suspicious movement or unauthorized access attempts, providing instant theft alerts with real-time notifications when unexpected activity occurs, along with unauthorized movement detection if your bike is moved without permission; it also offers live location tracking so you can view your vehicle’s current position directly in the app, maintains detailed trip history and event logs to review past alerts and movements anytime, and enables remote monitoring so you can keep an eye on your motorcycle from anywhere.",
       link: "#",
     },
     {
-      imageLabel: "Analytics Screens",
-      image: dashboardScreen, // swap to analyticsScreen when available
-      title: "Performance Analytics",
+      imageLabel: "Advanced Performance Intelligence",
+      image: siCon2, // swap to analyticsScreen when available
+      title: "Advanced Performance Intelligence",
       description:
-        "Unlock deep insights into your fleet with powerful analytics dashboards. Track fuel consumption, driver behaviour, trip history, and vehicle health scores — all in one unified view. Make data-driven decisions that slash costs and keep your fleet running at peak efficiency around the clock.",
+        "Visualize real-time vehicle activity with powerful analytics dashboards.Track routes, notifications, and performance insights in one place. Identify patterns, monitor events, and improve operational efficiency. Make smarter, data-driven decisions with clear and actionable insights. Stay in control with a seamless and intuitive analytics experience.",
       link: "#",
     },
     {
-      imageLabel: "Maintenance Screens",
-      image: dashboardScreen, // swap to maintenanceScreen when available
-      title: "Vehicle Maintenance",
+      imageLabel: "Smart Maintenance Management",
+      image: siCon3, // swap to maintenanceScreen when available
+      title: "Smart Maintenance Management",
       description:
-        "Stay ahead of breakdowns with proactive maintenance scheduling and real-time diagnostics. Receive automated alerts when a vehicle needs servicing, track repair history, and manage maintenance workflows seamlessly — minimising downtime and extending the lifespan of every asset in your fleet.",
+        "Stay ahead with intelligent maintenance tracking and timely service alerts. Easily find nearby hospitals, service centers, and emergency support. Access repair history and manage vehicle health efficiently. Reduce downtime and keep your vehicle running at peak performance. All within a seamless and user-friendly experience.",
       link: "#",
     },
   ];
 
   const fleetCards = [
     {
-      title: "Real-Time GPS Tracking",
+      title: "Real-time vehicle tracking & monitoring",
       desc: "Track every vehicle live with accurate location updates and route history.",
       icon: (
         <svg
@@ -63,7 +66,7 @@ const SIConnect = () => {
       ),
     },
     {
-      title: "Centralized Dashboard",
+      title: "Centralized Mobile app",
       desc: "Manage all fleet activities from a single, intuitive interface.",
       icon: (
         <svg
@@ -105,7 +108,7 @@ const SIConnect = () => {
       ),
     },
     {
-      title: "Driver Management",
+      title: "Trip history and ride analytics",
       desc: "Monitor driver behavior, assign trips, and improve accountability.",
       icon: (
         <svg
@@ -123,7 +126,7 @@ const SIConnect = () => {
       ),
     },
     {
-      title: "Alerts & Notifications",
+      title: "Enhanced safety, security",
       desc: "Get instant alerts for overspeeding, idling, geofencing breaches, and more.",
       icon: (
         <svg
@@ -158,34 +161,34 @@ const SIConnect = () => {
       ),
     },
   ];
+  const data = [
+    {
+      title: "Fleet Management",
+      subtitle: "Vehicle Tracking  |  Driver Management  |  Dashboard App",
+      path: "/project-details/fleet-management",
+    },
+    {
+      title: "SI Intelligent",
+      subtitle: "Smart System  |   Intelligent vehicles   |  Advanced Sensing",
+      path: "/project-details/si-intelligent",
+    },
+  ];
   return (
     <div className="project-details-main">
       <FeaturedSection
-        subtitle="Vehicle Tracking | Driver Management | Dashboard App"
+        subtitle="Smart Tracker  |  Mobile App  |  Smarter Riders"
         title=" SI Connect"
-        description="Fleet Management is a comprehensive system designed to monitor,
-        manage, and optimize your vehicles in real time. It empowers
-        businesses with complete visibility over their fleet operations,
-        helping improve efficiency, reduce operational costs, and ensure
-        driver safety. From live tracking to performance analytics, fleet
-        management transforms how you control and scale your transportation
-        ecosystem."
+        description="SI Connect is an intelligent rider companion designed to bring connectivity, safety, and real-time vehicle intelligence to everyday mobility. Powered by the SI Smart Tracker and a user-friendly mobile application, it transforms conventional motorcycles into connected vehicles, giving riders greater control and peace of mind."
       />
       <ProjectScreens slides={fleetSlides} buttonLabel="Explore The Project" />
       <ProjectFuture
         cards={fleetCards}
-        bottomText="Fleet Management is a smart, centralized system designed to monitor,
-      manage, and optimize a fleet of vehicles in real time. It enables
-      businesses to track vehicle locations using GPS, monitor driver
-      behavior, and gain valuable insights through a unified dashboard. With
-      features like route optimization, fuel monitoring, maintenance alerts,
-      and geofencing, fleet management helps reduce operational costs,
-      improve efficiency, and enhance safety. Whether managing a small group
-      of vehicles or a large-scale transportation network, it empowers
-      organizations with data-driven control and seamless coordination."
-        bottomImage={fleetManagement}
-        bottomImageAlt="Fleet Management"
+        bottomText="With SI Connect, riders can monitor their vehicle's location in real time, review trip history, receive instant alerts, and stay connected to their motorcycle from anywhere. The platform is built to enhance rider safety through emergency notifications, crash detection support, and location-sharing capabilities that help families and emergency contacts respond faster when needed.
+Beyond security, SI Connect delivers valuable riding insights, helping users understand their travel patterns, vehicle usage, and performance through a simple and intuitive mobile experience."
+        bottomImage={siConnect}
+        bottomImageAlt="SI Connect"
       />
+      <BottomSection cards={data} />
     </div>
   );
 };

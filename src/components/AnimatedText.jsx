@@ -23,10 +23,22 @@ const AnimatedText = ({
 
     const el = textRef.current;
 
-    // prevent re-splitting
     if (el.querySelector(".letter")) return;
 
-    el.innerHTML = text.replace(/\S/g, "<span class='letter'>$&</span>");
+    const words = text.split(" ");
+
+    const wrapped = words
+      .map((word) => {
+        const letters = word
+          .split("")
+          .map((char) => `<span class="letter">${char}</span>`)
+          .join("");
+
+        return `<span class="word">${letters}</span>`;
+      })
+      .join(" ");
+
+    el.innerHTML = wrapped;
   }, [text]);
 
   // Animation trigger

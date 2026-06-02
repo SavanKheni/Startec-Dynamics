@@ -8,11 +8,12 @@ import GradientButton from "./Gradientbutton";
 import { motion, useAnimation } from "framer-motion";
 import StarTrail from "./StarTrail";
 import AnimatedText from "./AnimatedText";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   // Key trick: increment on every mount so Framer Motion replays all animations
   const [animKey, setAnimKey] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setAnimKey((k) => k + 1);
   }, []);
@@ -210,7 +211,7 @@ const Hero = () => {
             whileHover={{ scale: 1.07, transition: { duration: 0.2 } }}
             whileTap={{ scale: 0.95 }}
           >
-            <GradientButton onClick={() => console.log("clicked")}>
+            <GradientButton onClick={() => navigate("/about-us")}>
               Explore Startec
             </GradientButton>
           </motion.div>

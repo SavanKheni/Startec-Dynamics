@@ -521,20 +521,19 @@ const ProjectCards = () => {
                       duration: 0.65,
                       ease: [0.34, 1.56, 0.64, 1],
                     }}
-                    whileHover={{ scale: 1.06, transition: { duration: 0.2 } }}
-                    whileTap={{ scale: 0.95 }}
+                    // whileTap={{ scale: 0.95 }}
                     className="project-card-footer"
                   >
-                    <a href={item.link}>
-                      <GradientButton>Explore The Project</GradientButton>
-                    </a>
+                    <GradientButton onClick={() => navigate(item.link)}>
+                      Explore The Project
+                    </GradientButton>
                     {item.id === 1 && (
                       <p
                         onClick={() => {
-                          setShowMore(true);
+                          setShowMore(!showMore);
                         }}
                       >
-                        Expand More
+                        {showMore ? "Show Less" : "Show More"}
                       </p>
                     )}
                   </motion.div>
