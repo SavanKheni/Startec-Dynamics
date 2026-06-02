@@ -6,32 +6,41 @@ import FeaturedSection from "../components/ProjectDetails/FeaturedSection";
 import siCon1 from "../assets/si-sonnect-1.png";
 import siCon2 from "../assets/si-sonnect-2.png";
 import siCon3 from "../assets/si-sonnect-3.png";
+import siCon4 from "../assets/si-sonnect-4.png";
 import siConnect from "../assets/si-logo.png";
 import BottomSection from "../components/ProjectDetails/BottomSection";
 const SIConnect = () => {
   const fleetSlides = [
     {
-      imageLabel: "Theft Detection",
+      imageLabel: "SI Connent App Screens",
       image: siCon1,
-      title: "Theft Detection",
+      title: "Vehicle Location",
       description:
-        "SI Connect continuously monitors your motorcycle and instantly detects suspicious movement or unauthorized access attempts, providing instant theft alerts with real-time notifications when unexpected activity occurs, along with unauthorized movement detection if your bike is moved without permission; it also offers live location tracking so you can view your vehicle’s current position directly in the app, maintains detailed trip history and event logs to review past alerts and movements anytime, and enables remote monitoring so you can keep an eye on your motorcycle from anywhere.",
+        "Stay connected to your Calypso Nijia 125cc with our intuitive mobile interface, designed to keep you in command, whether you are on the road or planning your next ride. Interactive Vehicle Dashboard: Get a 360-degree view of your bike, control key systems, and manage security locks directly from your home screen. Real-Time Tracking: Never lose sight of your ride. Access precise vehicle locations, monitor active status, and view travel history with mapped routes and distance tracking. Smart Planning: Effortlessly locate nearby gas stations and check local weather conditions to ensure you are prepared for every journey.",
       link: "#",
     },
     {
-      imageLabel: "Advanced Performance Intelligence",
+      imageLabel: "SI Connent App Screens",
       image: siCon2, // swap to analyticsScreen when available
-      title: "Advanced Performance Intelligence",
+      title: "Security & System Notifications",
       description:
-        "Visualize real-time vehicle activity with powerful analytics dashboards.Track routes, notifications, and performance insights in one place. Identify patterns, monitor events, and improve operational efficiency. Make smarter, data-driven decisions with clear and actionable insights. Stay in control with a seamless and intuitive analytics experience.",
+        "Stay ahead of critical events and ensure your application is running optimally with our dedicated notification screens: Theft Response: In the event of potential theft, you are immediately prompted to confirm the situation, enabling our support team to contact you without delay. System Updates: Receive timely alerts regarding new app updates to ensure you are always equipped with the latest features and improved experiences",
       link: "#",
     },
     {
-      imageLabel: "Smart Maintenance Management",
+      imageLabel: "SI Connent App Screens",
       image: siCon3, // swap to maintenanceScreen when available
-      title: "Smart Maintenance Management",
+      title: "Notification & Command History",
       description:
-        "Stay ahead with intelligent maintenance tracking and timely service alerts. Easily find nearby hospitals, service centers, and emergency support. Access repair history and manage vehicle health efficiently. Reduce downtime and keep your vehicle running at peak performance. All within a seamless and user-friendly experience.",
+        "Stay updated and maintain visibility over your vehicle's activity with the integrated alert and command logs: Alert Notifications: Keep track of critical safety events, such as collision detections, complete with timestamps and precise location links for quick verification. Past User Commands: Review a detailed history of your interactions with the vehicle, ensuring that actions like unlocking, lighting control, or engine status changes were executed successfully.",
+      link: "#",
+    },
+    {
+      imageLabel: "SI Connent App Screens",
+      image: siCon4, // swap to maintenanceScreen when available
+      title: "Essential Services Locator",
+      description:
+        "Quickly find necessary facilities while on the road with our integrated locator tools: Gas Station Finder: Access an interactive map to locate nearby gas stations, view their operational status, and access direct links to their location. Nearby Clinics & Hospital: Easily identify medical facilities in your vicinity, complete with address details, contact numbers, and distance information for peace of mind.",
       link: "#",
     },
   ];
