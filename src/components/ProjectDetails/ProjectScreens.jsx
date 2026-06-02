@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import "./project-details.css";
 import { motion, AnimatePresence } from "framer-motion";
 import GradientButton from "../Gradientbutton";
 import AnimatedText from "../AnimatedText";
-
-// ─── Animation variants ───────────────────────────────────────────────────────
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -17,23 +15,31 @@ const viewProps = {
 const imgVariants = {
   enter: (dir) => ({
     opacity: 0,
-    x: dir > 0 ? 60 : -60,
-    scale: 0.97,
-    filter: "blur(4px)",
+    x: dir > 0 ? 100 : -100,
+    scale: 0.95,
+    filter: "blur(8px)",
   }),
+
   center: {
     opacity: 1,
     x: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.65, ease: EASE },
+    transition: {
+      duration: 1.1, // 🔥 slower & premium
+      ease: [0.22, 1, 0.36, 1], // smooth easeOut
+    },
   },
+
   exit: (dir) => ({
     opacity: 0,
-    x: dir > 0 ? -60 : 60,
-    scale: 0.97,
-    filter: "blur(4px)",
-    transition: { duration: 0.45, ease: EASE },
+    x: dir > 0 ? -100 : 100,
+    scale: 0.95,
+    filter: "blur(8px)",
+    transition: {
+      duration: 0.8, // 🔥 closer to enter → no snap
+      ease: [0.4, 0, 0.2, 1],
+    },
   }),
 };
 
@@ -59,6 +65,17 @@ const ProjectScreens = ({
 }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [loadedSlides, setLoadedSlides] = useState(new Set());
+  const timerRef = useRef(null); // ✅ autoplay control
+
+  // ✅ Preload images
+  useEffect(() => {
+    slides.forEach((slide, i) => {
+      const img = new Image();
+      img.src = slide.image;
+      img.onload = () => setLoadedSlides((prev) => new Set(prev).add(i));
+    });
+  }, [slides]);
 
   const goTo = useCallback(
     (index) => {
@@ -81,6 +98,34 @@ const ProjectScreens = ({
     setCurrent(idx);
   }, [current, slides.length]);
 
+  // ✅ Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const tag = e.target.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea") return;
+
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [prev, next]);
+
+  // ✅ Autoplay (10s, infinite)
+  useEffect(() => {
+    if (!slides.length) return;
+
+    // clear previous timer
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    timerRef.current = setTimeout(() => {
+      next();
+    }, 5000); // 10 sec
+
+    return () => clearTimeout(timerRef.current);
+  }, [current, next, slides.length]); // resets on manual change
+
   if (!slides.length) return null;
 
   const slide = slides[current];
@@ -102,11 +147,9 @@ const ProjectScreens = ({
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         {...viewProps}
       >
-        {/* Dynamic image label */}
-        <AnimatePresence mode="wait" custom={direction}>
+        <AnimatePresence mode="wait">
           <motion.h6
             key={`label-${current}`}
-            custom={direction}
             variants={textVariants}
             initial="enter"
             animate="center"
@@ -116,9 +159,8 @@ const ProjectScreens = ({
           </motion.h6>
         </AnimatePresence>
 
-        {/* Sliding image */}
         <div className="project-img-wrapper">
-          <AnimatePresence mode="wait" custom={direction}>
+          <AnimatePresence mode="sync" initial={false} custom={direction}>
             <motion.img
               key={`img-${current}`}
               src={slide.image}
@@ -132,13 +174,9 @@ const ProjectScreens = ({
           </AnimatePresence>
         </div>
 
-        {/* Dot + arrow controls */}
+        {/* Controls */}
         <div className="project-slider-controls">
-          <button
-            className="project-slider-arrow"
-            onClick={prev}
-            aria-label="Previous slide"
-          >
+          <button className="project-slider-arrow" onClick={prev}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M12.5 15L7.5 10L12.5 5"
@@ -156,16 +194,11 @@ const ProjectScreens = ({
                 key={i}
                 className={`project-dot${i === current ? " active" : ""}`}
                 onClick={() => goTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>
 
-          <button
-            className="project-slider-arrow"
-            onClick={next}
-            aria-label="Next slide"
-          >
+          <button className="project-slider-arrow" onClick={next}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M7.5 5L12.5 10L7.5 15"

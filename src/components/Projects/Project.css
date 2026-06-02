@@ -423,6 +423,10 @@
         text-align: left;
         text-decoration: underline;
     }
+
+    .project-secondary-grid-layout {
+        flex-direction: column !important;
+    }
 }
 
 

@@ -239,10 +239,20 @@
     /* match your existing card radius if any */
 }
 
-.project-img-wrapper img {
+.project-screen-main .project-img-wrapper {
+    position: relative;
     width: 100%;
-    display: block;
-    border-radius: 12px;
+    height: 600px;
+    /* adjust to match your design */
+    /* overflow: visible; */
+}
+
+.project-screen-main .project-img-wrapper img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* ─── Slider controls row (dots + arrows) ─────────────────────────────────── */
@@ -260,8 +270,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1px solid rgba(122, 134, 196, 0.4);
     background: rgba(1, 17, 47, 0.55);
@@ -370,12 +380,41 @@
         padding: 28px 24px;
         gap: 16px;
     }
+
+    .project-screen-main .project-img-wrapper {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        /* adjust to match your design */
+        /* overflow: visible; */
+    }
+
+    .project-details-main-fleet-mamanagement .project-screen-main .project-img-wrapper {
+        height: 550px;
+    }
+
+    .project-screen-main .project-img-wrapper img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 }
 
 /* Tablet portrait → stack vertically, hide side dividers */
 @media (max-width: 768px) {
     .bottom-section-inner {
         flex-direction: column;
+    }
+
+    .project-details-main-fleet-mamanagement .project-screen-main .project-img-wrapper {
+        height: 384px;
+    }
+
+    .project-details-main-fleet-mamanagement .project-screen-main .project-img-wrapper img {
+        object-fit: contain;
     }
 
     /* Hide the vertical GlowAnimation dividers; section borders do the job */
@@ -404,6 +443,18 @@
 }
 
 /* Mobile → compact */
+@media (max-width: 600px) {
+    .project-details-main-fleet-mamanagement .project-screen-main .project-img-wrapper {
+        height: 320px;
+    }
+}
+
+@media (max-width: 510px) {
+    .project-details-main-si-connect .project-screen-main .project-img-wrapper {
+        height: 375px;
+    }
+}
+
 @media (max-width: 480px) {
     .bottom-section-card {
         padding: 24px 16px;
@@ -416,6 +467,10 @@
 
     .bottom-section-card h6 {
         font-size: clamp(13px, 3.8vw, 16px);
+    }
+
+    .project-details-main-fleet-mamanagement .project-screen-main .project-img-wrapper {
+        height: 220px;
     }
 }
 

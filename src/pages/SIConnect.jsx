@@ -174,7 +174,7 @@ const SIConnect = () => {
     },
   ];
   return (
-    <div className="project-details-main">
+    <div className="project-details-main project-details-main-si-connect">
       <FeaturedSection
         subtitle="Smart Tracker  |  Mobile App  |  Smarter Riders"
         title=" SI Connect"

@@ -174,7 +174,7 @@ const SIIntelligent = () => {
     },
   ];
   return (
-    <div className="project-details-main">
+    <div className="project-details-main project-details-main-si-connect">
       <FeaturedSection
         subtitle="Smart System  |   Intelligent vehicles   |  Advanced Sensing"
         title=" SI Intelligent"

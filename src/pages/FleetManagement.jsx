@@ -176,7 +176,7 @@ const FleetManagement = () => {
     },
   ];
   return (
-    <div className="project-details-main">
+    <div className="project-details-main project-details-main-fleet-mamanagement">
       <FeaturedSection
         subtitle="Vehicle Tracking | Driver Management | Dashboard App"
         title=" Fleet Management"
