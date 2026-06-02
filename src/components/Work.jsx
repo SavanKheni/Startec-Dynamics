@@ -688,16 +688,11 @@ const Work = () => {
         </motion.div>
         <motion.div
           className="si-button"
-          initial={{ opacity: 0, y: 24, scale: 0.9 }}
-          animate={
-            inView
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 0, y: 24, scale: 0.9 }
-          }
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
-            ease: [0.34, 1.56, 0.64, 1],
-            delay: 0.38,
+            duration: 0.4,
+            ease: "easeOut",
           }}
         >
           <div className="dot-line" />
