@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Project.css";
 import project1 from "../../assets/project-card-1.png";
 import project2 from "../../assets/project-card-2.png";
 import project3 from "../../assets/project-card-3.png";
 import GradientButton from "../Gradientbutton";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import GlowLTR from "../GlowLTR";
 import AnimatedText from "../AnimatedText";
@@ -37,24 +37,13 @@ const projects = [
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 65, scale: 0.93, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    scale: 1,
     filter: "blur(0px)",
-    transition: { delay: i * 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+    transition: { delay: i * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] },
   }),
-  exit: {
-    opacity: 0,
-    y: 40,
-    scale: 0.9,
-    filter: "blur(6px)",
-    transition: {
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
   hover: {
     y: -10,
     transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
@@ -76,34 +65,19 @@ const shineVariants = {
 };
 
 const infoVariants = {
-  hidden: { opacity: 0, y: 22, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 15 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      delay: i * 0.15 + 0.3,
-      duration: 0.65,
+      delay: i * 0.12 + 0.2,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1],
     },
   }),
 };
 
-const infoChildVariants = {
-  hidden: { opacity: 0, y: 14, filter: "blur(3px)" },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      delay: i * 0.15 + 0.45,
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  }),
-};
-
-const vp = { once: false, amount: 0.2 };
+const vp = { once: false, amount: 0.1 };
 const vpLight = { once: false, amount: 0.1 };
 
 const fadeIn = (delay = 0) => ({
@@ -115,13 +89,13 @@ const fadeIn = (delay = 0) => ({
   },
 });
 
-// ── SVG line animation variants ──────────────────────────────
+// ── SVG line animation variants ──
 const lineH = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.2 },
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }, // ← Increased line draw duration
   },
 };
 
@@ -130,7 +104,7 @@ const lineVLeft = {
   visible: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 1.1 },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1.2 },
   },
 };
 
@@ -139,7 +113,7 @@ const lineVRight = {
   visible: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 1.1 },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1.2 },
   },
 };
 
@@ -148,7 +122,7 @@ const lineVMid = {
   visible: {
     pathLength: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.6 },
   },
 };
 
@@ -159,7 +133,7 @@ const diamondVariants = (delay) => ({
     scale: 1,
     rotate: 45,
     transition: {
-      delay,
+      delay: delay + 0.1,
       duration: 0.45,
       ease: [0.34, 1.56, 0.64, 1],
     },
@@ -170,14 +144,17 @@ const glowVariants = (delay) => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { delay, duration: 0.6, ease: "easeOut" },
+    transition: { delay: delay + 0.1, duration: 0.6, ease: "easeOut" },
   },
 });
 
-// ── ProjectCards ─────────────────────────────────────────────
 const ProjectCards = () => {
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
+  const accordionRef = useRef(null);
+
+  const featuredProject = projects[0];
+  const secondaryProjects = projects.slice(1);
 
   return (
     <div className="project-card-main-section">
@@ -210,31 +187,76 @@ const ProjectCards = () => {
         <AnimatedText as="span" text="Our Projects" />
       </motion.h1>
 
-      {/* ── Cards grid ── */}
-      {/* ADDED: layout prop to smoothly animate layout transitions */}
+      {/* ── Cards grid container ── */}
       <motion.div
-        layout="position"
         className="project-card-main"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.05 }}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.15 } },
-        }}
       >
-        {/* ── Animated SVG connector line ── */}
-        {/* ADDED: Inner AnimatePresence wrapper to slide & fade the line seamlessly */}
-        <AnimatePresence>
-          {showMore && (
-            <motion.div
-              className="project-line"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              style={{ overflow: "hidden" }}
-            >
+        {/* TOP CARD */}
+        <motion.div
+          className={`project-card ${featuredProject.gridClass}`}
+          custom={0}
+          variants={cardVariants}
+          whileHover="hover"
+        >
+          <div className="project-img-wrapper">
+            <motion.img
+              src={featuredProject.image}
+              alt={featuredProject.title}
+              className="project-img"
+              variants={imgVariants}
+              initial="rest"
+            />
+            <motion.span
+              className="project-shine"
+              variants={shineVariants}
+              initial="rest"
+            />
+          </div>
+
+          <motion.div
+            className="project-info"
+            custom={0}
+            variants={infoVariants}
+          >
+            <h1>{featuredProject.title}</h1>
+            <h6>{featuredProject.desc}</h6>
+            <div className="project-card-footer">
+              <GradientButton onClick={() => navigate(featuredProject.link)}>
+                Explore The Project
+              </GradientButton>
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowMore(!showMore);
+                }}
+                style={{ cursor: "pointer", userSelect: "none" }}
+              >
+                {showMore ? "Show Less" : "Show More"}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* ACCORDION WRAPPER CONTAINER */}
+        <motion.div
+          initial={false}
+          animate={{
+            height: showMore ? "auto" : 0,
+            opacity: showMore ? 1 : 0,
+          }}
+          // FIXED: Bumped duration to 0.65s and customized easing parameters for a ultra-premium rollout glide
+          transition={{
+            duration: showMore ? 1.5 : 0.45,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{ overflow: "hidden", gridColumn: "1 / -1" }}
+        >
+          <div ref={accordionRef}>
+            {/* SVG Connector Tray */}
+            <div className="project-line">
               <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1076"
@@ -242,8 +264,7 @@ const ProjectCards = () => {
                 viewBox="0 0 1076 187"
                 fill="none"
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                animate={showMore ? "visible" : "hidden"}
               >
                 {/* Horizontal line */}
                 <motion.line
@@ -255,7 +276,6 @@ const ProjectCards = () => {
                   strokeWidth="0.5"
                   variants={lineH}
                 />
-
                 {/* Left vertical drop */}
                 <motion.line
                   x1="54.8264"
@@ -266,7 +286,6 @@ const ProjectCards = () => {
                   strokeWidth="0.5"
                   variants={lineVLeft}
                 />
-
                 {/* Right vertical drop */}
                 <motion.line
                   x1="1020.83"
@@ -277,7 +296,6 @@ const ProjectCards = () => {
                   strokeWidth="0.5"
                   variants={lineVRight}
                 />
-
                 {/* Center vertical rise */}
                 <motion.line
                   x1="540.826"
@@ -303,7 +321,6 @@ const ProjectCards = () => {
                     fill="url(#paint0_radial_5866_2576)"
                   />
                 </motion.g>
-
                 {/* Left diamond */}
                 <motion.rect
                   x="53.9968"
@@ -328,7 +345,6 @@ const ProjectCards = () => {
                     fill="url(#paint1_radial_5866_2576)"
                   />
                 </motion.g>
-
                 {/* Right diamond */}
                 <motion.rect
                   x="1020"
@@ -353,7 +369,6 @@ const ProjectCards = () => {
                     fill="url(#paint2_radial_5866_2576)"
                   />
                 </motion.g>
-
                 {/* Mid diamond */}
                 <motion.rect
                   x="539.997"
@@ -463,99 +478,55 @@ const ProjectCards = () => {
                   </radialGradient>
                 </defs>
               </motion.svg>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
 
-        {/* ── Cards ── */}
-        {/* CHANGED: Swapped "wait" mode out. Default or crossfade works best with continuous layout changes */}
-        <AnimatePresence mode="popLayout">
-          {projects
-            .filter((_, index) => (showMore ? true : index === 0))
-            .map((item, index) => (
-              <motion.div
-                className={`project-card ${item.gridClass}`}
-                key={item.id}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                whileHover="hover"
-                layout // ← Ensures the cards morph to their new grid positions seamlessly
-              >
-                <div className="project-img-wrapper">
-                  <motion.img
-                    src={item.image}
-                    alt={item.title}
-                    className="project-img"
-                    variants={imgVariants}
-                    initial="rest"
-                    await="rest"
-                  />
-                  <motion.span
-                    className="project-shine"
-                    variants={shineVariants}
-                    initial="rest"
-                  />
-                </div>
-
+            {/* Bottom Secondary Cards Inner Grid Layout */}
+            <div
+              className="project-secondary-grid-layout"
+              style={{ display: "flex", gap: "24px", width: "100%" }}
+            >
+              {secondaryProjects.map((item, index) => (
                 <motion.div
-                  className="project-info"
-                  custom={index}
-                  initial="hidden"
-                  animate="visible"
-                  variants={infoVariants}
+                  className={`project-card ${item.gridClass}`}
+                  key={item.id}
+                  custom={index + 1}
+                  variants={cardVariants}
+                  whileHover="hover"
+                  style={{ flex: "1" }}
                 >
-                  <motion.h1
-                    custom={index}
-                    initial="hidden"
-                    animate="visible"
-                    variants={infoChildVariants}
-                  >
-                    {item.title}
-                  </motion.h1>
-
-                  <motion.h6
-                    custom={index}
-                    initial="hidden"
-                    animate="visible"
-                    variants={infoChildVariants}
-                    transition={{ delay: index * 0.15 + 0.55 }}
-                  >
-                    {item.desc}
-                  </motion.h6>
+                  <div className="project-img-wrapper">
+                    <motion.img
+                      src={item.image}
+                      alt={item.title}
+                      className="project-img"
+                      variants={imgVariants}
+                      initial="rest"
+                    />
+                    <motion.span
+                      className="project-shine"
+                      variants={shineVariants}
+                      initial="rest"
+                    />
+                  </div>
 
                   <motion.div
-                    custom={index}
-                    initial={{ opacity: 0, y: 16, scale: 0.92 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{
-                      delay: index * 0.15 + 0.65,
-                      duration: 0.65,
-                      ease: [0.34, 1.56, 0.64, 1],
-                    }}
-                    className="project-card-footer"
+                    className="project-info"
+                    custom={index + 1}
+                    variants={infoVariants}
                   >
-                    <GradientButton onClick={() => navigate(item.link)}>
-                      Explore The Project
-                    </GradientButton>
-                    {item.id === 1 && (
-                      <p
-                        onClick={(e) => {
-                          e.stopPropagation(); // Stop click bubbling up to card elements
-                          setShowMore(!showMore);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {showMore ? "Show Less" : "Show More"}
-                      </p>
-                    )}
+                    <h1>{item.title}</h1>
+                    <h6>{item.desc}</h6>
+                    <div className="project-card-footer">
+                      <GradientButton onClick={() => navigate(item.link)}>
+                        Explore The Project
+                      </GradientButton>
+                    </div>
                   </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
-        </AnimatePresence>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* ── Bottom GlowLTR ── */}
