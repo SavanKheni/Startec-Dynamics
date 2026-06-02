@@ -23,11 +23,27 @@ const FleetManagement = () => {
       link: "#",
     },
     {
+      imageLabel: "Dashboard screens ",
+      image: dashboardScreen7, // swap to maintenanceScreen when available
+      title: "GPS Tracking",
+      description:
+        "Maintain complete oversight of your fleet with our comprehensive GPS Tracking interface. This dashboard allows you to monitor vehicle movements, status, and performance metrics in one centralized location. Map Overview: Track specific vehicles by VIN to visualize routes and current positioning on an interactive map. Bike Status Monitoring: Keep tabs on critical vehicle health and security indicators, including engine disabling, lock status, and ignition status through visual timeline charts. Performance Analytics: Utilize detailed IMU Data (pitch, roll, and yaw) along with Speed & Acceleration Data to analyze driving behavior and vehicle dynamics over time. Data Management: Easily export your tracking data for further record-keeping or reporting needs.",
+      link: "#",
+    },
+    {
       imageLabel: "Dashboard screens",
       image: dashboardScreen,
       title: "Live Tracking",
       description:
         "Fleet Management is a comprehensive system designed to monitor, manage, and optimize your vehicles in real time. It empowers businesses with complete visibility over their fleet operations, helping improve efficiency, reduce operational costs, and ensure driver safety. From live tracking to performance analytics, fleet management transforms how you control and scale your transportation ecosystem.",
+      link: "#",
+    },
+    {
+      imageLabel: "Dashboard screens",
+      image: dashboardScreen6, // swap to maintenanceScreen when available
+      title: "Alerts Notifications",
+      description:
+        "Stay informed and maintain complete control over your fleet operations with our centralized Alert/Notification hub. This page provides real-time visibility into critical events, ensuring rapid response times and enhanced safety. Key Features: Interactive Accident Map: Visualize the geographic distribution of alerts across your fleet. Select individual markers to view detailed incident information, check status, and initiate contact with drivers immediately. Live Alert List: Monitor incoming alerts categorized by urgency (Active, Critical, Awaiting Response). Quickly assess driver status, location, and incident severity at a glance.",
       link: "#",
     },
     {
@@ -44,22 +60,6 @@ const FleetManagement = () => {
       title: "Geo-Fencing Module",
       description:
         "Monitor, manage, and secure vehicle movements with real-time geo-fencing intelligence. This dashboard provides instant alerts when vehicles enter or exit predefined zones, enabling proactive fleet monitoring, improved security, and operational efficiency. With interactive maps, boundary management, incident tracking, and detailed alert records, fleet operators can quickly identify violations, respond to events, and maintain complete visibility over vehicle activity.",
-      link: "#",
-    },
-    {
-      imageLabel: "Dashboard screens",
-      image: dashboardScreen6, // swap to maintenanceScreen when available
-      title: "Alerts Notifications",
-      description:
-        "Stay informed and maintain complete control over your fleet operations with our centralized Alert/Notification hub. This page provides real-time visibility into critical events, ensuring rapid response times and enhanced safety. Key Features: Interactive Accident Map: Visualize the geographic distribution of alerts across your fleet. Select individual markers to view detailed incident information, check status, and initiate contact with drivers immediately. Live Alert List: Monitor incoming alerts categorized by urgency (Active, Critical, Awaiting Response). Quickly assess driver status, location, and incident severity at a glance.",
-      link: "#",
-    },
-    {
-      imageLabel: "Dashboard screens ",
-      image: dashboardScreen7, // swap to maintenanceScreen when available
-      title: "GPS Tracking",
-      description:
-        "Maintain complete oversight of your fleet with our comprehensive GPS Tracking interface. This dashboard allows you to monitor vehicle movements, status, and performance metrics in one centralized location. Map Overview: Track specific vehicles by VIN to visualize routes and current positioning on an interactive map. Bike Status Monitoring: Keep tabs on critical vehicle health and security indicators, including engine disabling, lock status, and ignition status through visual timeline charts. Performance Analytics: Utilize detailed IMU Data (pitch, roll, and yaw) along with Speed & Acceleration Data to analyze driving behavior and vehicle dynamics over time. Data Management: Easily export your tracking data for further record-keeping or reporting needs.",
       link: "#",
     },
   ];
