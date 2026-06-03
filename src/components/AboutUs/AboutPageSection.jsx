@@ -4,6 +4,7 @@ import GradientButton from "../Gradientbutton";
 import GlowAnimation from "../GlowAnimation";
 import PulseBox from "../PulseBox";
 import { motion, useInView } from "framer-motion";
+import { useRecalculate } from "../../hooks/RecalculateContext"; // ✅ ADDED
 
 // ── Animation Variants ───────────────────────────────────────
 const stagger = {
@@ -26,6 +27,9 @@ const fadeUp = {
   },
 };
 
+// ⏱ Match accordion animation duration
+const ACCORDION_DURATION_MS = 500;
+
 // ── ✅ Smooth Accordion Component ─────────────────────────────
 const SmoothAccordion = ({ expanded, children }) => {
   const ref = useRef(null);
@@ -40,13 +44,13 @@ const SmoothAccordion = ({ expanded, children }) => {
       setHeight(el.scrollHeight);
     };
 
-    updateHeight(); // initial
+    updateHeight();
 
     const resizeObserver = new ResizeObserver(updateHeight);
     resizeObserver.observe(el);
 
     return () => resizeObserver.disconnect();
-  }, []);
+  }, [expanded]); // ✅ FIXED (important)
 
   return (
     <motion.div
@@ -72,6 +76,22 @@ const AboutPageSection = () => {
   const inView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   const [expanded, setExpanded] = useState(false);
+
+  // ✅ Get recalculate
+  const recalculate = useRecalculate();
+
+  // ✅ Toggle with recalc (same pattern as ProjectCards)
+  const handleToggle = () => {
+    setExpanded((prev) => {
+      const next = !prev;
+
+      setTimeout(() => {
+        recalculate?.();
+      }, ACCORDION_DURATION_MS + 50);
+
+      return next;
+    });
+  };
 
   return (
     <div className="about-section-container">
@@ -137,7 +157,7 @@ const AboutPageSection = () => {
               smart safety systems for motorcycles and light vehicles.
             </p>
 
-            {/* ✅ Smooth Accordion */}
+            {/* Accordion */}
             <SmoothAccordion expanded={expanded}>
               <p>
                 At the heart of our innovation is Startec Intelligent—a
@@ -167,7 +187,7 @@ const AboutPageSection = () => {
           <motion.button
             className="read-more-btn"
             variants={fadeUp}
-            onClick={() => setExpanded(!expanded)}
+            onClick={handleToggle} // ✅ UPDATED
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
